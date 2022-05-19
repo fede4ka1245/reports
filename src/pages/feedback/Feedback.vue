@@ -1,10 +1,5 @@
-<script setup>
+<script setup></script>
 
-</script>
+<template>feedback</template>
 
-<template>
-  feedback
-</template>
-
-<style scoped>
-</style>
+<style scoped></style>

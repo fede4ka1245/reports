@@ -1,4 +1,3 @@
-
 <template>
   <section class="app-content">
     <app-tabbar />
@@ -10,8 +9,7 @@
 import AppTabbar from "./components/appTabbar/AppTabbar";
 </script>
 
-
-<style >
+<style>
 body {
   background-color: #f5f2ec;
 }

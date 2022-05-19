@@ -1,5 +1,5 @@
 <script setup></script>
 
-<template>all reports</template>
+<template>costs</template>
 
 <style scoped></style>

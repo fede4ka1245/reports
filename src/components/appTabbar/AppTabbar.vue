@@ -1,27 +1,27 @@
 <script setup>
 import { ref } from "vue";
-import { routes } from "@/router/router"
+import { routes } from "@/router/router";
 
 const tabs = [
   {
     name: 0,
     icon: "campaign",
     label: "Текущий",
-    link: routes[0].path
+    route: routes.current,
   },
   {
     name: 1,
     icon: "folder",
     label: "Все отчеты",
-    link: routes[1].path
+    route: routes.AllReports,
   },
   {
     name: 2,
     icon: "campaign",
     label: "Фидбэк",
-    link: routes[2].path
-  }
-]
+    route: routes.feedback,
+  },
+];
 
 const page = ref(tabs[0].name);
 </script>
@@ -29,20 +29,20 @@ const page = ref(tabs[0].name);
 <template>
   <div class="app">
     <q-tabs
-        v-model="page"
-        narrow-indicator
-        dense
-        align="justify"
-        class="text-orange"
+      v-model="page"
+      narrow-indicator
+      dense
+      align="justify"
+      class="text-orange"
     >
       <q-tab
-          v-for="tab in tabs"
-          :name="tab.name"
-          :icon="tab.icon"
-          :label="tab.label"
-          @click="this.$router.push(tab.link)"
+        v-for="tab in tabs"
+        :key="tab.label + tab.name"
+        :name="tab.name"
+        :icon="tab.icon"
+        :label="tab.label"
+        @click="$router.push(tab.route.path)"
       >
-
       </q-tab>
     </q-tabs>
   </div>
