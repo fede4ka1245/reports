@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import { store } from "@/store/store";
+import ButtonAdd from "@/components/buttonAdd/ButtonAdd";
 
 const rows = ref([]);
 const columns = [
@@ -33,10 +34,26 @@ const columns = [
     <q-input class="sum" outlined />
     <q-select class="code" outlined :label="code" />
   </section>
-  <q-table :columns="columns" :rows="rows" />
-  <div class="flex justify-center">
-    <q-btn class="button" icon="add" color="orange"> </q-btn>
-  </div>
+  <section class="table">
+    <p>оплаты участников с исключениями</p>
+    <q-table :columns="columns" :rows="rows" />
+    <button-add />
+  </section>
+  <section class="table">
+    <p>получено от инструкторов</p>
+    <q-table :columns="columns" :rows="rows" />
+    <button-add />
+  </section>
+  <section class="table">
+    <p>получено от кураторов</p>
+    <q-table :columns="columns" :rows="rows" />
+    <button-add />
+  </section>
+  <section class="table">
+    <p>получено из офиса</p>
+    <q-table :columns="columns" :rows="rows" />
+    <button-add />
+  </section>
 </template>
 
 <style scoped>
@@ -58,10 +75,8 @@ h6 {
   margin: 5px;
 }
 
-.button {
-  border-radius: 50%;
-  width: 3.5em;
-  height: 3.5em;
-  margin: 1em;
+.table {
+  display: flex;
+  flex-direction: column;
 }
 </style>
