@@ -1,8 +1,7 @@
 <template>
-  <section class="app-content">
-    <app-tabbar />
-  </section>
   <router-view></router-view>
+  <div class="tabbar-margin"></div>
+  <app-tabbar />
 </template>
 
 <script setup>
@@ -14,9 +13,7 @@ body {
   background-color: #f5f2ec;
 }
 
-.app-content {
-  max-width: 800px;
-  margin-right: auto;
-  margin-left: auto;
+.tabbar-margin {
+  margin: 3em;
 }
 </style>
