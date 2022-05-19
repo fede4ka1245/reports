@@ -4,26 +4,23 @@ import { routes } from "@/router/router";
 
 const tabs = [
   {
-    name: 0,
     icon: "campaign",
     label: "Текущий",
     route: routes.current,
   },
   {
-    name: 1,
     icon: "folder",
     label: "Все отчеты",
     route: routes.AllReports,
   },
   {
-    name: 2,
     icon: "campaign",
     label: "Фидбэк",
     route: routes.feedback,
   },
 ];
 
-const page = ref(tabs[0].name);
+const page = ref(0);
 </script>
 
 <template>
@@ -36,9 +33,9 @@ const page = ref(tabs[0].name);
       class="text-orange"
     >
       <q-tab
-        v-for="tab in tabs"
-        :key="tab.label + tab.name"
-        :name="tab.name"
+        v-for="(tab, index) in tabs"
+        :key="tab.label + index"
+        :name="index"
         :icon="tab.icon"
         :label="tab.label"
         @click="$router.push(tab.route.path)"
@@ -50,10 +47,11 @@ const page = ref(tabs[0].name);
 
 <style scoped>
 .app {
-  position: absolute;
+  position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
   background: #f5f2ec;
+  z-index: 100;
 }
 </style>
