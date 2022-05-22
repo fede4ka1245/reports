@@ -1,12 +1,16 @@
+<script setup>
+import AppTabbar from "./components/appTabbar/AppTabbar";
+import ModalRoot from "@/modalPages/modalRoot/ModalRoot";
+</script>
+
 <template>
   <router-view></router-view>
+  <div>
+    <modal-root />
+  </div>
   <div class="tabbar-margin"></div>
   <app-tabbar />
 </template>
-
-<script setup>
-import AppTabbar from "./components/appTabbar/AppTabbar";
-</script>
 
 <style>
 body {

@@ -2,7 +2,7 @@
 import { defineProps } from "vue";
 
 const props = defineProps({
-  handler: () => Function,
+  handler: Function,
 });
 </script>
 

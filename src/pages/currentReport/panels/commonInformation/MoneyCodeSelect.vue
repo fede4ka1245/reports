@@ -31,7 +31,7 @@ const createValue = (val, done) => {
 
 <template>
   <q-select
-    v-model="store.moneyCodes"
+    v-model="store.currentReportStore.moneyCodes"
     :options="moneyCodes"
     outlined
     multiple

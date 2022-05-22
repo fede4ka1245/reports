@@ -1,3 +1,5 @@
 export const modalPagesStore = {
-  activePage: "",
+  isModalOpen: false,
+  activePageName: undefined,
+  props: undefined,
 };

@@ -5,6 +5,12 @@ import Feedback from "../pages/feedback/Feedback";
 import { childRoutes as currentReportRoutes } from "@/pages/currentReport/childRoutes";
 
 export const routes = {
+  main: {
+    path: "/",
+    redirect: () => {
+      return { path: `/current/${currentReportRoutes.common.path}` };
+    },
+  },
   current: {
     path: "/current",
     component: CurrentReport,

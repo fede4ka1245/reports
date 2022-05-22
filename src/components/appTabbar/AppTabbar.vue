@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import { routes } from "@/router/router";
+import { useRouter } from "vue-router";
 
 const tabs = [
   {
@@ -20,25 +21,32 @@ const tabs = [
   },
 ];
 
-const page = ref(0);
+const router = useRouter();
+const targetTabIndex = ref(0);
+const tabClickHandler = (tabIndex, path) => {
+  if (tabIndex === targetTabIndex.value) {
+    return;
+  }
+  router.push(path);
+};
 </script>
 
 <template>
   <div class="app">
     <q-tabs
-      v-model="page"
+      v-model="targetTabIndex"
       narrow-indicator
       dense
       align="justify"
       class="text-orange"
     >
       <q-tab
-        v-for="(tab, index) in tabs"
-        :key="tab.label + index"
-        :name="index"
+        v-for="(tab, tabIndex) in tabs"
+        :key="tab.label + tabIndex"
+        :name="tabIndex"
         :icon="tab.icon"
         :label="tab.label"
-        @click="$router.push(tab.route.path)"
+        @click="tabClickHandler(tabIndex, tab.route.path)"
       >
       </q-tab>
     </q-tabs>

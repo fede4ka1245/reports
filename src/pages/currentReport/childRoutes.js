@@ -1,8 +1,8 @@
-import Commons from "./panels/commons/Commons";
-import Costs from "./panels/Costs";
+import Commons from "./panels/commonInformation/CommonInformation";
+import Costs from "./panels/expenses/Expenses";
 import Payments from "./panels/payments/Payments";
-import Conversion from "./panels/Conversion";
-import Summary from "./panels/Summary";
+import Conversion from "./panels/conversion/Conversion";
+import Summary from "./panels/results/Results";
 
 export const childRoutes = {
   common: {
