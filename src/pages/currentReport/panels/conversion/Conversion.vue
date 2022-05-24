@@ -1,3 +1,19 @@
+<template>
+  <q-table :columns="columns" :rows="rows" />
+  <button-add
+    :handler="
+      () =>
+        openModalPage(modalName.addConversion, {
+          saveData: (conversion) =>
+            (store.currentReportStore.conversions = [
+              ...store.currentReportStore.conversions,
+              conversion,
+            ]),
+        })
+    "
+  />
+</template>
+
 <script setup>
 import ButtonAdd from "@/components/buttonAdd/ButtonAdd";
 import { openModalPage } from "@/modalPages/utils/openModalPage";
@@ -45,21 +61,5 @@ const rows = computed(() => {
   });
 });
 </script>
-
-<template>
-  <q-table :columns="columns" :rows="rows" />
-  <button-add
-    :handler="
-      () =>
-        openModalPage(modalName.addConversion, {
-          saveData: (conversion) =>
-            (store.currentReportStore.conversions = [
-              ...store.currentReportStore.conversions,
-              conversion,
-            ]),
-        })
-    "
-  />
-</template>
 
 <style scoped></style>

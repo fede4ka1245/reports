@@ -1,5 +1,3 @@
-<script setup></script>
-
 <template>
   <section class="justify-center flex column">
     <p class="text-bold text-center">Нет текущего отчета. Создать?</p>

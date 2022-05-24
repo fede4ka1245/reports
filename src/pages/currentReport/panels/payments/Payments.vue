@@ -1,33 +1,3 @@
-<script setup>
-import { store } from "@/store/store";
-import ButtonAdd from "@/components/buttonAdd/ButtonAdd";
-import { openModalPage } from "@/modalPages/utils/openModalPage";
-import { modalName } from "@/modalPages/utils/modalName";
-
-const columns = [
-  {
-    align: "left",
-    name: "name",
-    field: "name",
-    label: "ФИО",
-    sortable: true,
-  },
-  {
-    align: "left",
-    name: "sum",
-    field: "sum",
-    label: "Сумма",
-    sortable: true,
-  },
-  {
-    align: "left",
-    name: "comment",
-    field: "comment",
-    label: "Комментарий",
-  },
-];
-</script>
-
 <template>
   <p>Сумма оплат</p>
   <section v-for="code in store.currentReportStore.moneyCodes">
@@ -119,6 +89,36 @@ const columns = [
     />
   </section>
 </template>
+
+<script setup>
+import { store } from "@/store/store";
+import ButtonAdd from "@/components/buttonAdd/ButtonAdd";
+import { openModalPage } from "@/modalPages/utils/openModalPage";
+import { modalName } from "@/modalPages/utils/modalName";
+
+const columns = [
+  {
+    align: "left",
+    name: "name",
+    field: "name",
+    label: "ФИО",
+    sortable: true,
+  },
+  {
+    align: "left",
+    name: "sum",
+    field: "sum",
+    label: "Сумма",
+    sortable: true,
+  },
+  {
+    align: "left",
+    name: "comment",
+    field: "comment",
+    label: "Комментарий",
+  },
+];
+</script>
 
 <style scoped>
 section {
