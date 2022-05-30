@@ -1,4 +1,5 @@
 import ExcelJS from "exceljs";
+import { groupExpenses } from "@/modules/groupExpenses";
 import {
   setConversions,
   setExpenses,
@@ -6,6 +7,7 @@ import {
   setCommonPayments,
   setOutgoingPayments,
   setIncomingPayments,
+  setGroupedExpenses,
 } from "@/modules/excel/sheetDataSetters";
 
 import { styleSheet } from "@/modules/excel/helpers";
@@ -37,6 +39,7 @@ export const getHikeReport = (reportData) => {
     properties: { tabColor: { argb: "FFC0000" } },
   });
 
+  setGroupedExpenses(expensesSheet, groupExpenses(reportData.expenses));
   setExpenses(expensesSheet, reportData.expenses);
   setConversions(expensesSheet, reportData.conversions);
 

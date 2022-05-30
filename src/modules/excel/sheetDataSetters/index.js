@@ -4,8 +4,10 @@ import { setCommonPayments } from "@/modules/excel/sheetDataSetters/setCommonPay
 import { setHikeInformation } from "@/modules/excel/sheetDataSetters/setHikeInformation";
 import { setOutgoingPayments } from "@/modules/excel/sheetDataSetters/setOutgoingPayments";
 import { setIncomingPayments } from "@/modules/excel/sheetDataSetters/setIncomingPayments";
+import { setGroupedExpenses } from "@/modules/excel/sheetDataSetters/setGroupedExpenses";
 
 export {
+  setGroupedExpenses,
   setConversions,
   setExpenses,
   setCommonPayments,
