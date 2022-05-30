@@ -6,7 +6,7 @@
     option-label="name"
     class="item"
     outlined
-    label="Событие"
+    label="Расход"
     @filter="filter"
   />
   <payment-input

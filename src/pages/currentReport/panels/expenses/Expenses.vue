@@ -1,7 +1,19 @@
 <template>
+  <div class="toggle">
+    <div>Сгруппировать по категориям</div>
+    <q-toggle v-model="data.isGrouped" color="orange" />
+  </div>
   <payment-table
+    v-if="!data.isGrouped"
     :rows="store.currentReportStore.expenses"
     :columns="expensesColumns"
+    :edit="edit"
+    :remove="remove"
+  />
+  <payment-table
+    v-if="data.isGrouped"
+    :rows="groupedExpenses"
+    :columns="groupedExpensesColumns"
     :edit="edit"
     :remove="remove"
   />
@@ -26,6 +38,17 @@ import { modalName } from "@/modalPages/utils/modalName";
 import { store } from "@/store/store";
 import { expensesColumns } from "@/components/table/columns";
 import PaymentTable from "@/components/table/PaymentTable";
+import { reactive, computed } from "vue";
+import { groupedExpensesColumns } from "@/components/table/columns";
+import { groupExpenses } from "@/modules/groupExpenses";
+
+const groupedExpenses = computed(() => {
+  return groupExpenses(store.currentReportStore.expenses);
+});
+
+const data = reactive({
+  isGrouped: false,
+});
 
 const remove = (index) => {
   store.currentReportStore.expenses.splice(index, 1);
@@ -39,4 +62,10 @@ const edit = (index) => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.toggle {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+</style>
