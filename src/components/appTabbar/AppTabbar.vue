@@ -12,7 +12,7 @@ const tabs = [
   {
     icon: "folder",
     label: "Все отчеты",
-    route: routes.AllReports,
+    route: routes.allReports,
   },
   {
     icon: "campaign",

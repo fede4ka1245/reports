@@ -3,6 +3,7 @@ import CurrentReport from "../pages/currentReport/CurrentReport";
 import AllReports from "../pages/allReports/AllReports";
 import Feedback from "../pages/feedback/Feedback";
 import { childRoutes as currentReportRoutes } from "@/pages/currentReport/childRoutes";
+import { childRoutes as allReportRoutes } from "@/pages/allReports/childRoutes";
 
 export const routes = {
   main: {
@@ -14,14 +15,18 @@ export const routes = {
   current: {
     path: "/current",
     component: CurrentReport,
+    children: Array.from(Object.values(currentReportRoutes)),
     redirect: () => {
       return { path: `/current/${currentReportRoutes.common.path}` };
     },
-    children: Array.from(Object.values(currentReportRoutes)),
   },
-  AllReports: {
+  allReports: {
     path: "/all-reports",
     component: AllReports,
+    children: Array.from(Object.values(allReportRoutes)),
+    redirect: () => {
+      return { path: `/all-reports/${allReportRoutes.RoutesList.path}` };
+    },
   },
   feedback: {
     path: "/feedback",

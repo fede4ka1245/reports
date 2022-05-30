@@ -1,15 +1,16 @@
 <script setup>
 import { store } from "@/store/store";
-import PaymentPreferences from "@/modalPages/pages/PaymentPreferences";
 import { modalName } from "@/modalPages/utils/modalName";
 import { computed } from "vue";
-import AddExpense from "@/modalPages/pages/AddExpense";
-import AddConvertion from "@/modalPages/pages/AddConvertion";
+import ModalExpense from "@/modalPages/pages/ModalExpense";
+import ModalConversion from "@/modalPages/pages/ModalConversion";
+import ModalPayment from "@/modalPages/pages/modalPayment/ModalPayment";
 
 const isOpen = computed(() => {
   return store.modalPagesStore.isModalOpen;
 });
 </script>
+
 <template>
   <q-dialog
     v-model="isOpen"
@@ -19,16 +20,16 @@ const isOpen = computed(() => {
     transition-hide="slide-down"
   >
     <div class="content">
-      <payment-preferences
+      <modal-payment
+        v-if="modalName.modalPayment === store.modalPagesStore.activePageName"
+      />
+      <modal-expense
+        v-if="modalName.modalExpense === store.modalPagesStore.activePageName"
+      />
+      <modal-conversion
         v-if="
-          modalName.paymentPreferences === store.modalPagesStore.activePageName
+          modalName.modalConversion === store.modalPagesStore.activePageName
         "
-      />
-      <add-expense
-        v-if="modalName.addExpense === store.modalPagesStore.activePageName"
-      />
-      <add-convertion
-        v-if="modalName.addConversion === store.modalPagesStore.activePageName"
       />
     </div>
   </q-dialog>
@@ -38,5 +39,9 @@ const isOpen = computed(() => {
 .content {
   background-color: #f5f2ec;
   padding: 0 1em 0 1em;
+}
+
+.item {
+  padding-bottom: 5px;
 }
 </style>

@@ -1,0 +1,6 @@
+{
+  "appId": "com.finapp.app",
+  "appName": "finapp",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}

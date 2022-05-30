@@ -48,6 +48,15 @@ export const getHikeReport = (reportData) => {
     });
     console.log("here", blob);
 
+    const a = document.createElement("a");
+    document.body.appendChild(a);
+    a.style = "display: none";
+    const url = window.URL.createObjectURL(blob);
+    a.href = url;
+    a.download = "report.xlsx";
+    a.click();
+    window.URL.revokeObjectURL(url);
+
     writeFile({
       path: "Documents/report.xlsx",
       data: blob,

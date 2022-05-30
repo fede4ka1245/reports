@@ -2,7 +2,7 @@
   <q-select
     v-model="store.currentReportStore.route"
     :options="commonData.routes"
-    option-label="name"
+    :option-label="(item) => (item.name ? item.name : '')"
     class="item"
     outlined
     use-input
@@ -12,7 +12,9 @@
   <q-select
     v-model="store.currentReportStore.hike"
     :options="datesOptions"
-    :option-label="(item) => item.beginDate + '-' + item.endDate"
+    :option-label="
+      (item) => (item.beginDate ? item.beginDate + '-' + item.endDate : '')
+    "
     class="item"
     outlined
     label="Дата"

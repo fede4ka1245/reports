@@ -4,8 +4,8 @@ export function setOutgoingPayments(sheet, outgoingPayments) {
   let rowIndex = sheet.rowCount + 1;
 
   for (let payment of outgoingPayments) {
-    const { name, payments } = payment;
-    createHeaderCell(sheet.getCell(rowIndex, 1), name);
+    const { label, payments } = payment;
+    createHeaderCell(sheet.getCell(rowIndex, 1), label);
     rowIndex += 1;
 
     createHeaderCell(sheet.getCell(rowIndex, 2), "[id] ФИО");

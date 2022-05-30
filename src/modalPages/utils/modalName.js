@@ -1,5 +1,5 @@
 export const modalName = {
-  paymentPreferences: 1,
-  addExpense: 2,
-  addConversion: 3,
+  modalPayment: 1,
+  modalExpense: 2,
+  modalConversion: 3,
 };

@@ -1,10 +1,12 @@
 <template>
   <q-tabs
     v-model="index"
-    narrow-indicator
+    no-caps
+    stretch
     dense
-    align="justify"
-    class="text-orange"
+    align="center"
+    mobile-arrows
+    class="text-orange-9"
   >
     <q-tab
       v-for="(panel, index) in panels"
@@ -12,6 +14,7 @@
       :name="index"
       :icon="panel.icon"
       :label="panel.label"
+      class="text-orange"
       @click="router.push(`${routes.current.path}/${panel.route.path}`)"
     >
     </q-tab>
@@ -30,27 +33,27 @@ import { routes } from "@/router/router";
 const panels = [
   {
     route: childRoutes.common,
-    icon: "folder",
+    icon: "info",
     label: "Общее",
   },
   {
     route: childRoutes.payments,
-    icon: "folder",
+    icon: "social_distance",
     label: "Сборы",
   },
   {
     route: childRoutes.costs,
-    icon: "folder",
+    icon: "payment",
     label: "Расходы",
   },
   {
     route: childRoutes.conversion,
-    icon: "folder",
+    icon: "change_circle",
     label: "Конвертация",
   },
   {
     route: childRoutes.summary,
-    icon: "folder",
+    icon: "calculate",
     label: "Итог",
   },
 ];

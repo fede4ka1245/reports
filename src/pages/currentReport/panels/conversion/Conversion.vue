@@ -1,9 +1,14 @@
 <template>
-  <q-table :columns="columns" :rows="rows" />
+  <payment-table
+    :columns="conversionsColumns"
+    :rows="rows"
+    :remove="remove"
+    :edit="edit"
+  />
   <button-add
     :handler="
       () =>
-        openModalPage(modalName.addConversion, {
+        openModalPage(modalName.modalConversion, {
           saveData: (conversion) =>
             (store.currentReportStore.conversions = [
               ...store.currentReportStore.conversions,
@@ -16,39 +21,25 @@
 
 <script setup>
 import ButtonAdd from "@/components/buttonAdd/ButtonAdd";
+import PaymentTable from "@/components/table/PaymentTable";
+
 import { openModalPage } from "@/modalPages/utils/openModalPage";
 import { modalName } from "@/modalPages/utils/modalName";
 import { store } from "@/store/store";
 import { computed } from "vue";
+import { conversionsColumns } from "@/components/table/columns";
 
-const columns = [
-  {
-    align: "left",
-    name: "from",
-    field: "from",
-    label: "Из",
-    sortable: true,
-  },
-  {
-    align: "left",
-    name: "to",
-    field: "to",
-    label: "В",
-    sortable: true,
-  },
-  {
-    align: "left",
-    name: "rate",
-    field: "rate",
-    label: "Курс",
-  },
-  {
-    align: "left",
-    name: "date",
-    field: "date",
-    label: "Дата",
-  },
-];
+const remove = (index) => {
+  store.currentReportStore.conversions.splice(index, 1);
+};
+
+const edit = (index) => {
+  openModalPage(modalName.modalConversion, {
+    saveData: (expense) =>
+      (store.currentReportStore.conversions[index] = expense),
+    expense: store.currentReportStore.conversions[index],
+  });
+};
 
 const rows = computed(() => {
   return store.currentReportStore.conversions.map((row) => {

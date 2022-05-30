@@ -1,21 +1,11 @@
 export const countResultForMoneyCode = (currentReportStore, code) => {
   let result = Number(currentReportStore.moneySums[code]);
 
-  for (let payment of currentReportStore.paymentsFromInstructors) {
-    if (payment.moneyCode === code) {
-      result += Number(payment.sum);
-    }
-  }
-
-  for (let payment of currentReportStore.paymentsFromTutors) {
-    if (payment.moneyCode === code) {
-      result += Number(payment.sum);
-    }
-  }
-
-  for (let payment of currentReportStore.paymentsFromOffice) {
-    if (payment.moneyCode === code) {
-      result += Number(payment.sum);
+  for (let incomingPayment of currentReportStore.incomingPayments) {
+    for (let payment of incomingPayment.payments) {
+      if (payment.moneyCode === code) {
+        result += Number(payment.sum);
+      }
     }
   }
 

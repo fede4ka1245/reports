@@ -1,15 +1,6 @@
 <template>
-  <text-header>Сумма оплат участников</text-header>
-  <p v-if="!store.currentReportStore.moneyCodes.length">Не добавлено валют</p>
-  <payment-input
-    v-for="(code, index) in store.currentReportStore.moneyCodes"
-    :key="code"
-    :update-sum="(value) => update(value, code)"
-    :sum="store.currentReportStore.moneySums[code]"
-    :code="store.currentReportStore.moneyCodes[index]"
-  />
   <section
-    v-for="(payment, index) in store.currentReportStore.incomingPayments"
+    v-for="(payment, index) in store.allReportsStore.incomingPayments"
     :key="payment.label"
   >
     <text-header>{{ payment.label }}</text-header>
@@ -34,7 +25,6 @@
 
 <script setup>
 import { store } from "@/store/store";
-import PaymentInput from "@/components/paymentInput/PaymentInput";
 import TextHeader from "@/components/textHeader/TextHeader";
 import { openModalPage } from "@/modalPages/utils/openModalPage";
 import { modalName } from "@/modalPages/utils/modalName";
@@ -44,7 +34,7 @@ import { paymentsColumns } from "@/components/table/columns";
 
 const removeIncomingPayment = (incomingPaymentIndex) => {
   return (index) => {
-    store.currentReportStore.incomingPayments[
+    store.allReportsStore.incomingPayments[
       incomingPaymentIndex
     ].payments.splice(index, 1);
   };
@@ -54,18 +44,15 @@ const fixIncomingPayment = (incomingPaymentIndex) => {
   return (index) => {
     openModalPage(modalName.modalPayment, {
       saveData: (payment) => {
-        store.currentReportStore.incomingPayments[
-          incomingPaymentIndex
-        ].payments[index] = payment;
+        store.allReportsStore.incomingPayments[incomingPaymentIndex].payments[
+          index
+        ] = payment;
       },
       payment:
-        store.currentReportStore.incomingPayments[incomingPaymentIndex]
-          .payments[index],
+        store.allReportsStore.incomingPayments[incomingPaymentIndex].payments[
+          index
+        ],
     });
   };
-};
-
-const update = (value, code) => {
-  store.currentReportStore.moneySums[code] = value;
 };
 </script>
