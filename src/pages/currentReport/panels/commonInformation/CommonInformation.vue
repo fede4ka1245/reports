@@ -32,12 +32,24 @@
     label="Не явившиеся участники"
   />
   <p>Валюты для этого отчета:</p>
-  <money-code-select />
+  <money-code-select
+    :money-codes="store.currentReportStore.moneyCodes"
+    :on-code-select="
+      (code) => {
+        store.currentReportStore.moneyCodes.push(code);
+      }
+    "
+    :on-code-remove="
+      (index) => {
+        store.currentReportStore.moneyCodes.splice(index, 1);
+      }
+    "
+  />
 </template>
 
 <script setup>
 import { store } from "@/store/store";
-import MoneyCodeSelect from "./MoneyCodeSelect";
+import MoneyCodeSelect from "@/components/moneyCodeSelect/MoneyCodeSelect";
 import { reactive, computed } from "vue";
 import { getRoutes } from "@/api/getRoutes";
 

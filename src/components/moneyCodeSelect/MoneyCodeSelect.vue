@@ -1,7 +1,7 @@
 <template>
   <q-select
     ref="select"
-    v-model="store.currentReportStore.moneyCodes"
+    :model-value="props.moneyCodes"
     :options="moneyCodes"
     outlined
     multiple
@@ -10,16 +10,31 @@
     use-chips
     input-debounce="2"
     @filter="filter"
-    @add="() => select?.updateInputValue('')"
+    @add="
+      ({ value }) => {
+        select?.updateInputValue('');
+        props.onCodeSelect(value);
+      }
+    "
+    @remove="
+      ({ index }) => {
+        props.onCodeRemove(index);
+      }
+    "
   />
 </template>
 
 <script setup>
 import * as currencyCodes from "currency-codes";
-import { ref } from "vue";
-import { store } from "@/store/store";
+import { ref, defineProps } from "vue";
 
 const select = ref(null);
+
+const props = defineProps({
+  moneyCodes: Array,
+  onCodeSelect: Function,
+  onCodeRemove: Function,
+});
 
 const codes = currencyCodes.codes();
 const moneyCodes = ref(codes);
