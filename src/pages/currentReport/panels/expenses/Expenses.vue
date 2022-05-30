@@ -26,6 +26,7 @@
               ...store.currentReportStore.expenses,
               expense,
             ]),
+          moneyCodes: store.currentReportStore.moneyCodes,
         })
     "
   />
@@ -58,6 +59,7 @@ const edit = (index) => {
   openModalPage(modalName.modalExpense, {
     saveData: (expense) => (store.currentReportStore.expenses[index] = expense),
     expense: store.currentReportStore.expenses[index],
+    moneyCodes: store.currentReportStore.moneyCodes,
   });
 };
 </script>

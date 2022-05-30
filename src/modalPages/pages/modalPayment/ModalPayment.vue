@@ -19,7 +19,7 @@
   />
   <payment-input
     :code="paymentData.payment.moneyCode"
-    :codes="store.currentReportStore.moneyCodes"
+    :codes="props.moneyCodes"
     :sum="paymentData.payment.sum"
     :update-code="(code) => (paymentData.payment.moneyCode = code)"
     :update-sum="(sum) => (paymentData.payment.sum = sum)"

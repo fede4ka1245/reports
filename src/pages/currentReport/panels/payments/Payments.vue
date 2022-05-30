@@ -26,6 +26,7 @@
             type: payment.type,
             saveData: (_payment) =>
               (payment.payments = [...payment.payments, _payment]),
+            moneyCodes: store.currentReportStore.moneyCodes,
           })
       "
     />
@@ -61,6 +62,9 @@ const fixIncomingPayment = (incomingPaymentIndex) => {
       payment:
         store.currentReportStore.incomingPayments[incomingPaymentIndex]
           .payments[index],
+      moneyCodes: store.currentReportStore.moneyCodes,
+      type: store.currentReportStore.incomingPayments[incomingPaymentIndex]
+        .type,
     });
   };
 };

@@ -5,7 +5,7 @@
       <q-select
         v-model="conversion.from.moneyCode"
         label="валюта"
-        :options="store.currentReportStore.moneyCodes"
+        :options="props.moneyCodes"
         outlined
       />
       <q-input v-model="conversion.from.sum" outlined label="сумма" />

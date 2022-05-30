@@ -14,6 +14,7 @@
               ...store.currentReportStore.conversions,
               conversion,
             ]),
+          moneyCodes: store.currentReportStore.moneyCodes,
         })
     "
   />
@@ -38,6 +39,7 @@ const edit = (index) => {
     saveData: (expense) =>
       (store.currentReportStore.conversions[index] = expense),
     expense: store.currentReportStore.conversions[index],
+    moneyCodes: store.currentReportStore.moneyCodes,
   });
 };
 

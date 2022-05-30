@@ -2,8 +2,8 @@
 import { store } from "@/store/store";
 import { modalName } from "@/modalPages/utils/modalName";
 import { computed } from "vue";
-import ModalExpense from "@/modalPages/pages/ModalExpense";
-import ModalConversion from "@/modalPages/pages/ModalConversion";
+import ModalExpense from "@/modalPages/pages/modalExpenses/ModalExpense";
+import ModalConversion from "@/modalPages/pages/modalConversion/ModalConversion";
 import ModalPayment from "@/modalPages/pages/modalPayment/ModalPayment";
 
 const isOpen = computed(() => {
