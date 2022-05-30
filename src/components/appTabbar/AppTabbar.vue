@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from "vue";
 import { routes } from "@/router/router";
-import { useRouter } from "vue-router";
 
 const tabs = [
   {
@@ -21,14 +20,7 @@ const tabs = [
   },
 ];
 
-const router = useRouter();
 const targetTabIndex = ref(0);
-const tabClickHandler = (tabIndex, path) => {
-  if (tabIndex === targetTabIndex.value) {
-    return;
-  }
-  router.push(path);
-};
 </script>
 
 <template>
@@ -40,15 +32,15 @@ const tabClickHandler = (tabIndex, path) => {
       align="justify"
       class="text-orange"
     >
-      <q-tab
+      <q-route-tab
         v-for="(tab, tabIndex) in tabs"
         :key="tab.label + tabIndex"
         :name="tabIndex"
         :icon="tab.icon"
         :label="tab.label"
-        @click="tabClickHandler(tabIndex, tab.route.path)"
+        :to="tab.route"
       >
-      </q-tab>
+      </q-route-tab>
     </q-tabs>
   </div>
 </template>

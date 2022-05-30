@@ -9,15 +9,15 @@
     mobile-arrows
     class="text-orange"
   >
-    <q-tab
+    <q-route-tab
       v-for="(panel, index) in panels"
       :key="panel.label + index"
       :name="index"
       :icon="panel.icon"
       :label="panel.label"
-      @click="router.push(`${routes.allReports.path}/${panel.route.path}`)"
+      :to="`${routes.allReports.path}/${panel.route.path}`"
     >
-    </q-tab>
+    </q-route-tab>
   </q-tabs>
   <section class="content">
     <router-view></router-view>
@@ -27,7 +27,6 @@
 <script setup>
 import { ref } from "vue";
 import { childRoutes } from "./childRoutes";
-import { useRouter } from "vue-router";
 import { routes } from "@/router/router";
 
 const panels = [
@@ -53,7 +52,6 @@ const panels = [
   },
 ];
 
-const router = useRouter();
 const index = ref(0);
 </script>
 
