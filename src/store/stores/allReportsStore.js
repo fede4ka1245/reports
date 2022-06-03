@@ -1,4 +1,5 @@
 export const allReportsStore = {
+  balance: {},
   expenses: [],
   incomingPayments: [
     {

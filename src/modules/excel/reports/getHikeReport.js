@@ -49,7 +49,6 @@ export const getHikeReport = (reportData) => {
     const blob = new Blob([data], {
       type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     });
-    console.log("here", blob);
 
     const a = document.createElement("a");
     document.body.appendChild(a);

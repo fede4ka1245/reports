@@ -5,6 +5,7 @@ import { computed } from "vue";
 import ModalExpense from "@/modalPages/pages/modalExpenses/ModalExpense";
 import ModalConversion from "@/modalPages/pages/modalConversion/ModalConversion";
 import ModalPayment from "@/modalPages/pages/modalPayment/ModalPayment";
+import ModalTime from "@/modalPages/pages/modalTime/ModalTime";
 
 const isOpen = computed(() => {
   return store.modalPagesStore.isModalOpen;
@@ -30,6 +31,9 @@ const isOpen = computed(() => {
         v-if="
           modalName.modalConversion === store.modalPagesStore.activePageName
         "
+      />
+      <modal-time
+        v-if="modalName.modalTime === store.modalPagesStore.activePageName"
       />
     </div>
   </q-dialog>

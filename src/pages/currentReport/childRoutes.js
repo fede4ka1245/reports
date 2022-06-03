@@ -1,6 +1,6 @@
 import Commons from "./panels/commonInformation/CommonInformation";
 import Costs from "./panels/expenses/Expenses";
-import Payments from "./panels/payments/Payments";
+import IncomingPayments from "./panels/payments/IncomingPayments";
 import Conversion from "./panels/conversion/Conversion";
 import Summary from "./panels/results/Results";
 
@@ -11,7 +11,7 @@ export const childRoutes = {
   },
   payments: {
     path: "payments",
-    component: Payments,
+    component: IncomingPayments,
   },
   costs: {
     path: "costs",

@@ -25,9 +25,11 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { childRoutes } from "./childRoutes";
 import { routes } from "@/router/router";
+import { modifyBalance } from "@/pages/allReports/helpers";
+import { store } from "@/store/store";
 
 const panels = [
   {
@@ -53,6 +55,14 @@ const panels = [
 ];
 
 const index = ref(0);
+watch(
+  [
+    store.allReportsStore.expenses,
+    store.allReportsStore.outgoingPayments,
+    store.allReportsStore.incomingPayments,
+  ],
+  modifyBalance
+);
 </script>
 
 <style scoped>
