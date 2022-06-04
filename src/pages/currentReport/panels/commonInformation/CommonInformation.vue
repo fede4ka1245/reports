@@ -1,23 +1,9 @@
 <template>
-  <q-select
-    v-model="store.currentReportStore.route"
-    :options="commonData.routes"
-    :option-label="(item) => (item.name ? item.name : '')"
-    class="item"
-    outlined
-    use-input
-    label="Событие"
-    @filter="filter"
-  />
-  <q-select
-    v-model="store.currentReportStore.hike"
-    :options="datesOptions"
-    :option-label="
-      (item) => (item.beginDate ? item.beginDate + '-' + item.endDate : '')
+  <hike-main-info
+    :model="store.currentReportStore.routeData"
+    :update-model="
+      (newModel) => (store.currentReportStore.routeData = newModel)
     "
-    class="item"
-    outlined
-    label="Дата"
   />
   <q-input
     v-model="store.currentReportStore.members"
@@ -50,37 +36,7 @@
 <script setup>
 import { store } from "@/store/store";
 import MoneyCodeSelect from "@/components/moneyCodeSelect/MoneyCodeSelect";
-import { reactive, computed } from "vue";
-import { getRoutes } from "@/api/getRoutes";
-
-const commonData = reactive({
-  routes: [],
-});
-let routes = [];
-
-async function filter(inputValue, update) {
-  if (commonData.routes.length) {
-    commonData.routes = routes.filter((route) =>
-      route.name.toLowerCase().includes(inputValue)
-    );
-    update();
-    return;
-  }
-
-  routes = await getRoutes();
-
-  update(() => {
-    commonData.routes = routes;
-  });
-}
-
-const datesOptions = computed(() => {
-  if (!store.currentReportStore.route) {
-    return [];
-  }
-
-  return store.currentReportStore.route.hikes;
-});
+import HikeMainInfo from "../../../../components/hikeMainInfo/HikeMainInfo";
 </script>
 
 <style scoped>

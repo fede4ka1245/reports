@@ -1,17 +1,3 @@
-<script setup>
-import { store } from "@/store/store";
-import { modalName } from "@/modalPages/utils/modalName";
-import { computed } from "vue";
-import ModalExpense from "@/modalPages/pages/modalExpenses/ModalExpense";
-import ModalConversion from "@/modalPages/pages/modalConversion/ModalConversion";
-import ModalPayment from "@/modalPages/pages/modalPayment/ModalPayment";
-import ModalTime from "@/modalPages/pages/modalTime/ModalTime";
-
-const isOpen = computed(() => {
-  return store.modalPagesStore.isModalOpen;
-});
-</script>
-
 <template>
   <q-dialog
     v-model="isOpen"
@@ -35,9 +21,28 @@ const isOpen = computed(() => {
       <modal-time
         v-if="modalName.modalTime === store.modalPagesStore.activePageName"
       />
+      <modal-route
+        v-if="modalName.modalRoute === store.modalPagesStore.activePageName"
+      />
     </div>
   </q-dialog>
 </template>
+
+<script setup>
+import { store } from "@/store/store";
+import { modalName } from "@/modalPages/utils/modalName";
+import { computed } from "vue";
+import ModalExpense from "@/modalPages/pages/modalExpenses/ModalExpense";
+import ModalConversion from "@/modalPages/pages/modalConversion/ModalConversion";
+import ModalPayment from "@/modalPages/pages/modalPayment/ModalPayment";
+import ModalTime from "@/modalPages/pages/modalTime/ModalTime";
+import ModalRoute from "@/modalPages/pages/modalRoute/ModalRoute";
+
+const isOpen = computed(() => {
+  return store.modalPagesStore.isModalOpen;
+});
+</script>
+
 
 <style>
 .content {

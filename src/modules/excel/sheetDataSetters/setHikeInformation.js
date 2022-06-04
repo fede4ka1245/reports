@@ -4,15 +4,15 @@ export function setHikeInformation(sheet, hikeInformation) {
   let rowIndex = sheet.rowCount + 1;
 
   createHeaderCell(sheet.getCell(1, 1), "ID Маршрута");
-  sheet.getCell(rowIndex, 2).value = hikeInformation.hikeId;
+  sheet.getCell(rowIndex, 2).value = hikeInformation.routeData.id;
   rowIndex += 1;
 
   createHeaderCell(sheet.getCell(2, 1), "Маршрут");
-  sheet.getCell(rowIndex, 2).value = hikeInformation.hikeName;
+  sheet.getCell(rowIndex, 2).value = hikeInformation.routeData.name;
   rowIndex += 1;
 
   createHeaderCell(sheet.getCell(3, 1), "Даты похода");
-  sheet.getCell(rowIndex, 2).value = hikeInformation.hikeDates;
+  sheet.getCell(rowIndex, 2).value = hikeInformation.routeData.date;
   rowIndex += 1;
 
   createHeaderCell(sheet.getCell(4, 1), "Реальное количество участников");
@@ -31,7 +31,9 @@ export function setHikeInformation(sheet, hikeInformation) {
   createHeaderCell(sheet.getCell(rowIndex, 4), "Итого на руках");
   rowIndex += 1;
 
-  for (let i = 0; i < hikeInformation.result.length; i++) {
+  if (!hikeInformation.result?.length) return;
+
+  for (let i = 0; i < hikeInformation.result?.length; i++) {
     sheet.getCell(rowIndex, 2).value = hikeInformation.result[i].moneyCode;
     sheet.getCell(rowIndex, 3).value = hikeInformation.result[i].result;
     sheet.getCell(rowIndex, 4).value = hikeInformation.result[i].profit;

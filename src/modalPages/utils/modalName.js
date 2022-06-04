@@ -3,4 +3,5 @@ export const modalName = {
   modalExpense: 2,
   modalConversion: 3,
   modalTime: 4,
+  modalRoute: 5,
 };

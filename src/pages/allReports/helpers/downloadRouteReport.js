@@ -1,16 +1,9 @@
-<template>
-  <div class="button">
-    <q-btn color="orange" @click="downloadRouteReport(store.currentReportStore)"> Скачать отчёт </q-btn>
-  </div>
-</template>
-
-<script setup>
 import { getHikeReport } from "@/modules/excel/reports/getHikeReport";
 import { countResultForMoneyCode } from "@/modules/countResultForMoneyCode";
 import { countProfitForMoneyCode } from "@/modules/countProfitForMoneyCode";
-import { store } from "@/store/store";
 
-const downloadRouteReport = (report) => {
+export const downloadRouteReport = (report) => {
+  console.log(report)
   getHikeReport({
     hikeId: report.routeData.id,
     hikeName: report.routeData.name,
@@ -21,8 +14,8 @@ const downloadRouteReport = (report) => {
       ...report.moneyCodes.map((code) => {
         return {
           moneyCode: code,
-          result: countResultForMoneyCode(report, code),
-          profit: countProfitForMoneyCode(report, code),
+          result: countResultForMoneyCode(report.currentReportStore, code),
+          profit: countProfitForMoneyCode(report.currentReportStore, code),
         };
       }),
     ],
@@ -33,12 +26,3 @@ const downloadRouteReport = (report) => {
     conversions: report.conversions,
   });
 };
-</script>
-
-<style scoped>
-.button {
-  display: flex;
-  justify-content: center;
-  margin: 1em;
-}
-</style>

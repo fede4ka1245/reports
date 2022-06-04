@@ -20,7 +20,8 @@
     </q-route-tab>
   </q-tabs>
   <section class="content">
-    <router-view></router-view>
+    <router-view v-if="store.currentReportStore"> </router-view>
+    <EmptyReport v-else/>
   </section>
 </template>
 
@@ -28,6 +29,8 @@
 import { ref } from "vue";
 import { childRoutes } from "@/pages/currentReport/childRoutes";
 import { routes } from "@/router/router";
+import { store } from "@/store/store";
+import EmptyReport from "@/pages/currentReport/EmptyReport";
 
 const panels = [
   {

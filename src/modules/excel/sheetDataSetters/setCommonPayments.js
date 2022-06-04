@@ -1,6 +1,9 @@
 import { createHeaderCell } from "@/modules/excel/helpers/createHeaderCell";
 
 export function setCommonPayments(sheet, commonPayments) {
+  if (!commonPayments) {
+    return;
+  }
   let rowIndex = sheet.rowCount + 1;
 
   createHeaderCell(sheet.getCell(rowIndex, 1), "Общаяя сумма оплат участников");

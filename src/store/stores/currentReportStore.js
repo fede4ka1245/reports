@@ -1,9 +1,10 @@
 export const currentReportStore = {
+  routeData: {
+    date: "",
+    name: "",
+  },
   moneySums: {},
   moneyCodes: [],
-  date: "",
-  route: {},
-  hike: {},
   members: "",
   inactiveMembers: "",
   expenses: [],

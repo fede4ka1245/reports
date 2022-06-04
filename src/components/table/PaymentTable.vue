@@ -9,6 +9,41 @@
     <template #body-cell-edit-time="props">
       <cell-edit-time :edit="tableProps.edit" :page-index="props.pageIndex" />
     </template>
+    <template #body-cell-edit-report="props">
+      <q-td>
+        <q-btn round flat color="grey" icon="edit">
+          <q-menu>
+            <q-list style="min-width: 100px">
+              <q-item
+                v-close-popup
+                clickable
+                @click="tableProps.promoteToCurrent(props.row)"
+              >
+                Cделать текущим
+              </q-item>
+            </q-list>
+            <q-list style="min-width: 100px">
+              <q-item
+                v-close-popup
+                clickable
+                @click="tableProps.download(props.row)"
+              >
+                Скачать
+              </q-item>
+            </q-list>
+            <q-list style="min-width: 100px">
+              <q-item
+                v-close-popup
+                clickable
+                @click="tableProps.remove(props.row)"
+              >
+                Удалить
+              </q-item>
+            </q-list>
+          </q-menu>
+        </q-btn>
+      </q-td>
+    </template>
   </q-table>
 </template>
 
@@ -22,6 +57,8 @@ const tableProps = defineProps({
   rows: Array,
   edit: Function,
   remove: Function,
+  download: Function,
+  promoteToCurrent: Function,
 });
 </script>
 
