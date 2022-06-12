@@ -41,17 +41,14 @@ export const getMainReport = (reportData) => {
   styleSheet(sheet);
 
   for (let report of reportData.reports) {
-    const sheet = workbook.addWorksheet(
-      report.routeData.id + " " + report.routeData.date,
-      {
-        properties: { tabColor: { argb: "FFC0000" } },
-      }
-    );
+    const sheet = workbook.addWorksheet(report.name + " " + report.dates, {
+      properties: { tabColor: { argb: "FFC0000" } },
+    });
 
     setHikeInformation(sheet, report);
     setOutgoingPayments(sheet, report.outgoingPayments);
 
-    setCommonPayments(sheet, report.commonPayments);
+    setCommonPayments(sheet, report.moneySums);
     setIncomingPayments(sheet, report.incomingPayments);
 
     setGroupedExpenses(sheet, groupExpenses(report.expenses));
