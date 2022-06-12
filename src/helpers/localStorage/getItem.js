@@ -1,5 +1,5 @@
 export const getItem = (key) => {
-  if (localStorage.getItem(key)) {
+  if (localStorage.getItem(key) === "undefined" || !localStorage.getItem(key)) {
     return undefined;
   }
 

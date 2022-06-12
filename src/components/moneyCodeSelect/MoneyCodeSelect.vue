@@ -21,7 +21,11 @@
         props.onCodeRemove(index);
       }
     "
-  />
+  >
+    <template v-slot:append>
+      <q-btn round dense flat icon="close" @click="() => select.hidePopup()" />
+    </template>
+  </q-select>
 </template>
 
 <script setup>

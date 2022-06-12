@@ -21,6 +21,7 @@ getRoutes().then((routes) => {
 });
 
 onMounted(() => {
+  console.log(getItem(storageKey.currentReport))
   if (
     getItem(storageKey.currentReport) &&
     getItem(storageKey.currentReport)?.key
@@ -33,6 +34,7 @@ onMounted(() => {
 });
 
 watch(store, (store) => {
+  console.log(store.currentReport)
   setItem(storageKey.currentReport, store.currentReport);
   setItem(storageKey.allReports, store.allReports);
 });
