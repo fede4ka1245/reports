@@ -21,12 +21,14 @@
     class="item"
     outlined
     label="Реальное количество участников"
+    type="number"
   />
   <q-input
     v-model="store.currentReport.inactiveMembers"
     class="item"
     outlined
     label="Не явившиеся участники"
+    type="number"
   />
   <p>Валюты для этого отчета:</p>
   <money-code-select

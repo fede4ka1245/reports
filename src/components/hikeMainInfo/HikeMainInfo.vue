@@ -18,7 +18,7 @@
     "
     @filter="filterSearch"
   >
-    <template v-slot:append>
+    <template #append>
       <q-btn round dense flat icon="close" @click="() => select.hidePopup()" />
     </template>
   </q-select>
@@ -51,7 +51,7 @@
 </template>
 
 <script setup>
-import { onMounted, reactive, ref } from "vue";
+import { reactive, ref } from "vue";
 import { getRoutes } from "@/api/getRoutes";
 import { defineProps } from "vue";
 
@@ -75,18 +75,20 @@ async function filterSearch(input, update) {
       route.name.toLowerCase().includes(input)
     );
     update();
-  }
-}
 
-onMounted(async () => {
+    return;
+  }
+
   data.routes = await getRoutes();
+  data.filteredRoutes = [...data.routes];
+  update();
 
   if (props.hike.name) {
     data.hikes = data.routes.find(
       (route) => route.name === props.hike.name
     ).hikes;
   }
-});
+}
 </script>
 
 <style scoped></style>

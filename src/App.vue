@@ -14,14 +14,8 @@ import { onMounted } from "vue";
 import { store } from "./store/store";
 import { getItem, setItem, storageKey } from "@/helpers/localStorage";
 import { watch } from "vue";
-import { getRoutes } from "@/api";
-
-getRoutes().then((routes) => {
-  console.log(routes);
-});
 
 onMounted(() => {
-  console.log(getItem(storageKey.currentReport))
   if (
     getItem(storageKey.currentReport) &&
     getItem(storageKey.currentReport)?.key
@@ -34,7 +28,6 @@ onMounted(() => {
 });
 
 watch(store, (store) => {
-  console.log(store.currentReport)
   setItem(storageKey.currentReport, store.currentReport);
   setItem(storageKey.allReports, store.allReports);
 });

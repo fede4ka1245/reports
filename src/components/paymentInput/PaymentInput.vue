@@ -6,6 +6,7 @@
       label="Сумма"
       :model-value="props.sum"
       @update:model-value="(value) => props.updateSum(value)"
+      type="number"
     />
     <q-select
       class="code"
