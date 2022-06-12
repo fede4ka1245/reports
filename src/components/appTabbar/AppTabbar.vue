@@ -30,7 +30,7 @@ const targetTabIndex = ref(0);
       narrow-indicator
       dense
       align="justify"
-      class="text-orange"
+      active-class="text-orange"
     >
       <q-route-tab
         v-for="(tab, tabIndex) in tabs"

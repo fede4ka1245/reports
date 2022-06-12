@@ -1,7 +1,17 @@
 <template>
   <hike-main-info
-    :model="data.routeData"
-    :update-model="(routeData) => (data.routeData = routeData)"
+    :hike="data"
+    :update-hike-name="
+      (name) => {
+        data.name = name;
+      }
+    "
+    :update-hike-information="
+      (dates, hikeId) => {
+        data.dates = dates;
+        data.hikeId = hikeId;
+      }
+    "
   />
   <form-confirmation
     :dismiss-handler="closeModalPage"
@@ -15,22 +25,23 @@ import { reactive } from "vue";
 import { closeModalPage } from "@/modalPages/utils/closeModalPage";
 import FormConfirmation from "@/components/fromConfirmation/FormConfirmation";
 import HikeMainInfo from "@/components/hikeMainInfo/HikeMainInfo";
-import { currentReportStore } from "@/store/stores/currentReportStore";
+import { getEmptyReport } from "@/helpers/getEmptyReport";
 
-const props = store.modalPagesStore.props;
+const props = store.modalPages.props;
 const data = reactive({
-  routeData: {},
+  name: "",
+  dates: "",
+  hikeId: "",
 });
 
 const onConfirm = () => {
-  console.log({
-    ...currentReportStore,
-    routeData: data.routeData,
-  });
-  props.onConfirm({
-    ...currentReportStore,
-    routeData: data.routeData,
-  });
+  const report = {
+    ...getEmptyReport(),
+    name: data.name,
+    dates: data.dates,
+    hikeId: data.hikeId,
+  };
+  props.onConfirm(report);
   closeModalPage();
 };
 </script>

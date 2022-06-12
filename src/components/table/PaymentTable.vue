@@ -1,5 +1,19 @@
 <template>
-  <q-table :columns="tableProps.columns" :rows="tableProps.rows">
+  <q-table
+    separator="cell"
+    :columns="tableProps.columns"
+    :rows="tableProps.rows"
+    hide-no-data
+    hide-pagination
+    :table-header-style="{
+      background: '#808080',
+      color: 'white',
+      fontWeight: 'bold',
+    }"
+    :pagination="{
+      rowsPerPage: 0,
+    }"
+  >
     <template #body-cell-edit="props">
       <cell-edit
         :delete="() => tableProps.remove(props.pageIndex)"
@@ -62,4 +76,8 @@ const tableProps = defineProps({
 });
 </script>
 
-<style scoped></style>
+<style>
+tr:nth-child(even) {
+  background-color: #dfdfdf;
+}
+</style>

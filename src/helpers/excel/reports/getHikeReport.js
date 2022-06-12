@@ -1,5 +1,5 @@
 import ExcelJS from "exceljs";
-import { groupExpenses } from "@/modules/groupExpenses";
+import { groupExpenses } from "@/helpers/groupExpenses";
 import {
   setConversions,
   setExpenses,
@@ -8,16 +8,15 @@ import {
   setOutgoingPayments,
   setIncomingPayments,
   setGroupedExpenses,
-} from "@/modules/excel/sheetDataSetters";
+} from "@/helpers/excel/sheetDataSetters";
 
-import { styleSheet } from "@/modules/excel/helpers";
-import { Directory } from "@capacitor/filesystem";
-import { writeFile } from "capacitor-blob-writer";
+import { styleSheet } from "@/helpers/excel/helpers";
+import { setPadding } from "@/helpers/excel/helpers/setPadding";
 
 export const getHikeReport = (reportData) => {
   const workbook = new ExcelJS.Workbook();
 
-  const sheet = workbook.addWorksheet("отчёт", {
+  const sheet = workbook.addWorksheet("Отчёт", {
     properties: { tabColor: { argb: "FFC0000" } },
   });
 
@@ -30,7 +29,8 @@ export const getHikeReport = (reportData) => {
     properties: { tabColor: { argb: "FFC0000" } },
   });
 
-  setCommonPayments(incomingPaymentsSheet, reportData.commonPayments);
+  setCommonPayments(incomingPaymentsSheet, reportData.moneySums);
+  setPadding(incomingPaymentsSheet);
   setIncomingPayments(incomingPaymentsSheet, reportData.incomingPayments);
 
   styleSheet(incomingPaymentsSheet);
@@ -40,29 +40,12 @@ export const getHikeReport = (reportData) => {
   });
 
   setGroupedExpenses(expensesSheet, groupExpenses(reportData.expenses));
+  setPadding(expensesSheet);
   setExpenses(expensesSheet, reportData.expenses);
+  setPadding(expensesSheet);
   setConversions(expensesSheet, reportData.conversions);
 
   styleSheet(expensesSheet);
 
-  return workbook.xlsx.writeBuffer().then((data) => {
-    const blob = new Blob([data], {
-      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    });
-
-    const a = document.createElement("a");
-    document.body.appendChild(a);
-    a.style = "display: none";
-    const url = window.URL.createObjectURL(blob);
-    a.href = url;
-    a.download = "report.xlsx";
-    a.click();
-    window.URL.revokeObjectURL(url);
-
-    writeFile({
-      path: "Documents/report.xlsx",
-      data: blob,
-      directory: Directory.ExternalStorage,
-    });
-  });
+  return workbook.xlsx.writeBuffer();
 };

@@ -10,11 +10,11 @@
       () =>
         openModalPage(modalName.modalConversion, {
           saveData: (conversion) =>
-            (store.currentReportStore.conversions = [
-              ...store.currentReportStore.conversions,
+            (store.currentReport.conversions = [
+              ...store.currentReport.conversions,
               conversion,
             ]),
-          moneyCodes: store.currentReportStore.moneyCodes,
+          moneyCodes: store.currentReport.moneyCodes,
         })
     "
   />
@@ -31,20 +31,19 @@ import { computed } from "vue";
 import { conversionsColumns } from "@/components/table/columns";
 
 const remove = (index) => {
-  store.currentReportStore.conversions.splice(index, 1);
+  store.currentReport.conversions.splice(index, 1);
 };
 
 const edit = (index) => {
   openModalPage(modalName.modalConversion, {
-    saveData: (expense) =>
-      (store.currentReportStore.conversions[index] = expense),
-    expense: store.currentReportStore.conversions[index],
-    moneyCodes: store.currentReportStore.moneyCodes,
+    saveData: (expense) => (store.currentReport.conversions[index] = expense),
+    expense: store.currentReport.conversions[index],
+    moneyCodes: store.currentReport.moneyCodes,
   });
 };
 
 const rows = computed(() => {
-  return store.currentReportStore.conversions.map((row) => {
+  return store.currentReport.conversions.map((row) => {
     return {
       from: `${row.from.sum} ${row.from.moneyCode}`,
       rate: `${(row.to.sum / row.from.sum).toFixed(5)}`,

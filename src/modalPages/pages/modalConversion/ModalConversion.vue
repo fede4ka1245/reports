@@ -17,7 +17,7 @@
       <q-select
         v-model="conversion.to.moneyCode"
         label="валюта"
-        :options="store.currentReportStore.moneyCodes"
+        :options="store.currentReport.moneyCodes"
         outlined
       />
       <q-input v-model="conversion.to.sum" outlined label="сумма" />
@@ -47,11 +47,11 @@
 import { closeModalPage } from "@/modalPages/utils/closeModalPage";
 import { store } from "@/store/store";
 import { reactive } from "vue";
-import { getFormattedCurrentDate } from "@/utils/getFormattedCurrentDate";
+import { getFormattedCurrentDate } from "@/helpers/getFormattedCurrentDate";
 import FormConfirmation from "@/components/fromConfirmation/FormConfirmation";
 import TextHeader from "@/components/textHeader/TextHeader";
 
-const props = store.modalPagesStore.props;
+const props = store.modalPages.props;
 
 const defaultConversion = {
   from: {

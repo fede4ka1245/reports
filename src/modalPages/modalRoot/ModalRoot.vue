@@ -8,21 +8,19 @@
   >
     <div class="content">
       <modal-payment
-        v-if="modalName.modalPayment === store.modalPagesStore.activePageName"
+        v-if="modalName.modalPayment === store.modalPages.activePageName"
       />
       <modal-expense
-        v-if="modalName.modalExpense === store.modalPagesStore.activePageName"
+        v-if="modalName.modalExpense === store.modalPages.activePageName"
       />
       <modal-conversion
-        v-if="
-          modalName.modalConversion === store.modalPagesStore.activePageName
-        "
+        v-if="modalName.modalConversion === store.modalPages.activePageName"
       />
       <modal-time
-        v-if="modalName.modalTime === store.modalPagesStore.activePageName"
+        v-if="modalName.modalTime === store.modalPages.activePageName"
       />
-      <modal-route
-        v-if="modalName.modalRoute === store.modalPagesStore.activePageName"
+      <modal-create-route
+        v-if="modalName.modalRoute === store.modalPages.activePageName"
       />
     </div>
   </q-dialog>
@@ -36,13 +34,12 @@ import ModalExpense from "@/modalPages/pages/modalExpenses/ModalExpense";
 import ModalConversion from "@/modalPages/pages/modalConversion/ModalConversion";
 import ModalPayment from "@/modalPages/pages/modalPayment/ModalPayment";
 import ModalTime from "@/modalPages/pages/modalTime/ModalTime";
-import ModalRoute from "@/modalPages/pages/modalRoute/ModalRoute";
+import ModalCreateRoute from "@/modalPages/pages/modalRoute/ModalCreateRoute";
 
 const isOpen = computed(() => {
-  return store.modalPagesStore.isModalOpen;
+  return store.modalPages.isModalOpen;
 });
 </script>
-
 
 <style>
 .content {

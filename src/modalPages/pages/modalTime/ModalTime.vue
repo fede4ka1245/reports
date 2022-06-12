@@ -22,7 +22,7 @@ import TextHeader from "@/components/textHeader/TextHeader";
 import FormConfirmation from "@/components/fromConfirmation/FormConfirmation";
 import { closeModalPage } from "@/modalPages/utils/closeModalPage";
 
-const props = store.modalPagesStore.props;
+const props = store.modalPages.props;
 
 const data = reactive({
   day: "",

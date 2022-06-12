@@ -54,7 +54,7 @@
 import { closeModalPage } from "@/modalPages/utils/closeModalPage";
 import { store } from "@/store/store";
 import { reactive, computed } from "vue";
-import { getFormattedCurrentDate } from "@/utils/getFormattedCurrentDate";
+import { getFormattedCurrentDate } from "@/helpers/getFormattedCurrentDate";
 
 import FormConfirmation from "@/components/fromConfirmation/FormConfirmation";
 import PaymentInput from "@/components/paymentInput/PaymentInput";
@@ -75,7 +75,7 @@ const format = (instructors) => {
   );
 };
 
-const props = store.modalPagesStore.props;
+const props = store.modalPages.props;
 
 const payment = {
   name: String(),

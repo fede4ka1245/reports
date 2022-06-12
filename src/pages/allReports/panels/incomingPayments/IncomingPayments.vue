@@ -1,12 +1,12 @@
 <template>
   <payments
-    :payments="store.allReportsStore.incomingPayments"
+    :payments="store.allReports.incomingPayments"
     :money-codes="getMoneyCodes()"
   />
 </template>
 
 <script setup>
 import { store } from "@/store/store";
-import { getMoneyCodes } from "@/modules/getMoneyCodes";
+import { getMoneyCodes } from "@/helpers/getMoneyCodes";
 import Payments from "@/components/payments/Payments";
 </script>

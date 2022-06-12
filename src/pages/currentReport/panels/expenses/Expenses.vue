@@ -5,14 +5,24 @@
   </div>
   <payment-table
     v-if="!data.isGrouped"
-    :rows="store.currentReportStore.expenses"
+    :rows="
+      groupedExpenses.map((expense) => ({
+        ...expense,
+        sum: `${expense.sum} ${expense.moneyCode}`,
+      }))
+    "
     :columns="expensesColumns"
     :edit="edit"
     :remove="remove"
   />
   <payment-table
     v-if="data.isGrouped"
-    :rows="groupedExpenses"
+    :rows="
+      groupedExpenses.map((expense) => ({
+        ...expense,
+        sum: `${expense.sum} ${expense.moneyCode}`,
+      }))
+    "
     :columns="groupedExpensesColumns"
     :edit="edit"
     :remove="remove"
@@ -22,11 +32,11 @@
       () =>
         openModalPage(modalName.modalExpense, {
           saveData: (expense) =>
-            (store.currentReportStore.expenses = [
-              ...store.currentReportStore.expenses,
+            (store.currentReport.expenses = [
+              ...store.currentReport.expenses,
               expense,
             ]),
-          moneyCodes: store.currentReportStore.moneyCodes,
+          moneyCodes: store.currentReport.moneyCodes,
         })
     "
   />
@@ -41,10 +51,10 @@ import { expensesColumns } from "@/components/table/columns";
 import PaymentTable from "@/components/table/PaymentTable";
 import { reactive, computed } from "vue";
 import { groupedExpensesColumns } from "@/components/table/columns";
-import { groupExpenses } from "@/modules/groupExpenses";
+import { groupExpenses } from "@/helpers/groupExpenses";
 
 const groupedExpenses = computed(() => {
-  return groupExpenses(store.currentReportStore.expenses);
+  return groupExpenses(store.currentReport.expenses);
 });
 
 const data = reactive({
@@ -52,14 +62,14 @@ const data = reactive({
 });
 
 const remove = (index) => {
-  store.currentReportStore.expenses.splice(index, 1);
+  store.currentReport.expenses.splice(index, 1);
 };
 
 const edit = (index) => {
   openModalPage(modalName.modalExpense, {
-    saveData: (expense) => (store.currentReportStore.expenses[index] = expense),
-    expense: store.currentReportStore.expenses[index],
-    moneyCodes: store.currentReportStore.moneyCodes,
+    saveData: (expense) => (store.currentReport.expenses[index] = expense),
+    expense: store.currentReport.expenses[index],
+    moneyCodes: store.currentReport.moneyCodes,
   });
 };
 </script>

@@ -6,7 +6,7 @@
     dense
     align="center"
     mobile-arrows
-    class="text-orange-9"
+    active-class="text-orange"
   >
     <q-route-tab
       v-for="(panel, index) in panels"
@@ -15,13 +15,12 @@
       :icon="panel.icon"
       :label="panel.label"
       :to="`${routes.current.path}/${panel.route.path}`"
-      class="text-orange"
     >
     </q-route-tab>
   </q-tabs>
   <section class="content">
-    <router-view v-if="store.currentReportStore"> </router-view>
-    <EmptyReport v-else/>
+    <router-view v-if="store.currentReport"> </router-view>
+    <EmptyReport v-else />
   </section>
 </template>
 

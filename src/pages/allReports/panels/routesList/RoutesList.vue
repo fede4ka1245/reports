@@ -1,6 +1,6 @@
 <template>
   <report-creator
-    v-if="!store.currentReportStore && !store.allReportsStore.reports.length"
+    v-if="!store.currentReport && !store.allReports?.reports?.length"
   />
   <section v-else>
     <payment-table
@@ -10,7 +10,7 @@
       :promote-to-current="promoteToCurrent"
       :remove="remove"
     />
-    <button-add :handler="handler" />
+    <button-add :handler="buttonAddHandler" />
   </section>
 </template>
 
@@ -23,17 +23,11 @@ import { reportsColumns } from "@/components/table/columns/reportsColumns";
 import { computed } from "vue";
 import { openModalPage } from "@/modalPages/utils/openModalPage";
 import { modalName } from "@/modalPages/utils/modalName";
-import { nanoid } from "nanoid";
-import { downloadRouteReport } from "@/pages/allReports/helpers/downloadRouteReport";
-import { downloadHikeReport } from "@/modules/excel/helpers/downloadHikeReport";
+import { downloadHikeReport } from "@/helpers/downloadHikeReport";
 
 const getReportIndex = (report) => {
-  for (
-    let index = 0;
-    index <= store.allReportsStore.reports.length - 1;
-    index++
-  ) {
-    if (store.allReportsStore.reports[index].key === report.key) {
+  for (let index = 0; index <= store.allReports.reports.length - 1; index++) {
+    if (store.allReports.reports[index].key === report.key) {
       return index;
     }
   }
@@ -41,61 +35,47 @@ const getReportIndex = (report) => {
 };
 
 const rows = computed(() => {
-  const reports = [
-    ...store.allReportsStore.reports.map((report) => {
-      return {
-        key: report.key,
-        dates: report.routeData.date,
-        routeName: report.routeData.name,
-      };
-    }),
-  ];
-  if (store.currentReportStore) {
-    const currentReport = {
-      dates: store.currentReportStore?.routeData?.date,
-      routeName: store.currentReportStore?.routeData?.name,
-    };
-    return [currentReport, ...reports];
-  } else {
-    return reports;
-  }
+  const currentReport = store.currentReport;
+  const reports = store.allReports.reports;
+
+  return currentReport ? [currentReport, ...reports] : reports;
 });
 
 const remove = (report) => {
   const index = getReportIndex(report);
 
   if (index !== -1) {
-    store.allReportsStore.reports.splice(index, 1);
+    store.allReports.reports.splice(index, 1);
   } else {
-    store.currentReportStore = undefined;
+    store.currentReport = undefined;
   }
 };
 
 const promoteToCurrent = (report) => {
-  store.allReportsStore.reports.push({
-    ...store.currentReportStore,
-    key: nanoid(),
-  });
-
   const index = getReportIndex(report);
 
-  store.currentReportStore = store.allReportsStore.reports[index];
-  store.allReportsStore.reports.splice(index, 1);
+  if (index === -1) {
+    return;
+  }
+
+  store.allReports.reports.push(store.currentReport);
+  store.currentReport = store.allReports.reports[index];
+  store.allReports.reports.splice(index, 1);
 };
 
 const download = (report) => {
   if (getReportIndex(report) === -1) {
-    downloadHikeReport(store.currentReportStore);
+    downloadHikeReport(store.currentReport);
     return;
   }
 
-  downloadHikeReport(store.allReportsStore.reports[getReportIndex(report)]);
+  downloadHikeReport(store.allReports.reports[getReportIndex(report)]);
 };
 
-const handler = () => {
+const buttonAddHandler = () => {
   openModalPage(modalName.modalRoute, {
     onConfirm: (report) => {
-      store.allReportsStore.reports.push({ ...report, key: nanoid() });
+      store.allReports.reports.push(report);
     },
   });
 };

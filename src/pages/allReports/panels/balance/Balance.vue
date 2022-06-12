@@ -18,8 +18,8 @@ import { modalName } from "@/modalPages/utils/modalName";
 import { modifyBalance } from "@/pages/allReports/helpers";
 
 const editTime = (index) => {
-  const moneyCode = Object.keys(store.allReportsStore.balance)[index];
-  const balance = store.allReportsStore.balance[moneyCode];
+  const moneyCode = Object.keys(store.allReports.balance)[index];
+  const balance = store.allReports.balance[moneyCode];
 
   openModalPage(modalName.modalTime, {
     onConfirm: (day, month, year) => {
@@ -31,7 +31,7 @@ const editTime = (index) => {
 
 const resultRows = computed(() => {
   const rows = [];
-  const entries = Array.from(Object.entries(store.allReportsStore.balance));
+  const entries = Array.from(Object.entries(store.allReports.balance));
 
   for (const [moneyCode, balance] of entries) {
     rows.push({

@@ -14,13 +14,13 @@
 import { store } from "@/store/store";
 import { useRouter } from "vue-router";
 import { routes } from "@/router/router";
-import { getDefaultReport } from "@/modules/excel/helpers/getDefaultReport";
+import { getEmptyReport } from "@/helpers/getEmptyReport";
 
 const router = useRouter();
 
 const createReport = () => {
   router.push(routes.current.path);
-  store.currentReportStore = getDefaultReport();
+  store.currentReport = getEmptyReport();
 };
 </script>
 

@@ -5,7 +5,12 @@
       :edit="(index) => edit(payment, index)"
       :remove="(index) => remove(payment, index)"
       :columns="paymentsColumns"
-      :rows="payment.payments"
+      :rows="
+        payment.payments.map((payment) => ({
+          ...payment,
+          sum: `${payment.sum} ${payment.moneyCode}`
+        }))
+      "
     />
     <button-add :handler="() => add(payment)" />
   </section>

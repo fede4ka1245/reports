@@ -1,20 +1,8 @@
-export const currentReportStore = {
-  routeData: {
-    date: "",
-    name: "",
-  },
-  moneySums: {},
-  moneyCodes: [],
-  members: "",
-  inactiveMembers: "",
+export const allReports = {
+  reports: [],
+  balance: {},
   expenses: [],
-  conversions: [],
   incomingPayments: [
-    {
-      type: "members",
-      label: "Оплаты участников с исключениями",
-      payments: [],
-    },
     {
       type: "instructors",
       label: "Получено от инструкторов",
@@ -32,11 +20,6 @@ export const currentReportStore = {
     },
   ],
   outgoingPayments: [
-    {
-      type: "members",
-      label: "Доходы инструктора",
-      payments: [],
-    },
     {
       type: "instructors",
       label: "Передано инструкторам",

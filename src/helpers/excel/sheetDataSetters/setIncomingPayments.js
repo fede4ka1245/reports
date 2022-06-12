@@ -1,9 +1,9 @@
-import { createHeaderCell } from "@/modules/excel/helpers/createHeaderCell";
+import { createHeaderCell } from "@/helpers/excel/helpers/createHeaderCell";
 
-export function setOutgoingPayments(sheet, outgoingPayments) {
+export function setIncomingPayments(sheet, incomingPayments) {
   let rowIndex = sheet.rowCount + 1;
 
-  for (let payment of outgoingPayments) {
+  for (let payment of incomingPayments) {
     const { label, payments } = payment;
     createHeaderCell(sheet.getCell(rowIndex, 1), label);
     rowIndex += 1;
@@ -19,6 +19,7 @@ export function setOutgoingPayments(sheet, outgoingPayments) {
       sheet.getCell(rowIndex, 3).value = payments[i].sum || 0;
       sheet.getCell(rowIndex, 4).value = payments[i].date || "-";
       sheet.getCell(rowIndex, 5).value = payments[i].comment || "-";
+
       rowIndex += 1;
     }
   }

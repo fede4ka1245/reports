@@ -1,8 +1,19 @@
-export const allReportsStore = {
-  reports: [],
-  balance: {},
+export const currentReport = {
+  name: "",
+  dates: "",
+  hikeId: "",
+  moneySums: {},
+  moneyCodes: [],
+  members: "",
+  inactiveMembers: "",
   expenses: [],
+  conversions: [],
   incomingPayments: [
+    {
+      type: "members",
+      label: "Оплаты участников с исключениями",
+      payments: [],
+    },
     {
       type: "instructors",
       label: "Получено от инструкторов",
@@ -20,6 +31,11 @@ export const allReportsStore = {
     },
   ],
   outgoingPayments: [
+    {
+      type: "members",
+      label: "Доходы инструктора",
+      payments: [],
+    },
     {
       type: "instructors",
       label: "Передано инструкторам",

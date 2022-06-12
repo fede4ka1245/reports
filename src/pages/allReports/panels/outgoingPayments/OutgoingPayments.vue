@@ -1,11 +1,11 @@
 <template>
   <payments
     :money-codes="getMoneyCodes()"
-    :payments="store.allReportsStore.outgoingPayments"
+    :payments="store.allReports.outgoingPayments"
   />
   <text-header>Общие расходы</text-header>
   <payment-table
-    :rows="store.allReportsStore.expenses"
+    :rows="store.allReports.expenses"
     :columns="expensesColumns"
     :edit="editExpense"
     :remove="removeExpense"
@@ -15,8 +15,8 @@
       () =>
         openModalPage(modalName.modalExpense, {
           saveData: (expense) =>
-            (store.allReportsStore.expenses = [
-              ...store.allReportsStore.expenses,
+            (store.allReports.expenses = [
+              ...store.allReports.expenses,
               expense,
             ]),
           moneyCodes: getMoneyCodes(),
@@ -35,19 +35,19 @@ import Payments from "@/components/payments/Payments";
 import TextHeader from "@/components/textHeader/TextHeader";
 import PaymentTable from "@/components/table/PaymentTable";
 import ButtonAdd from "@/components/buttonAdd/ButtonAdd";
-import { getMoneyCodes } from "@/modules/getMoneyCodes";
+import { getMoneyCodes } from "@/helpers/getMoneyCodes";
 
 const editExpense = (index) => {
   openModalPage(modalName.modalExpense, {
     saveData: (expense) => {
-      store.allReportsStore.expenses[index] = expense;
+      store.allReports.expenses[index] = expense;
     },
-    expense: store.allReportsStore.expenses[index],
+    expense: store.allReports.expenses[index],
     moneyCodes: getMoneyCodes(),
   });
 };
 
 const removeExpense = (index) => {
-  store.allReportsStore.expenses.splice(index, 1);
+  store.allReports.expenses.splice(index, 1);
 };
 </script>

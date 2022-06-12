@@ -1,10 +1,9 @@
-import { reactive, watch } from "vue";
-import { modalPagesStore } from "./stores/modalPagesStore";
-import { allReportsStore } from "@/store/stores/allReportsStore";
-import { storageKey, setItem } from "@/modules/localStorage";
+import { reactive } from "vue";
+import { modalPages } from "./stores/modalPages";
+import { allReports } from "@/store/stores/allReports";
 
 export const store = reactive({
-  currentReportStore: undefined,
-  modalPagesStore,
-  allReportsStore,
+  currentReport: undefined,
+  modalPages: modalPages,
+  allReports: allReports,
 });

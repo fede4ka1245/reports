@@ -1,7 +1,5 @@
 import ExcelJS from "exceljs";
-import { createHeaderCell, styleSheet } from "@/modules/excel/helpers";
-import { Directory } from "@capacitor/filesystem";
-import { writeFile } from "capacitor-blob-writer";
+import { createHeaderCell, styleSheet } from "@/helpers/excel/helpers";
 import {
   setCommonPayments,
   setConversions,
@@ -10,8 +8,8 @@ import {
   setHikeInformation,
   setIncomingPayments,
   setOutgoingPayments,
-} from "@/modules/excel/sheetDataSetters";
-import { groupExpenses } from "@/modules/groupExpenses";
+} from "@/helpers/excel/sheetDataSetters";
+import { groupExpenses } from "@/helpers/groupExpenses";
 
 export const getMainReport = (reportData) => {
   const workbook = new ExcelJS.Workbook();
@@ -42,8 +40,6 @@ export const getMainReport = (reportData) => {
 
   styleSheet(sheet);
 
-  console.log(reportData.reports);
-
   for (let report of reportData.reports) {
     const sheet = workbook.addWorksheet(
       report.routeData.id + " " + report.routeData.date,
@@ -65,24 +61,5 @@ export const getMainReport = (reportData) => {
     styleSheet(sheet);
   }
 
-  return workbook.xlsx.writeBuffer().then((data) => {
-    const blob = new Blob([data], {
-      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    });
-
-    const a = document.createElement("a");
-    document.body.appendChild(a);
-    a.style = "display: none";
-    const url = window.URL.createObjectURL(blob);
-    a.href = url;
-    a.download = "report.xlsx";
-    a.click();
-    window.URL.revokeObjectURL(url);
-
-    writeFile({
-      path: "Documents/report.xlsx",
-      data: blob,
-      directory: Directory.ExternalStorage,
-    });
-  });
+  return workbook.xlsx.writeBuffer();
 };

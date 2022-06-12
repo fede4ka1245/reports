@@ -11,11 +11,11 @@
 </template>
 
 <script setup>
-import { currentReportStore } from "@/store/stores/currentReportStore";
 import { store } from "@/store/store";
+import { getEmptyReport } from "@/helpers/getEmptyReport";
 
 const createReport = () => {
-  store.currentReportStore = currentReportStore;
+  store.currentReport = getEmptyReport();
 };
 </script>
 

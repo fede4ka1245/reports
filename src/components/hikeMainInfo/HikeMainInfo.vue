@@ -1,74 +1,83 @@
 <template>
   <q-select
-    :options="data.routes"
+    :options="data.filteredRoutes"
     option-label="name"
     class="item"
     outlined
     use-input
     label="Событие"
-    :model-value="props.model.name"
+    :model-value="props.hike.name"
     @update:model-value="
-      (target) => {
-        updateModel({ ...props.model, name: target.name, hikes: target.hikes });
+      (targetRoute) => {
+        props.updateHikeName(targetRoute.name);
+        props.updateHikeInformation('', '');
+        data.hikes = targetRoute.hikes;
       }
     "
-    @filter="filter"
+    @filter="filterSearch"
   />
   <q-select
-    :options="datesOptions"
+    :options="data.hikes"
     :option-label="
-      (item) => (item.beginDate ? item.beginDate + '-' + item.endDate : item)
+      (optionHike) => {
+        if (!optionHike) {
+          return '';
+        } else if (!optionHike.beginDate) {
+          return optionHike;
+        }
+
+        return optionHike?.beginDate + '-' + optionHike?.endDate;
+      }
     "
-    :model-value="props.model.date"
+    :model-value="props.hike.dates"
     class="item"
     outlined
     label="Дата"
     @update:model-value="
-      (target) => {
-        updateModel({
-          ...props.model,
-          id: target.id,
-          date: target.beginDate + '-' + target.endDate,
-          hikes: target.hikes,
-        });
+      (targetHike) => {
+        props.updateHikeInformation(
+          targetHike.beginDate + '-' + targetHike.endDate,
+          targetHike.id
+        );
       }
     "
   />
 </template>
 
 <script setup>
-import { reactive, computed } from "vue";
+import { onMounted, reactive } from "vue";
 import { getRoutes } from "@/api/getRoutes";
 import { defineProps } from "vue";
 
 const props = defineProps({
-  model: Object,
-  updateModel: Function,
+  hike: Object,
+  updateHikeName: Function,
+  updateHikeInformation: Function,
 });
 
 const data = reactive({
   routes: [],
+  filteredRoutes: [],
+  hikes: [],
 });
-let routes = [];
 
-async function filter(inputValue, update) {
+async function filterSearch(input, update) {
   if (data.routes.length) {
-    data.routes = routes.filter((route) =>
-      route.name.toLowerCase().includes(inputValue)
+    data.filteredRoutes = data.routes.filter((route) =>
+      route.name.toLowerCase().includes(input)
     );
     update();
-    return;
   }
-
-  routes = await getRoutes();
-
-  update(() => {
-    data.routes = routes;
-  });
 }
 
-const datesOptions = computed(() => {
-  return props.model.hikes;
+onMounted(async () => {
+  data.routes = await getRoutes();
+
+  if (props.hike.name) {
+    data.hikes = data.routes.find(
+      (route) => route.name === props.hike.name
+    ).hikes;
+  }
 });
 </script>
 

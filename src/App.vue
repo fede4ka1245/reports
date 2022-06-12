@@ -12,21 +12,29 @@ import AppTabbar from "./components/appTabbar/AppTabbar";
 import ModalRoot from "@/modalPages/modalRoot/ModalRoot";
 import { onMounted } from "vue";
 import { store } from "./store/store";
-import { getItem, setItem, storageKey } from "@/modules/localStorage";
+import { getItem, setItem, storageKey } from "@/helpers/localStorage";
 import { watch } from "vue";
+import { getRoutes } from "@/api";
+
+getRoutes().then((routes) => {
+  console.log(routes);
+});
 
 onMounted(() => {
-  if (getItem(storageKey.currentReport)) {
-    store.currentReportStore = getItem(storageKey.currentReport);
+  if (
+    getItem(storageKey.currentReport) &&
+    getItem(storageKey.currentReport)?.key
+  ) {
+    store.currentReport = getItem(storageKey.currentReport);
   }
   if (getItem(storageKey.allReports)) {
-    store.allReportsStore = getItem(storageKey.allReports);
+    store.allReports = getItem(storageKey.allReports);
   }
 });
 
 watch(store, (store) => {
-  setItem(storageKey.currentReport, store.currentReportStore);
-  setItem(storageKey.allReports, store.allReportsStore);
+  setItem(storageKey.currentReport, store.currentReport);
+  setItem(storageKey.allReports, store.allReports);
 });
 </script>
 

@@ -1,33 +1,44 @@
 <template>
   <hike-main-info
-    :model="store.currentReportStore.routeData"
-    :update-model="
-      (newModel) => (store.currentReportStore.routeData = newModel)
+    :hike="store.currentReport"
+    :update-hike-name="
+      (name) => {
+        store.currentReport.name = name;
+      }
+    "
+    :update-hike-information="
+      (dates, hikeId) => {
+        store.currentReport = {
+          ...store.currentReport,
+          dates,
+          hikeId,
+        };
+      }
     "
   />
   <q-input
-    v-model="store.currentReportStore.members"
+    v-model="store.currentReport.members"
     class="item"
     outlined
     label="Реальное количество участников"
   />
   <q-input
-    v-model="store.currentReportStore.inactiveMembers"
+    v-model="store.currentReport.inactiveMembers"
     class="item"
     outlined
     label="Не явившиеся участники"
   />
   <p>Валюты для этого отчета:</p>
   <money-code-select
-    :money-codes="store.currentReportStore.moneyCodes"
+    :money-codes="store.currentReport.moneyCodes"
     :on-code-select="
       (code) => {
-        store.currentReportStore.moneyCodes.push(code);
+        store.currentReport.moneyCodes.push(code);
       }
     "
     :on-code-remove="
       (index) => {
-        store.currentReportStore.moneyCodes.splice(index, 1);
+        store.currentReport.moneyCodes.splice(index, 1);
       }
     "
   />

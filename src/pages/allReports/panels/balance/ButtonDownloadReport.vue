@@ -6,10 +6,12 @@
 
 <script setup>
 import { store } from "@/store/store";
-import { getMainReport } from "@/modules/excel/reports/getMainReport";
+import { getMainReport } from "@/helpers/excel/reports/getMainReport";
+import { downloadXLSX } from "@/helpers/downloadXLSX";
 
-const downloadClickHandler = () => {
-  getMainReport(store.allReportsStore);
+const downloadClickHandler = async () => {
+  const report = await getMainReport(store.allReports);
+  downloadXLSX(report, "Главный");
 };
 </script>
 

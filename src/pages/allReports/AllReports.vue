@@ -7,7 +7,7 @@
     dense
     align="center"
     mobile-arrows
-    class="text-orange"
+    active-class="text-orange"
   >
     <q-route-tab
       v-for="(panel, index) in panels"
@@ -57,9 +57,9 @@ const panels = [
 const index = ref(0);
 watch(
   [
-    store.allReportsStore.expenses,
-    store.allReportsStore.outgoingPayments,
-    store.allReportsStore.incomingPayments,
+    store.allReports.expenses,
+    store.allReports.outgoingPayments,
+    store.allReports.incomingPayments,
   ],
   modifyBalance
 );

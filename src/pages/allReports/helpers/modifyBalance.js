@@ -1,25 +1,25 @@
 import { store } from "@/store/store";
 import { getAllReportsMoneyCodes } from "@/pages/allReports/helpers/getAllReportsMoneyCodes";
-import { convertToRUB } from "@/modules/conversion";
+import { convertToRUB } from "@/helpers/conversion";
 
 export const modifyBalance = async () => {
   const moneyCodes = getAllReportsMoneyCodes(
-    store.allReportsStore.incomingPayments,
-    store.allReportsStore.outgoingPayments,
-    store.allReportsStore.expenses
+    store.allReports.incomingPayments,
+    store.allReports.outgoingPayments,
+    store.allReports.expenses
   );
 
-  let balance = store.allReportsStore.balance;
+  let balance = store.allReports.balance;
 
   for (let moneyCode of Object.keys(balance)) {
     if (!moneyCodes.includes(moneyCode)) {
-      delete store.allReportsStore.balance[moneyCode];
+      delete store.allReports.balance[moneyCode];
     } else {
-      store.allReportsStore.balance[moneyCode].sum = 0;
+      store.allReports.balance[moneyCode].sum = 0;
     }
   }
 
-  for (let incomingPayment of store.allReportsStore.incomingPayments) {
+  for (let incomingPayment of store.allReports.incomingPayments) {
     for (let payment of incomingPayment.payments) {
       if (balance[payment.moneyCode]) {
         balance[payment.moneyCode].sum += Number(payment.sum);
@@ -29,7 +29,7 @@ export const modifyBalance = async () => {
     }
   }
 
-  for (let incomingPayment of store.allReportsStore.outgoingPayments) {
+  for (let incomingPayment of store.allReports.outgoingPayments) {
     for (let payment of incomingPayment.payments) {
       if (balance[payment.moneyCode]) {
         balance[payment.moneyCode].sum -= Number(payment.sum);
@@ -39,7 +39,7 @@ export const modifyBalance = async () => {
     }
   }
 
-  for (let expense of store.allReportsStore.expenses) {
+  for (let expense of store.allReports.expenses) {
     if (balance[expense.moneyCode]) {
       balance[expense.moneyCode].sum -= Number(expense.sum);
     } else {

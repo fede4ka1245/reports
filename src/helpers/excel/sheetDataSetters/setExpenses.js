@@ -1,4 +1,4 @@
-import { createHeaderCell } from "@/modules/excel/helpers/createHeaderCell";
+import { createHeaderCell } from "@/helpers/excel/helpers/createHeaderCell";
 
 export function setExpenses(sheet, expenses) {
   let rowIndex = sheet.rowCount + 1;

@@ -1,33 +1,44 @@
 <template>
   <button-download-report />
-  <payment-table :columns="resultsColumns" :rows="resultTableRows" />
+  <payment-table
+    :columns="resultsColumns"
+    :rows="store.currentReport.balance"
+  />
   <payments
-    :payments="store.currentReportStore.outgoingPayments"
-    :money-codes="store.currentReportStore.moneyCodes"
+    :payments="store.currentReport.outgoingPayments"
+    :money-codes="store.currentReport.moneyCodes"
   />
 </template>
 
 <script setup>
 import { store } from "@/store/store";
-import { computed } from "vue";
-import { countResultForMoneyCode } from "@/modules/countResultForMoneyCode";
-import { countProfitForMoneyCode } from "@/modules/countProfitForMoneyCode";
+import { onMounted, watch } from "vue";
+import { countResultForMoneyCode } from "@/helpers/countResultForMoneyCode";
+import { countProfitForMoneyCode } from "@/helpers/countProfitForMoneyCode";
 import { resultsColumns } from "@/components/table/columns/";
 import Payments from "@/components/payments/Payments";
 
 import ButtonDownloadReport from "./buttonDownloadReport/ButtonDownloadReport";
 import PaymentTable from "@/components/table/PaymentTable";
 
-const resultTableRows = computed(() => {
+const getReportResults = () => {
   return [
-    ...store.currentReportStore.moneyCodes.map((code) => {
+    ...store.currentReport.moneyCodes.map((code) => {
       return {
         moneyCode: code,
-        result: countResultForMoneyCode(store.currentReportStore, code),
-        profit: countProfitForMoneyCode(store.currentReportStore, code),
+        result: countResultForMoneyCode(store.currentReport, code),
+        profit: countProfitForMoneyCode(store.currentReport, code),
       };
     }),
   ];
+};
+
+onMounted(() => {
+  store.currentReport.balance = getReportResults();
+});
+
+watch(store.currentReport.outgoingPayments, () => {
+  store.currentReport.balance = getReportResults();
 });
 </script>
 

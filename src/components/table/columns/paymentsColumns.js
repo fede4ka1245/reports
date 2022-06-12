@@ -5,6 +5,7 @@ export const paymentsColumns = [
     field: "name",
     label: "ФИО",
     sortable: true,
+    style: "max-width: 13em; overflow: hidden",
   },
   {
     align: "left",
@@ -18,6 +19,7 @@ export const paymentsColumns = [
     name: "comment",
     field: "comment",
     label: "Комментарий",
+    style: "max-width: 13em; overflow: hidden",
   },
   {
     align: "left",

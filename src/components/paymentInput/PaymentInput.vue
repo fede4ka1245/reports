@@ -3,7 +3,7 @@
     <q-input
       class="sum"
       outlined
-      label="сумма"
+      label="Сумма"
       :model-value="props.sum"
       @update:model-value="(value) => props.updateSum(value)"
     />
@@ -11,7 +11,7 @@
       class="code"
       outlined
       use-input
-      label="валюта"
+      label="Валюта"
       :options="moneyCodes"
       :model-value="props.code"
       @update:model-value="props.updateCode"
