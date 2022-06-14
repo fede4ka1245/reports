@@ -67,7 +67,7 @@ const data = reactive({
 async function filterSearch(input, update) {
   if (data.routes.length) {
     data.filteredRoutes = data.routes.filter((route) =>
-      route.name.toLowerCase().includes(input)
+      route.name.toLowerCase().includes(input.toLowerCase())
     );
     update();
 
