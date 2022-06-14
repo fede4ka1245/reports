@@ -39,6 +39,7 @@ const targetTabIndex = ref(0);
         :icon="tab.icon"
         :label="tab.label"
         :to="tab.route"
+        :ripple="false"
       >
       </q-route-tab>
     </q-tabs>

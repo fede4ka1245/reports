@@ -3,7 +3,7 @@
     <text-header class="item">
       Хотите сообщить об ошибке или оставить отзыв о работе приложения?
     </text-header>
-    <q-input type="textarea" outlined label="текст" class="item" />
+    <q-input type="textarea" outlined label="Текст" class="item" />
     <q-input outlined label="Твое имя" class="item" />
     <q-input outlined label="E-mail для связи с тобой" class="item" />
     <form-confirmation />

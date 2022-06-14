@@ -15,6 +15,8 @@
       :icon="panel.icon"
       :label="panel.label"
       :to="`${routes.current.path}/${panel.route.path}`"
+      :disable="isTabDisable(index)"
+      :ripple="false"
     >
     </q-route-tab>
   </q-tabs>
@@ -30,6 +32,7 @@ import { childRoutes } from "@/pages/currentReport/childRoutes";
 import { routes } from "@/router/router";
 import { store } from "@/store/store";
 import EmptyReport from "@/pages/currentReport/EmptyReport";
+import { isTabDisable } from "@/helpers/isTabDisable";
 
 const panels = [
   {

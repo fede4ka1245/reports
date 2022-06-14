@@ -9,6 +9,7 @@
     use-input
     use-chips
     input-debounce="2"
+    popup-content-style="height: 50vh"
     @filter="filter"
     @add="
       ({ value }) => {
@@ -22,9 +23,6 @@
       }
     "
   >
-    <template v-slot:append>
-      <q-btn round dense flat icon="close" @click="() => select.hidePopup()" />
-    </template>
   </q-select>
 </template>
 

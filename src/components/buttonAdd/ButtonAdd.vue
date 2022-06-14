@@ -8,7 +8,12 @@ const props = defineProps({
 
 <template>
   <div class="flex justify-center">
-    <q-btn class="button" icon="add" color="orange" @click="props.handler" />
+    <q-btn
+      class="button"
+      icon="add"
+      text-color="orange-10"
+      @click="props.handler"
+    />
   </div>
 </template>
 
@@ -18,5 +23,6 @@ const props = defineProps({
   width: 3.5em;
   height: 3.5em;
   margin: 1em;
+  background: #f88c0077;
 }
 </style>

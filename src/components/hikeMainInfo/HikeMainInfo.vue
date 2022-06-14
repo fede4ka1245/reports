@@ -1,12 +1,11 @@
 <template>
   <q-select
-    ref="select"
     :options="data.filteredRoutes"
     option-label="name"
     class="item"
     outlined
     use-input
-    label="Событие"
+    label="Маршрут"
     :model-value="props.hike.name"
     menu-self="center middle"
     @update:model-value="
@@ -18,9 +17,6 @@
     "
     @filter="filterSearch"
   >
-    <template #append>
-      <q-btn round dense flat icon="close" @click="() => select.hidePopup()" />
-    </template>
   </q-select>
   <q-select
     :options="data.hikes"
@@ -38,7 +34,8 @@
     :model-value="props.hike.dates"
     class="item"
     outlined
-    label="Дата"
+    label="Сроки"
+    popup-content-style="height: 50vh"
     @update:model-value="
       (targetHike) => {
         props.updateHikeInformation(
@@ -51,11 +48,9 @@
 </template>
 
 <script setup>
-import { reactive, ref } from "vue";
+import { reactive } from "vue";
 import { getRoutes } from "@/api/getRoutes";
 import { defineProps } from "vue";
-
-const select = ref();
 
 const props = defineProps({
   hike: Object,
