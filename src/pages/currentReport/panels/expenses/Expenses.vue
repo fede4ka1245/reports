@@ -6,7 +6,7 @@
   <payment-table
     v-if="!data.isGrouped"
     :rows="
-      groupedExpenses.map((expense) => ({
+      store.currentReport?.expenses.map((expense) => ({
         ...expense,
         sum: `${expense.sum} ${expense.moneyCode}`,
       }))
@@ -18,7 +18,7 @@
   <payment-table
     v-if="data.isGrouped"
     :rows="
-      groupedExpenses.map((expense) => ({
+      groupedExpenses?.map((expense) => ({
         ...expense,
         sum: `${expense.sum} ${expense.moneyCode}`,
       }))
