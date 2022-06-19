@@ -16,7 +16,7 @@ import { onMounted, watch } from "vue";
 import { countResultForMoneyCode } from "@/helpers/countResultForMoneyCode";
 import { countProfitForMoneyCode } from "@/helpers/countProfitForMoneyCode";
 import { resultsColumns } from "@/components/table/columns/";
-import Payments from "@/components/payments/Payments";
+import Payments from "@/components/paymentsInformation/PaymentsInformation";
 
 import ButtonDownloadReport from "./buttonDownloadReport/ButtonDownloadReport";
 import PaymentTable from "@/components/table/PaymentTable";

@@ -18,7 +18,7 @@
 import { store } from "@/store/store";
 import PaymentInput from "@/components/paymentInput/PaymentInput";
 import TextHeader from "@/components/textHeader/TextHeader";
-import Payments from "@/components/payments/Payments";
+import Payments from "@/components/paymentsInformation/PaymentsInformation";
 
 const updateSum = (value, code) => {
   store.currentReport.moneySums[code] = value;

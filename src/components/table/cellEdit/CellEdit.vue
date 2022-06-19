@@ -16,10 +16,14 @@
 </template>
 
 <script setup>
-import { defineProps } from "vue";
-
 const props = defineProps({
-  fix: Function,
-  delete: Function,
+  fix: {
+    type: Function,
+    default: undefined,
+  },
+  delete: {
+    type: Function,
+    default: undefined,
+  },
 });
 </script>

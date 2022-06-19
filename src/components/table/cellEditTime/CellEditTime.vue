@@ -13,11 +13,15 @@
 </template>
 
 <script setup>
-import { defineProps } from "vue";
-
 const props = defineProps({
-  edit: Function,
-  pageIndex: Number,
+  edit: {
+    type: Function,
+    required: true,
+  },
+  pageIndex: {
+    type: Number,
+    required: true,
+  },
 });
 </script>
 

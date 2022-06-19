@@ -30,7 +30,7 @@ import { store } from "@/store/store";
 import { openModalPage } from "@/modalPages/utils/openModalPage";
 import { modalName } from "@/modalPages/utils/modalName";
 import { expensesColumns } from "@/components/table/columns/";
-import Payments from "@/components/payments/Payments";
+import Payments from "@/components/paymentsInformation/PaymentsInformation";
 
 import TextHeader from "@/components/textHeader/TextHeader";
 import PaymentTable from "@/components/table/PaymentTable";

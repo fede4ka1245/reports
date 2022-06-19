@@ -1,9 +1,13 @@
 <script setup>
-import { defineProps } from "vue";
-
 const props = defineProps({
-  dismissHandler: Function,
-  confirmHandler: Function,
+  dismissHandler: {
+    type: Function,
+    required: true,
+  },
+  confirmHandler: {
+    type: Function,
+    required: true,
+  },
 });
 </script>
 

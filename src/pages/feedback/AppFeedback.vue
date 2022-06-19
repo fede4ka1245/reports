@@ -17,7 +17,10 @@
       label="E-mail для связи с тобой"
       class="item"
     />
-    <form-confirmation :confirm-handler="sendEmail" />
+    <form-confirmation
+      :dismiss-handler="clearForm"
+      :confirm-handler="sendEmail"
+    />
   </section>
 </template>
 
@@ -41,5 +44,11 @@ const sendEmail = () => {
     isHtml: true,
   };
   EmailComposer.open(email);
+};
+
+const clearForm = () => {
+  errorData.name = "";
+  errorData.email = "";
+  errorData.description = "";
 };
 </script>

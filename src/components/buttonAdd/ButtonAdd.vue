@@ -1,8 +1,9 @@
 <script setup>
-import { defineProps } from "vue";
-
 const props = defineProps({
-  handler: Function,
+  handler: {
+    type: Function,
+    required: true,
+  },
 });
 </script>
 

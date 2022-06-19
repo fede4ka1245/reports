@@ -62,17 +62,34 @@
 </template>
 
 <script setup>
-import { defineProps } from "vue";
 import CellEdit from "./cellEdit/CellEdit";
 import CellEditTime from "./cellEditTime/CellEditTime";
 
 const tableProps = defineProps({
-  columns: Array,
-  rows: Array,
-  edit: Function,
-  remove: Function,
-  download: Function,
-  promoteToCurrent: Function,
+  columns: {
+    type: Array,
+    default: () => [],
+  },
+  rows: {
+    type: Array,
+    default: () => [],
+  },
+  edit: {
+    type: Function,
+    default: undefined,
+  },
+  remove: {
+    type: Function,
+    default: undefined,
+  },
+  download: {
+    type: Function,
+    default: undefined,
+  },
+  promoteToCurrent: {
+    type: Function,
+    default: undefined,
+  },
 });
 </script>
 

@@ -1,6 +1,6 @@
 import { Directory, Filesystem } from "@capacitor/filesystem";
-import { Capacitor } from '@capacitor/core';
-import {nanoid} from "nanoid";
+import { Capacitor } from "@capacitor/core";
+import { nanoid } from "nanoid";
 
 export const downloadXLSX = (fileData, name) => {
   if (Capacitor.isNativePlatform()) {

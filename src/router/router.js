@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import CurrentReport from "../pages/currentReport/CurrentReport";
 import AllReports from "../pages/allReports/AllReports";
-import Feedback from "../pages/feedback/Feedback";
+import Feedback from "../pages/feedback/AppFeedback";
 import { childRoutes as currentReportRoutes } from "@/pages/currentReport/childRoutes";
 import { childRoutes as allReportRoutes } from "@/pages/allReports/childRoutes";
 

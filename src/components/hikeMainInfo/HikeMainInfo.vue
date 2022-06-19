@@ -50,12 +50,19 @@
 <script setup>
 import { reactive } from "vue";
 import { getRoutes } from "@/api/getRoutes";
-import { defineProps } from "vue";
-
 const props = defineProps({
-  hike: Object,
-  updateHikeName: Function,
-  updateHikeInformation: Function,
+  hike: {
+    type: Object,
+    required: true,
+  },
+  updateHikeName: {
+    type: Function,
+    required: true,
+  },
+  updateHikeInformation: {
+    type: Function,
+    required: true,
+  },
 });
 
 const data = reactive({

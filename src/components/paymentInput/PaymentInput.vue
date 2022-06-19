@@ -5,8 +5,8 @@
       outlined
       label="Сумма"
       :model-value="props.sum"
-      @update:model-value="(value) => props.updateSum(value)"
       type="number"
+      @update:model-value="(value) => props.updateSum(value)"
     />
     <q-select
       class="code"
@@ -22,14 +22,29 @@
 </template>
 
 <script setup>
-import { defineProps, ref } from "vue";
+import { ref } from "vue";
 
 const props = defineProps({
-  codes: Array,
-  code: String,
-  updateCode: Function,
-  sum: String,
-  updateSum: Function,
+  codes: {
+    type: Array,
+    default: undefined,
+  },
+  code: {
+    type: String,
+    default: () => "",
+  },
+  updateCode: {
+    type: Function,
+    default: undefined,
+  },
+  sum: {
+    type: String,
+    default: () => "",
+  },
+  updateSum: {
+    type: Function,
+    required: true,
+  },
 });
 
 let moneyCodes = ref(props.codes);

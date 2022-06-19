@@ -28,14 +28,23 @@
 
 <script setup>
 import * as currencyCodes from "currency-codes";
-import { ref, defineProps } from "vue";
+import { ref } from "vue";
 
 const select = ref(null);
 
 const props = defineProps({
-  moneyCodes: Array,
-  onCodeSelect: Function,
-  onCodeRemove: Function,
+  moneyCodes: {
+    type: Array,
+    required: true,
+  },
+  onCodeSelect: {
+    type: Function,
+    required: true,
+  },
+  onCodeRemove: {
+    type: Function,
+    required: true,
+  },
 });
 
 const codes = currencyCodes.codes();

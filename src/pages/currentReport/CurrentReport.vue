@@ -1,6 +1,6 @@
 <template>
   <q-tabs
-    v-model="index"
+    v-model="targetTabIndex"
     no-caps
     stretch
     dense
@@ -62,7 +62,7 @@ const panels = [
   },
 ];
 
-const index = ref(0);
+const targetTabIndex = ref(0);
 </script>
 
 <style scoped>

@@ -1,4 +1,4 @@
-import Balance from "@/pages/allReports/panels/balance/Balance";
+import Balance from "@/pages/allReports/panels/balance/FinalBalance";
 import IncomingPayments from "@/pages/allReports/panels/incomingPayments/IncomingPayments";
 import RoutesList from "@/pages/allReports/panels/routesList/RoutesList";
 import OutgoingPayments from "@/pages/allReports/panels/outgoingPayments/OutgoingPayments";
@@ -9,11 +9,11 @@ export const childRoutes = {
     component: RoutesList,
   },
   outgoingPayments: {
-    path: "outgoing-payments",
+    path: "outgoing-paymentsInformation",
     component: OutgoingPayments,
   },
   incomingPayments: {
-    path: "incoming-payments",
+    path: "incoming-paymentsInformation",
     component: IncomingPayments,
   },
   balance: {

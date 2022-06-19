@@ -8,5 +8,5 @@
 <script setup>
 import { store } from "@/store/store";
 import { getMoneyCodes } from "@/helpers/getMoneyCodes";
-import Payments from "@/components/payments/Payments";
+import Payments from "@/components/paymentsInformation/PaymentsInformation";
 </script>

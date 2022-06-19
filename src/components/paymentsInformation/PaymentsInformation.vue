@@ -6,9 +6,9 @@
       :remove="(index) => remove(payment, index)"
       :columns="paymentsColumns"
       :rows="
-        payment.payments.map((payment) => ({
-          ...payment,
-          sum: `${payment.sum} ${payment.moneyCode}`
+        payment.payments.map((targetPayment) => ({
+          ...targetPayment,
+          sum: `${targetPayment.sum} ${targetPayment.moneyCode}`,
         }))
       "
     />
@@ -49,10 +49,25 @@ const add = (payment) => {
 };
 
 const props = defineProps({
-  remove: Function,
-  edit: Function,
-  add: Function,
-  payments: Array,
-  moneyCodes: Array,
+  remove: {
+    type: Function,
+    default: undefined,
+  },
+  edit: {
+    type: Function,
+    default: undefined,
+  },
+  add: {
+    type: Function,
+    default: undefined,
+  },
+  payments: {
+    type: Array,
+    default: () => [],
+  },
+  moneyCodes: {
+    type: Array,
+    default: () => [],
+  },
 });
 </script>

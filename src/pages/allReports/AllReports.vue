@@ -1,6 +1,6 @@
 <template>
   <q-tabs
-    v-model="index"
+    v-model="targetTabIndex"
     narrow-indicator
     no-caps
     stretch
@@ -57,7 +57,7 @@ const panels = [
   },
 ];
 
-const index = ref(0);
+const targetTabIndex = ref(0);
 watch(
   [
     store.allReports.expenses,
