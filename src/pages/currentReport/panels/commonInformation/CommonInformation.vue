@@ -29,7 +29,7 @@
 <script setup>
 import { store } from "@/store/store";
 import MoneyCodeSelect from "@/components/moneyCodeSelect/MoneyCodeSelect";
-import HikeMainInfo from "../../../../components/hikeMainInfo/HikeMainInfo";
+import HikeMainInfo from "@/components/hikeMainInfo/HikeMainInfo";
 
 const updateHikeName = (name) => {
   store.currentReport.name = name;
