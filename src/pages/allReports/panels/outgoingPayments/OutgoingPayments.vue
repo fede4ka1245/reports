@@ -10,19 +10,7 @@
     :edit="editExpense"
     :remove="removeExpense"
   />
-  <button-add
-    :handler="
-      () =>
-        openModalPage(modalName.modalExpense, {
-          saveData: (expense) =>
-            (store.allReports.expenses = [
-              ...store.allReports.expenses,
-              expense,
-            ]),
-          moneyCodes: getMoneyCodes(),
-        })
-    "
-  />
+  <button-add :handler="onPaymentAdd" />
 </template>
 
 <script setup>
@@ -49,5 +37,13 @@ const editExpense = (index) => {
 
 const removeExpense = (index) => {
   store.allReports.expenses.splice(index, 1);
+};
+
+const onPaymentAdd = () => {
+  openModalPage(modalName.modalExpense, {
+    saveData: (expense) =>
+      (store.allReports.expenses = [...store.allReports.expenses, expense]),
+    moneyCodes: getMoneyCodes(),
+  });
 };
 </script>

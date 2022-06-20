@@ -5,19 +5,7 @@
     :remove="remove"
     :edit="edit"
   />
-  <button-add
-    :handler="
-      () =>
-        openModalPage(modalName.modalConversion, {
-          saveData: (conversion) =>
-            (store.currentReport.conversions = [
-              ...store.currentReport.conversions,
-              conversion,
-            ]),
-          moneyCodes: store.currentReport.moneyCodes,
-        })
-    "
-  />
+  <button-add :handler="onConversionAdd" />
 </template>
 
 <script setup>
@@ -29,6 +17,17 @@ import { modalName } from "@/modalPages/utils/modalName";
 import { store } from "@/store/store";
 import { computed } from "vue";
 import { conversionsColumns } from "@/components/table/columns";
+
+const onConversionAdd = () => {
+  openModalPage(modalName.modalConversion, {
+    saveData: (conversion) =>
+      (store.currentReport.conversions = [
+        ...store.currentReport.conversions,
+        conversion,
+      ]),
+    moneyCodes: store.currentReport.moneyCodes,
+  });
+};
 
 const remove = (index) => {
   store.currentReport.conversions.splice(index, 1);

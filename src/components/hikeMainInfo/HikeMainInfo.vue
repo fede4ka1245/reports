@@ -8,42 +8,19 @@
     label="Маршрут"
     :model-value="props.hike.name"
     menu-self="center middle"
-    @update:model-value="
-      (targetRoute) => {
-        props.updateHikeName(targetRoute.name);
-        props.updateHikeInformation('', '');
-        data.hikes = targetRoute.hikes;
-      }
-    "
+    @update:model-value="onRouteUpdate"
     @filter="filterSearch"
   >
   </q-select>
   <q-select
     :options="data.hikes"
-    :option-label="
-      (optionHike) => {
-        if (!optionHike) {
-          return '';
-        } else if (!optionHike.beginDate) {
-          return optionHike;
-        }
-
-        return optionHike?.beginDate + '-' + optionHike?.endDate;
-      }
-    "
-    :model-value="props.hike.dates"
+    :option-label="getDateOptionLabel"
+    :model-value="props.hike?.dates"
     class="item"
     outlined
     label="Сроки"
     popup-content-style="height: 50vh"
-    @update:model-value="
-      (targetHike) => {
-        props.updateHikeInformation(
-          targetHike.beginDate + '-' + targetHike.endDate,
-          targetHike.id
-        );
-      }
-    "
+    @update:model-value="onDateUpdate"
   />
 </template>
 
@@ -64,6 +41,36 @@ const props = defineProps({
     required: true,
   },
 });
+
+const onRouteUpdate = (targetRoute) => {
+  if (!targetRoute?.name) {
+    props.updateHikeName("");
+    props.updateHikeInformation("", "");
+    data.hikes = [];
+    return;
+  }
+
+  props.updateHikeName(targetRoute.name);
+  props.updateHikeInformation("", "");
+  data.hikes = targetRoute.hikes;
+};
+
+const onDateUpdate = (targetHike) => {
+  props.updateHikeInformation(
+    targetHike.beginDate + "-" + targetHike.endDate,
+    targetHike.id
+  );
+};
+
+const getDateOptionLabel = (optionHike) => {
+  if (!optionHike) {
+    return "";
+  } else if (!optionHike.beginDate) {
+    return optionHike;
+  }
+
+  return optionHike?.beginDate + "-" + optionHike?.endDate;
+};
 
 const data = reactive({
   routes: [],

@@ -5,41 +5,19 @@
   </div>
   <payment-table
     v-if="!data.isGrouped"
-    :rows="
-      store.currentReport?.expenses.map((expense) => ({
-        ...expense,
-        sum: `${expense.sum} ${expense.moneyCode}`,
-      }))
-    "
+    :rows="getExpensesRows()"
     :columns="expensesColumns"
     :edit="edit"
     :remove="remove"
   />
   <payment-table
     v-if="data.isGrouped"
-    :rows="
-      groupedExpenses?.map((expense) => ({
-        ...expense,
-        sum: `${expense.sum} ${expense.moneyCode}`,
-      }))
-    "
+    :rows="getGroupedExpensesRows()"
     :columns="groupedExpensesColumns"
     :edit="edit"
     :remove="remove"
   />
-  <button-add
-    :handler="
-      () =>
-        openModalPage(modalName.modalExpense, {
-          saveData: (expense) =>
-            (store.currentReport.expenses = [
-              ...store.currentReport.expenses,
-              expense,
-            ]),
-          moneyCodes: store.currentReport.moneyCodes,
-        })
-    "
-  />
+  <button-add :handler="onExpenseAdd" />
 </template>
 
 <script setup>
@@ -63,6 +41,30 @@ const data = reactive({
 
 const remove = (index) => {
   store.currentReport.expenses.splice(index, 1);
+};
+
+const getGroupedExpensesRows = () => {
+  return groupedExpenses.value?.map((expense) => ({
+    ...expense,
+    sum: `${expense.sum} ${expense.moneyCode}`,
+  }));
+};
+const getExpensesRows = () => {
+  return store.currentReport?.expenses.map((expense) => ({
+    ...expense,
+    sum: `${expense.sum} ${expense.moneyCode}`,
+  }));
+};
+
+const onExpenseAdd = () => {
+  openModalPage(modalName.modalExpense, {
+    saveData: (expense) =>
+      (store.currentReport.expenses = [
+        ...store.currentReport.expenses,
+        expense,
+      ]),
+    moneyCodes: store.currentReport.moneyCodes,
+  });
 };
 
 const edit = (index) => {

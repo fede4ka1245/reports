@@ -33,12 +33,7 @@
   <q-input v-model="conversion.date" outlined label="дата" class="item" />
   <form-confirmation
     :dismiss-handler="closeModalPage"
-    :confirm-handler="
-      () => {
-        closeModalPage();
-        props.saveData(conversion);
-      }
-    "
+    :confirm-handler="onConversionConfirm"
     class="item"
   />
 </template>
@@ -52,6 +47,11 @@ import FormConfirmation from "@/components/fromConfirmation/FormConfirmation";
 import TextHeader from "@/components/textHeader/TextHeader";
 
 const props = store.modalPages.props;
+
+const onConversionConfirm = () => {
+  closeModalPage();
+  props?.saveData(conversion);
+};
 
 const defaultConversion = {
   from: {

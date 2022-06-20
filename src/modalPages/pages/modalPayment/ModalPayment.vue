@@ -40,12 +40,7 @@
   />
   <form-confirmation
     :dismiss-handler="closeModalPage"
-    :confirm-handler="
-      () => {
-        closeModalPage();
-        props.saveData(paymentData.payment);
-      }
-    "
+    :confirm-handler="onPaymentConfirm"
     class="item"
   />
 </template>
@@ -60,6 +55,11 @@ import FormConfirmation from "@/components/fromConfirmation/FormConfirmation";
 import PaymentInput from "@/components/paymentInput/PaymentInput";
 import TextHeader from "@/components/textHeader/TextHeader";
 import { getInstructors } from "@/api";
+
+const onPaymentConfirm = () => {
+  closeModalPage();
+  props.saveData(paymentData.payment);
+};
 
 const format = (instructors) => {
   return Array.from(

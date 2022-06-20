@@ -11,17 +11,8 @@
     input-debounce="2"
     popup-content-style="height: 50vh"
     @filter="filter"
-    @add="
-      ({ value }) => {
-        select?.updateInputValue('');
-        props.onCodeSelect(value);
-      }
-    "
-    @remove="
-      ({ index }) => {
-        props.onCodeRemove(index);
-      }
-    "
+    @add="onMoneyCodeAdd"
+    @remove="onMoneyCodeRemove"
   >
   </q-select>
 </template>
@@ -32,6 +23,14 @@ import { ref } from "vue";
 
 const select = ref(null);
 
+const onMoneyCodeAdd = ({ value }) => {
+  select.value?.updateInputValue("");
+  props.onCodeSelect(value);
+};
+
+const onMoneyCodeRemove = ({ index }) => {
+  props.onCodeRemove(index);
+};
 const props = defineProps({
   moneyCodes: {
     type: Array,

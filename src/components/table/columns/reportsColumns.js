@@ -5,7 +5,7 @@ export const reportsColumns = [
     field: "name",
     label: "Маршрут",
     sortable: true,
-    style: "max-width: 13em; overflow: hidden",
+    style: "width: 13em; max-height: 4em",
   },
   {
     align: "left",

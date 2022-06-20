@@ -1,7 +1,5 @@
 <template>
-  <report-creator
-    v-if="!store.currentReport && !store.allReports?.reports?.length"
-  />
+  <report-creator v-if="isReportCreatorActive" />
   <section v-else>
     <payment-table
       :rows="rows"
@@ -24,6 +22,9 @@ import { computed } from "vue";
 import { openModalPage } from "@/modalPages/utils/openModalPage";
 import { modalName } from "@/modalPages/utils/modalName";
 import { downloadHikeReport } from "@/helpers/downloadHikeReport";
+
+const isReportCreatorActive =
+  !store.currentReport && !store.allReports?.reports?.length;
 
 const getReportIndex = (report) => {
   for (let index = 0; index <= store.allReports.reports.length - 1; index++) {

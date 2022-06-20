@@ -5,7 +5,7 @@
       color="orange"
       label="Создать"
       class="button"
-      @click="() => createReport()"
+      @click="createReport"
     ></q-btn>
   </section>
 </template>

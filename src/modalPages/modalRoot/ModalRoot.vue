@@ -7,21 +7,11 @@
     transition-hide="slide-down"
   >
     <div class="content">
-      <modal-payment
-        v-if="modalName.modalPayment === store.modalPages.activePageName"
-      />
-      <modal-expense
-        v-if="modalName.modalExpense === store.modalPages.activePageName"
-      />
-      <modal-conversion
-        v-if="modalName.modalConversion === store.modalPages.activePageName"
-      />
-      <modal-time
-        v-if="modalName.modalTime === store.modalPages.activePageName"
-      />
-      <modal-create-route
-        v-if="modalName.modalRoute === store.modalPages.activePageName"
-      />
+      <modal-payment v-if="getIsModalOpen(modalName.modalPayment)" />
+      <modal-expense v-if="getIsModalOpen(modalName.modalExpense)" />
+      <modal-conversion v-if="getIsModalOpen(modalName.modalConversion)" />
+      <modal-time v-if="getIsModalOpen(modalName.modalTime)" />
+      <modal-create-route v-if="getIsModalOpen(modalName.modalRoute)" />
     </div>
   </q-dialog>
 </template>
@@ -35,6 +25,10 @@ import ModalConversion from "@/modalPages/pages/modalConversion/ModalConversion"
 import ModalPayment from "@/modalPages/pages/modalPayment/ModalPayment";
 import ModalTime from "@/modalPages/pages/modalTime/ModalTime";
 import ModalCreateRoute from "@/modalPages/pages/modalRoute/ModalCreateRoute";
+
+const getIsModalOpen = (modal) => {
+  return store.modalPages.activePageName === modal;
+};
 
 const isOpen = computed(() => {
   return store.modalPages.isModalOpen;

@@ -5,12 +5,7 @@
       :edit="(index) => edit(payment, index)"
       :remove="(index) => remove(payment, index)"
       :columns="paymentsColumns"
-      :rows="
-        payment.payments.map((targetPayment) => ({
-          ...targetPayment,
-          sum: `${targetPayment.sum} ${targetPayment.moneyCode}`,
-        }))
-      "
+      :rows="getRows(payment)"
     />
     <button-add :handler="() => add(payment)" />
   </section>
@@ -27,6 +22,13 @@ import { modalName } from "@/modalPages/utils/modalName";
 
 const remove = (payment, index) => {
   payment.payments.splice(index, 1);
+};
+
+const getRows = (payment) => {
+  return payment.payments.map((targetPayment) => ({
+    ...targetPayment,
+    sum: `${targetPayment.sum} ${targetPayment.moneyCode}`,
+  }));
 };
 
 const edit = (payment, index) => {

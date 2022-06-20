@@ -1,20 +1,8 @@
 <template>
   <hike-main-info
     :hike="store.currentReport"
-    :update-hike-name="
-      (name) => {
-        store.currentReport.name = name;
-      }
-    "
-    :update-hike-information="
-      (dates, hikeId) => {
-        store.currentReport = {
-          ...store.currentReport,
-          dates,
-          hikeId,
-        };
-      }
-    "
+    :update-hike-name="updateHikeName"
+    :update-hike-information="updateHikeInformation"
   />
   <q-input
     v-model="store.currentReport.members"
@@ -33,16 +21,8 @@
   <p>Валюты для этого отчета:</p>
   <money-code-select
     :money-codes="store.currentReport.moneyCodes"
-    :on-code-select="
-      (code) => {
-        store.currentReport.moneyCodes.push(code);
-      }
-    "
-    :on-code-remove="
-      (index) => {
-        store.currentReport.moneyCodes.splice(index, 1);
-      }
-    "
+    :on-code-select="onCodeSelect"
+    :on-code-remove="onCodeRemove"
   />
 </template>
 
@@ -50,6 +30,26 @@
 import { store } from "@/store/store";
 import MoneyCodeSelect from "@/components/moneyCodeSelect/MoneyCodeSelect";
 import HikeMainInfo from "../../../../components/hikeMainInfo/HikeMainInfo";
+
+const updateHikeName = (name) => {
+  store.currentReport.name = name;
+};
+
+const updateHikeInformation = (dates, hikeId) => {
+  store.currentReport = {
+    ...store.currentReport,
+    dates,
+    hikeId,
+  };
+};
+
+const onCodeRemove = (index) => {
+  store.currentReport.moneyCodes.splice(index, 1);
+};
+
+const onCodeSelect = (code) => {
+  store.currentReport.moneyCodes.push(code);
+};
 </script>
 
 <style scoped>

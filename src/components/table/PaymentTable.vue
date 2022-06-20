@@ -24,39 +24,12 @@
       <cell-edit-time :edit="tableProps.edit" :page-index="props.pageIndex" />
     </template>
     <template #body-cell-edit-report="props">
-      <q-td>
-        <q-btn round flat color="grey" icon="edit">
-          <q-menu>
-            <q-list style="min-width: 100px">
-              <q-item
-                v-close-popup
-                clickable
-                @click="tableProps.promoteToCurrent(props.row)"
-              >
-                Cделать текущим
-              </q-item>
-            </q-list>
-            <q-list style="min-width: 100px">
-              <q-item
-                v-close-popup
-                clickable
-                @click="tableProps.download(props.row)"
-              >
-                Скачать
-              </q-item>
-            </q-list>
-            <q-list style="min-width: 100px">
-              <q-item
-                v-close-popup
-                clickable
-                @click="tableProps.remove(props.row)"
-              >
-                Удалить
-              </q-item>
-            </q-list>
-          </q-menu>
-        </q-btn>
-      </q-td>
+      <cell-edit-report
+        :promote-to-current="tableProps.promoteToCurrent"
+        :download="tableProps.download"
+        :remove="tableProps.remove"
+        :row="props.row"
+      />
     </template>
   </q-table>
 </template>
@@ -64,6 +37,7 @@
 <script setup>
 import CellEdit from "./cellEdit/CellEdit";
 import CellEditTime from "./cellEditTime/CellEditTime";
+import CellEditReport from "@/components/table/cellEditReport/CellEditReport";
 
 const tableProps = defineProps({
   columns: {

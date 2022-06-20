@@ -34,12 +34,7 @@
   <q-input v-model="expense.date" class="item" outlined label="дата" />
   <form-confirmation
     :dismiss-handler="closeModalPage"
-    :confirm-handler="
-      () => {
-        closeModalPage();
-        props.saveData(expense);
-      }
-    "
+    :confirm-handler="onExpenseConfirm"
   />
 </template>
 
@@ -54,6 +49,11 @@ import TextHeader from "@/components/textHeader/TextHeader";
 import { getExpenseCategories } from "@/api/getExpenseCategories";
 
 const props = store.modalPages.props;
+
+const onExpenseConfirm = () => {
+  closeModalPage();
+  props.saveData(expense);
+};
 
 const defaultExpense = {
   category: String(),
