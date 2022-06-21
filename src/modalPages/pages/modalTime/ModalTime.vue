@@ -5,12 +5,7 @@
   <q-input v-model="data.year" outlined label="Год" class="item" />
   <form-confirmation
     :dismiss-handler="closeModalPage"
-    :confirm-handler="
-      () => {
-        closeModalPage();
-        props.onConfirm(data.day, data.month, data.year);
-      }
-    "
+    :confirm-handler="onConfirm"
     class="item"
   />
 </template>
@@ -23,6 +18,11 @@ import FormConfirmation from "@/components/fromConfirmation/FormConfirmation";
 import { closeModalPage } from "@/modalPages/utils/closeModalPage";
 
 const props = store.modalPages.props;
+
+const onConfirm = () => {
+  closeModalPage();
+  props.onConfirm(data.day, data.month, data.year);
+}
 
 const data = reactive({
   day: "",

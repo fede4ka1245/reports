@@ -1,17 +1,8 @@
 <template>
   <hike-main-info
     :hike="data"
-    :update-hike-name="
-      (name) => {
-        data.name = name;
-      }
-    "
-    :update-hike-information="
-      (dates, hikeId) => {
-        data.dates = dates;
-        data.hikeId = hikeId;
-      }
-    "
+    :update-hike-name="onHikeNameUpdate"
+    :update-hike-information="onHikeInformationUpdate"
   />
   <form-confirmation
     :dismiss-handler="closeModalPage"
@@ -33,6 +24,15 @@ const data = reactive({
   dates: "",
   hikeId: "",
 });
+
+const onHikeInformationUpdate = (dates, hikeId) => {
+  data.dates = dates;
+  data.hikeId = hikeId;
+}
+
+const onHikeNameUpdate = (name) => {
+  data.name = name;
+}
 
 const onConfirm = () => {
   const report = {

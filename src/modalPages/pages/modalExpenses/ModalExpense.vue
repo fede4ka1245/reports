@@ -21,17 +21,17 @@
     v-model="expense.expenseDescription"
     type="textarea"
     outlined
-    label="описание расхода"
+    label="Описание расхода"
     class="item"
   />
   <q-input
     v-model="expense.comment"
     type="textarea"
     outlined
-    label="расчет и комментарии"
+    label="Расчет и комментарии"
     class="item"
   />
-  <q-input v-model="expense.date" class="item" outlined label="дата" />
+  <q-input v-model="expense.date" class="item" outlined label="Дата" />
   <form-confirmation
     :dismiss-handler="closeModalPage"
     :confirm-handler="onExpenseConfirm"

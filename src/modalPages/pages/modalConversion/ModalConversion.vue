@@ -8,7 +8,7 @@
         :options="props.moneyCodes"
         outlined
       />
-      <q-input v-model="conversion.from.sum" outlined label="сумма" />
+      <q-input v-model="conversion.from.sum" outlined label="Сумма" />
     </section>
     <section>
       <span class="to"></span>
@@ -20,17 +20,17 @@
         :options="store.currentReport.moneyCodes"
         outlined
       />
-      <q-input v-model="conversion.to.sum" outlined label="сумма" />
+      <q-input v-model="conversion.to.sum" outlined label="Сумма" />
     </section>
   </div>
   <q-input
     v-model="conversion.comment"
     type="textarea"
     outlined
-    label="расчет и комментарии"
+    label="Расчет и комментарии"
     class="item"
   />
-  <q-input v-model="conversion.date" outlined label="дата" class="item" />
+  <q-input v-model="conversion.date" outlined label="Дата" class="item" />
   <form-confirmation
     :dismiss-handler="closeModalPage"
     :confirm-handler="onConversionConfirm"

@@ -29,13 +29,13 @@
     v-model="paymentData.payment.comment"
     type="textarea"
     outlined
-    label="комментарий"
+    label="Комментарий"
     class="item"
   />
   <q-input
     v-model="paymentData.payment.date"
     outlined
-    label="дата"
+    label="Дата"
     class="item"
   />
   <form-confirmation
