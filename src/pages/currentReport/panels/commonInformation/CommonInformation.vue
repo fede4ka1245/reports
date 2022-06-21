@@ -16,7 +16,6 @@
     class="item"
     outlined
     label="Не явившиеся участники"
-    type="number"
   />
   <p>Валюты для этого отчета:</p>
   <money-code-select
