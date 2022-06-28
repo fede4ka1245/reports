@@ -1,31 +1,21 @@
 <template>
-  <q-input
-    outlined
-    :model-value="props.date"
-    place
-    label="Дата"
-  >
-    <template v-slot:append>
-      <q-icon name="event" class="cursor-pointer">
-        <q-popup-proxy cover transition-show="scale" transition-hide="scale">
-          <q-date
-            v-on:update:model-value="props.onDateChange"
-            :model-value="props.date"
-            :options="options"
-            mask="DD.MM.YYYY"
-          >
-            <div class="row items-center justify-end">
-              <q-btn v-close-popup label="Close" color="primary" flat />
-            </div>
-          </q-date>
-        </q-popup-proxy>
-      </q-icon>
-    </template>
+  <q-input outlined :model-value="props.date" place label="Дата">
+    <q-popup-proxy ref="popup" color="orange" cover>
+      <q-date
+        v-on:update:model-value="onDateChange"
+        :model-value="props.date"
+        :options="options"
+        mask="DD.MM.YYYY"
+        color="orange"
+      >
+      </q-date>
+    </q-popup-proxy>
   </q-input>
 </template>
 
 <script setup>
-import { getFormattedCurrentDate } from "../../../../../reports/src/helpers/getFormattedCurrentDate";
+import { getFormattedCurrentDate } from "@/helpers/getFormattedCurrentDate";
+import { ref } from "vue";
 
 const props = defineProps({
   date: {
@@ -37,6 +27,12 @@ const props = defineProps({
     required: true,
   },
 });
+
+const popup = ref(null);
+const onDateChange = (date) => {
+  props.onDateChange(date);
+  popup?.value?.hide();
+};
 
 const options = (date) => {
   const [year, month, day] = [...date.split("/")].map((datePart) =>
