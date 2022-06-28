@@ -27,14 +27,14 @@
 
 <script setup>
 import { store } from "@/store/store";
-import { modalName } from "@/modalPages/utils/modalName";
+import { modalName } from "@/modalPages/helpers/modalName";
 import { computed } from "vue";
 import ModalExpense from "@/modalPages/pages/modalExpenses/ModalExpense";
 import ModalConversion from "@/modalPages/pages/modalConversion/ModalConversion";
 import ModalPayment from "@/modalPages/pages/modalPayment/ModalPayment";
 import ModalTime from "@/modalPages/pages/modalTime/ModalTime";
 import ModalCreateRoute from "@/modalPages/pages/modalRoute/ModalCreateRoute";
-import {closeModalPage} from "@/modalPages/utils/closeModalPage";
+import {closeModalPage} from "@/modalPages/helpers/closeModalPage";
 
 const getIsModalOpen = (modal) => {
   return store.modalPages.activePageName === modal;

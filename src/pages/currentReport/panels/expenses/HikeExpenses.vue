@@ -22,8 +22,8 @@
 
 <script setup>
 import ButtonAdd from "@/components/buttonAdd/ButtonAdd";
-import { openModalPage } from "@/modalPages/utils/openModalPage";
-import { modalName } from "@/modalPages/utils/modalName";
+import { openModalPage } from "@/modalPages/helpers/openModalPage";
+import { modalName } from "@/modalPages/helpers/modalName";
 import { store } from "@/store/store";
 import { expensesColumns } from "@/components/table/columns";
 import PaymentTable from "@/components/table/PaymentTable";

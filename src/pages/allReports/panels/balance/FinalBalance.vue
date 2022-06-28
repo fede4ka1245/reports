@@ -11,10 +11,10 @@
 import { store } from "@/store/store";
 import { computed, onMounted } from "vue";
 import { mainReportColumns } from "@/components/table/columns";
-import { openModalPage } from "@/modalPages/utils/openModalPage";
+import { openModalPage } from "@/modalPages/helpers/openModalPage";
 import ButtonDownloadReport from "./ButtonDownloadReport";
 import PaymentTable from "@/components/table/PaymentTable";
-import { modalName } from "@/modalPages/utils/modalName";
+import { modalName } from "@/modalPages/helpers/modalName";
 import { modifyBalance } from "@/pages/allReports/helpers";
 
 const editTime = (index) => {

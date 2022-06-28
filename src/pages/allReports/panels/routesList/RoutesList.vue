@@ -19,8 +19,8 @@ import PaymentTable from "@/components/table/PaymentTable";
 import ButtonAdd from "@/components/buttonAdd/ButtonAdd";
 import { reportsColumns } from "@/components/table/columns/reportsColumns";
 import { computed } from "vue";
-import { openModalPage } from "@/modalPages/utils/openModalPage";
-import { modalName } from "@/modalPages/utils/modalName";
+import { openModalPage } from "@/modalPages/helpers/openModalPage";
+import { modalName } from "@/modalPages/helpers/modalName";
 import { downloadHikeReport } from "@/helpers/downloadHikeReport";
 
 const isReportCreatorActive =

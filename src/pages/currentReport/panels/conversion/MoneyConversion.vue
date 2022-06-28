@@ -12,8 +12,8 @@
 import ButtonAdd from "@/components/buttonAdd/ButtonAdd";
 import PaymentTable from "@/components/table/PaymentTable";
 
-import { openModalPage } from "@/modalPages/utils/openModalPage";
-import { modalName } from "@/modalPages/utils/modalName";
+import { openModalPage } from "@/modalPages/helpers/openModalPage";
+import { modalName } from "@/modalPages/helpers/modalName";
 import { store } from "@/store/store";
 import { computed } from "vue";
 import { conversionsColumns } from "@/components/table/columns";

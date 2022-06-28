@@ -16,7 +16,7 @@
 <script setup>
 import { store } from "@/store/store";
 import { reactive } from "vue";
-import { closeModalPage } from "@/modalPages/utils/closeModalPage";
+import { closeModalPage } from "@/modalPages/helpers/closeModalPage";
 import FormConfirmation from "@/components/fromConfirmation/FormConfirmation";
 import HikeMainInfo from "@/components/hikeMainInfo/HikeMainInfo";
 import { getEmptyReport } from "@/helpers/getEmptyReport";

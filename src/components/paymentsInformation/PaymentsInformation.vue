@@ -16,8 +16,8 @@ import TextHeader from "@/components/textHeader/TextHeader";
 import ButtonAdd from "@/components/buttonAdd/ButtonAdd";
 import PaymentTable from "@/components/table/PaymentTable";
 import { paymentsColumns, officePaymentColumns } from "@/components/table/columns";
-import { openModalPage } from "@/modalPages/utils/openModalPage";
-import { modalName } from "@/modalPages/utils/modalName";
+import { openModalPage } from "@/modalPages/helpers/openModalPage";
+import { modalName } from "@/modalPages/helpers/modalName";
 
 const getPaymentColumns = (payment) => {
   if (payment.type === "office") {

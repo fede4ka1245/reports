@@ -13,7 +13,7 @@ import { store } from "@/store/store";
 import { reactive } from "vue";
 import TextHeader from "@/components/textHeader/TextHeader";
 import FormConfirmation from "@/components/fromConfirmation/FormConfirmation";
-import { closeModalPage } from "@/modalPages/utils/closeModalPage";
+import { closeModalPage } from "@/modalPages/helpers/closeModalPage";
 import {getFormattedCurrentDate} from "@/helpers/getFormattedCurrentDate";
 import InputDate from "@/components/inputDate/InputDate";
 

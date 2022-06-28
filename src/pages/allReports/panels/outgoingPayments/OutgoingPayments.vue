@@ -15,8 +15,8 @@
 
 <script setup>
 import { store } from "@/store/store";
-import { openModalPage } from "@/modalPages/utils/openModalPage";
-import { modalName } from "@/modalPages/utils/modalName";
+import { openModalPage } from "@/modalPages/helpers/openModalPage";
+import { modalName } from "@/modalPages/helpers/modalName";
 import { expensesColumns } from "@/components/table/columns/";
 import Payments from "@/components/paymentsInformation/PaymentsInformation";
 

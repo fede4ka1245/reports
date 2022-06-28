@@ -41,7 +41,7 @@
 </template>
 
 <script setup>
-import { closeModalPage } from "@/modalPages/utils/closeModalPage";
+import { closeModalPage } from "@/modalPages/helpers/closeModalPage";
 import { store } from "@/store/store";
 import { reactive, computed } from "vue";
 import { getFormattedCurrentDate } from "@/helpers/getFormattedCurrentDate";
