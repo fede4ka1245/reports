@@ -32,7 +32,7 @@ export const currentReport = {
   ],
   outgoingPayments: [
     {
-      type: "members",
+      type: "instructors",
       label: "Доходы инструктора",
       payments: [],
     },
