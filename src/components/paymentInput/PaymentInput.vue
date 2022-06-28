@@ -22,12 +22,12 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 
 const props = defineProps({
   codes: {
     type: Array,
-    default: undefined,
+    default: () => [],
   },
   code: {
     type: String,
@@ -61,6 +61,12 @@ const filter = (value, update) => {
     }
   });
 };
+
+onMounted(() => {
+  if (props.codes?.length === 1) {
+    props.updateCode(props.codes[0]);
+  }
+})
 </script>
 
 <style scoped>
