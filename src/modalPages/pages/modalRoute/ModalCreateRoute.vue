@@ -1,12 +1,15 @@
 <template>
+  <text-header>
+    Добавить/Редактировать отчет по походу
+  </text-header>
   <hike-main-info
-    :hike="data"
-    :update-hike-name="onHikeNameUpdate"
-    :update-hike-information="onHikeInformationUpdate"
+      :hike="data"
+      :update-hike-name="onHikeNameUpdate"
+      :update-hike-information="onHikeInformationUpdate"
   />
   <form-confirmation
-    :dismiss-handler="closeModalPage"
-    :confirm-handler="onConfirm"
+      :dismiss-handler="closeModalPage"
+      :confirm-handler="onConfirm"
   />
 </template>
 
@@ -17,6 +20,7 @@ import { closeModalPage } from "@/modalPages/utils/closeModalPage";
 import FormConfirmation from "@/components/fromConfirmation/FormConfirmation";
 import HikeMainInfo from "@/components/hikeMainInfo/HikeMainInfo";
 import { getEmptyReport } from "@/helpers/getEmptyReport";
+import TextHeader from "@/components/textHeader/TextHeader";
 
 const props = store.modalPages.props;
 const data = reactive({

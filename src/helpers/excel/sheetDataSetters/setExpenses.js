@@ -14,7 +14,7 @@ export function setExpenses(sheet, expenses) {
 
   for (let expense of expenses) {
     sheet.getCell(rowIndex, 2).value = expense.category;
-    sheet.getCell(rowIndex, 3).value = expense.sum;
+    sheet.getCell(rowIndex, 3).value = `${expense.sum} ${expense.moneyCode}`;
     sheet.getCell(rowIndex, 4).value = expense.date;
     sheet.getCell(rowIndex, 5).value = expense.comment;
 

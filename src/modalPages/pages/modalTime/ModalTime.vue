@@ -1,12 +1,10 @@
 <template>
   <text-header class="item">Добавить/Редактировать время</text-header>
-  <q-input v-model="data.day" outlined label="День" class="item" />
-  <q-input v-model="data.month" outlined label="Месяц" class="item" />
-  <q-input v-model="data.year" outlined label="Год" class="item" />
+  <input-date :date="data.date" :on-date-change="onDateChange"/>
   <form-confirmation
-    :dismiss-handler="closeModalPage"
-    :confirm-handler="onConfirm"
-    class="item"
+      :dismiss-handler="closeModalPage"
+      :confirm-handler="onConfirm"
+      class="item"
   />
 </template>
 
@@ -16,17 +14,22 @@ import { reactive } from "vue";
 import TextHeader from "@/components/textHeader/TextHeader";
 import FormConfirmation from "@/components/fromConfirmation/FormConfirmation";
 import { closeModalPage } from "@/modalPages/utils/closeModalPage";
+import {getFormattedCurrentDate} from "@/helpers/getFormattedCurrentDate";
+import InputDate from "@/components/inputDate/InputDate";
 
 const props = store.modalPages.props;
 
 const onConfirm = () => {
   closeModalPage();
-  props.onConfirm(data.day, data.month, data.year);
+  const [day, month, year] = data.date.split(".")
+  props.onConfirm(day, month, year);
 }
 
 const data = reactive({
-  day: "",
-  month: "",
-  year: "",
+  date: getFormattedCurrentDate(),
 });
+
+const onDateChange = (date) => {
+  data.date = date
+}
 </script>

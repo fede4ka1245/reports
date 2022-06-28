@@ -16,7 +16,7 @@ export function setHikeInformation(sheet, hikeInformation) {
   rowIndex += 1;
 
   createHeaderCell(sheet.getCell(4, 1), "Реальное количество участников");
-  sheet.getCell(rowIndex, 2).value = hikeInformation.activeMembers;
+  sheet.getCell(rowIndex, 2).value = hikeInformation.members;
   rowIndex += 1;
 
   createHeaderCell(sheet.getCell(5, 1), "Не явившиеся участники");

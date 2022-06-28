@@ -1,11 +1,4 @@
-export const paymentsColumns = [
-  {
-    align: "left",
-    name: "name",
-    field: "name",
-    label: "ФИО",
-    sortable: true,
-  },
+export const officePaymentColumns = [
   {
     align: "left",
     name: "sum",

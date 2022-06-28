@@ -3,10 +3,10 @@
   <div class="flex row justify-between items-center item">
     <section class="sum">
       <q-select
-        v-model="conversion.from.moneyCode"
-        label="валюта"
-        :options="props.moneyCodes"
-        outlined
+          v-model="conversion.from.moneyCode"
+          label="валюта"
+          :options="props.moneyCodes"
+          outlined
       />
       <q-input v-model="conversion.from.sum" outlined label="Сумма" />
     </section>
@@ -15,26 +15,26 @@
     </section>
     <section class="sum">
       <q-select
-        v-model="conversion.to.moneyCode"
-        label="валюта"
-        :options="store.currentReport.moneyCodes"
-        outlined
+          v-model="conversion.to.moneyCode"
+          label="валюта"
+          :options="store.currentReport.moneyCodes"
+          outlined
       />
       <q-input v-model="conversion.to.sum" outlined label="Сумма" />
     </section>
   </div>
   <q-input
-    v-model="conversion.comment"
-    type="textarea"
-    outlined
-    label="Расчет и комментарии"
-    class="item"
+      v-model="conversion.comment"
+      type="textarea"
+      outlined
+      label="Расчет и комментарии"
+      class="item"
   />
-  <q-input v-model="conversion.date" outlined label="Дата" class="item" />
+  <input-date :date="conversion.date" :on-date-change="onDateChange" />
   <form-confirmation
-    :dismiss-handler="closeModalPage"
-    :confirm-handler="onConversionConfirm"
-    class="item"
+      :dismiss-handler="closeModalPage"
+      :confirm-handler="onConversionConfirm"
+      class="item"
   />
 </template>
 
@@ -45,6 +45,7 @@ import { reactive } from "vue";
 import { getFormattedCurrentDate } from "@/helpers/getFormattedCurrentDate";
 import FormConfirmation from "@/components/fromConfirmation/FormConfirmation";
 import TextHeader from "@/components/textHeader/TextHeader";
+import InputDate from "@/components/inputDate/InputDate";
 
 const props = store.modalPages.props;
 
@@ -67,6 +68,10 @@ const defaultConversion = {
 };
 
 const conversion = reactive(props.conversion || defaultConversion);
+
+const onDateChange = (date) => {
+  conversion.date = date;
+};
 </script>
 
 <style scoped>

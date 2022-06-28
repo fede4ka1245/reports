@@ -1,7 +1,6 @@
 import { createHeaderCell } from "@/helpers/excel/helpers/createHeaderCell";
 
 export function setConversions(sheet, conversions) {
-  if (!conversions?.length) return;
   let rowIndex = sheet.rowCount + 1;
 
   createHeaderCell(sheet.getCell(rowIndex, 1), "Конвертация");

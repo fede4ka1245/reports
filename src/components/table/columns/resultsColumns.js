@@ -1,21 +1,20 @@
 export const resultsColumns = [
   {
     align: "left",
-    name: "moneyCode",
     field: "moneyCode",
     label: "Валюта",
     sortable: true,
   },
   {
     align: "left",
-    name: "result",
+    name: "filled",
     field: "result",
     label: "Итого",
     sortable: true,
   },
   {
     align: "left",
-    name: "profit",
+    name: "filled",
     field: "profit",
     label: "Итого на руках",
   },

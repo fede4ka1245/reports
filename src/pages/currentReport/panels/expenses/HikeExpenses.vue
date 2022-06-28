@@ -4,18 +4,18 @@
     <q-toggle v-model="data.isGrouped" color="orange" />
   </div>
   <payment-table
-    v-if="!data.isGrouped"
-    :rows="getExpensesRows()"
-    :columns="expensesColumns"
-    :edit="edit"
-    :remove="remove"
+      v-if="!data.isGrouped"
+      :rows="expensesRows"
+      :columns="expensesColumns"
+      :edit="edit"
+      :remove="remove"
   />
   <payment-table
-    v-if="data.isGrouped"
-    :rows="getGroupedExpensesRows()"
-    :columns="groupedExpensesColumns"
-    :edit="edit"
-    :remove="remove"
+      v-if="data.isGrouped"
+      :rows="groupedExpensesRows"
+      :columns="groupedExpensesColumns"
+      :edit="edit"
+      :remove="remove"
   />
   <button-add :handler="onExpenseAdd" />
 </template>
@@ -43,26 +43,35 @@ const remove = (index) => {
   store.currentReport.expenses.splice(index, 1);
 };
 
-const getGroupedExpensesRows = () => {
-  return groupedExpenses.value?.map((expense) => ({
-    ...expense,
-    sum: `${expense.sum} ${expense.moneyCode}`,
-  }));
-};
-const getExpensesRows = () => {
+const groupedExpensesRows = computed(() => {
+  return groupedExpenses.value?.map((expense) => {
+    if (expense.isUncountable) {
+      return {
+        ...expense,
+        sum: "-"
+      }
+    }
+
+    return {
+      ...expense,
+      sum: `${expense.sum} ${expense.moneyCode}`,
+    }
+  });
+});
+const expensesRows = computed(() => {
   return store.currentReport?.expenses.map((expense) => ({
     ...expense,
     sum: `${expense.sum} ${expense.moneyCode}`,
   }));
-};
+});
 
 const onExpenseAdd = () => {
   openModalPage(modalName.modalExpense, {
     saveData: (expense) =>
-      (store.currentReport.expenses = [
-        ...store.currentReport.expenses,
-        expense,
-      ]),
+        (store.currentReport.expenses = [
+          ...store.currentReport.expenses,
+          expense,
+        ]),
     moneyCodes: store.currentReport.moneyCodes,
   });
 };

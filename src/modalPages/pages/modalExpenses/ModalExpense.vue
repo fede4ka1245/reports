@@ -1,40 +1,40 @@
 <template>
   <text-header>Добавить расход</text-header>
   <q-select
-    v-model="expense.category"
-    :options="expense.categories"
-    option-label="name"
-    class="item"
-    outlined
-    label="Расход"
-    @filter="filter"
+      v-model="expense.category"
+      :options="expense.categories"
+      option-label="name"
+      class="item"
+      outlined
+      label="Расход"
+      @filter="filter"
   />
   <payment-input
-    :code="expense.moneyCode"
-    :codes="props.moneyCodes"
-    :sum="expense.sum"
-    :update-code="(code) => (expense.moneyCode = code)"
-    :update-sum="(sum) => (expense.sum = sum)"
-    class="item"
+      :code="expense.moneyCode"
+      :codes="props.moneyCodes"
+      :sum="expense.sum"
+      :update-code="(code) => (expense.moneyCode = code)"
+      :update-sum="(sum) => (expense.sum = sum)"
+      class="item"
   />
   <q-input
-    v-model="expense.expenseDescription"
-    type="textarea"
-    outlined
-    label="Описание расхода"
-    class="item"
+      v-model="expense.expenseDescription"
+      type="textarea"
+      outlined
+      label="Описание расхода"
+      class="item"
   />
   <q-input
-    v-model="expense.comment"
-    type="textarea"
-    outlined
-    label="Расчет и комментарии"
-    class="item"
+      v-model="expense.comment"
+      type="textarea"
+      outlined
+      label="Расчет и комментарии"
+      class="item"
   />
-  <q-input v-model="expense.date" class="item" outlined label="Дата" />
+  <input-date :date="expense.date" :on-date-change="onDateChange"/>
   <form-confirmation
-    :dismiss-handler="closeModalPage"
-    :confirm-handler="onExpenseConfirm"
+      :dismiss-handler="closeModalPage"
+      :confirm-handler="onExpenseConfirm"
   />
 </template>
 
@@ -67,6 +67,10 @@ const defaultExpense = {
 };
 
 const expense = reactive(props?.expense || defaultExpense);
+
+const onDateChange = (date) => {
+  expense.date = date
+}
 
 async function filter(inputValue, update) {
   if (expense.categories.length) {

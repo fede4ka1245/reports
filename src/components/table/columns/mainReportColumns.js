@@ -1,14 +1,14 @@
 export const mainReportColumns = [
   {
     align: "left",
-    name: "sum",
+    name: "filled",
     field: "sum",
     label: "Баланс в валюте",
     sortable: true,
   },
   {
     align: "left",
-    name: "convertedSum",
+    name: "filled",
     field: "convertedSum",
     label: "Баланс в RUB",
     sortable: true,
