@@ -53,15 +53,21 @@ const remove = (report) => {
 };
 
 const promoteToCurrent = (report) => {
-  const index = getReportIndex(report);
-
-  if (index === -1) {
+  if (store.currentReport?.key === report.key) {
     return;
   }
 
-  store.allReports.reports.push(store.currentReport);
-  store.currentReport = store.allReports.reports[index];
-  store.allReports.reports.splice(index, 1);
+  const index = getReportIndex(report);
+
+  if (store.currentReport) {
+    store.allReports.reports.push(store.currentReport);
+  }
+
+  if (index !== -1) {
+    store.allReports.reports.splice(index, 1);
+  }
+
+  store.currentReport = report;
 };
 
 const download = (report) => {
@@ -76,7 +82,7 @@ const download = (report) => {
 const buttonAddHandler = () => {
   openModalPage(modalName.modalRoute, {
     onConfirm: (report) => {
-      store.allReports.reports.push(report);
+      promoteToCurrent(report);
     },
   });
 };
