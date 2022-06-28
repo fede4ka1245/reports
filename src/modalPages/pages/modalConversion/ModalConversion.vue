@@ -3,38 +3,38 @@
   <div class="flex row justify-between items-center item">
     <section class="sum">
       <q-select
-          v-model="conversion.from.moneyCode"
-          label="валюта"
-          :options="props.moneyCodes"
-          outlined
+        v-model="conversion.from.moneyCode"
+        label="валюта"
+        :options="props.moneyCodes"
+        outlined
       />
-      <q-input v-model="conversion.from.sum" outlined label="Сумма" />
+      <q-input v-model="conversion.from.sum" outlined label="Сумма" type="number"/>
     </section>
     <section>
       <span class="to"></span>
     </section>
     <section class="sum">
       <q-select
-          v-model="conversion.to.moneyCode"
-          label="валюта"
-          :options="store.currentReport.moneyCodes"
-          outlined
+        v-model="conversion.to.moneyCode"
+        label="валюта"
+        :options="store.currentReport.moneyCodes"
+        outlined
       />
-      <q-input v-model="conversion.to.sum" outlined label="Сумма" />
+      <q-input v-model="conversion.to.sum" outlined label="Сумма" type="number"/>
     </section>
   </div>
   <q-input
-      v-model="conversion.comment"
-      type="textarea"
-      outlined
-      label="Расчет и комментарии"
-      class="item"
+    v-model="conversion.comment"
+    type="textarea"
+    outlined
+    label="Расчет и комментарии"
+    class="item"
   />
   <input-date :date="conversion.date" :on-date-change="onDateChange" />
   <form-confirmation
-      :dismiss-handler="closeModalPage"
-      :confirm-handler="onConversionConfirm"
-      class="item"
+    :dismiss-handler="closeModalPage"
+    :confirm-handler="onConversionConfirm"
+    class="item"
   />
 </template>
 
