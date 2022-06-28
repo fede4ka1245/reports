@@ -10,12 +10,13 @@
   <form-confirmation
       :dismiss-handler="closeModalPage"
       :confirm-handler="onConfirm"
+      :is-confirm-button-disabled="isConfirmButtonDisabled"
   />
 </template>
 
 <script setup>
 import { store } from "@/store/store";
-import { reactive } from "vue";
+import { reactive, computed } from "vue";
 import { closeModalPage } from "@/modalPages/helpers/closeModalPage";
 import FormConfirmation from "@/components/fromConfirmation/FormConfirmation";
 import HikeMainInfo from "@/components/hikeMainInfo/HikeMainInfo";
@@ -28,6 +29,10 @@ const data = reactive({
   dates: "",
   hikeId: "",
 });
+
+const isConfirmButtonDisabled = computed(() => {
+  return !(data.name && data.dates)
+})
 
 const onHikeInformationUpdate = (dates, hikeId) => {
   data.dates = dates;

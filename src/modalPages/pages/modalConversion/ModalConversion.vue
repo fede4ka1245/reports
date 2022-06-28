@@ -34,6 +34,7 @@
   <form-confirmation
     :dismiss-handler="closeModalPage"
     :confirm-handler="onConversionConfirm"
+    :is-confirm-button-disabled="isConfirmButtonDisabled"
     class="item"
   />
 </template>
@@ -41,7 +42,7 @@
 <script setup>
 import { closeModalPage } from "@/modalPages/helpers/closeModalPage";
 import { store } from "@/store/store";
-import { reactive } from "vue";
+import {computed, reactive} from "vue";
 import { getFormattedCurrentDate } from "@/helpers/getFormattedCurrentDate";
 import FormConfirmation from "@/components/fromConfirmation/FormConfirmation";
 import TextHeader from "@/components/textHeader/TextHeader";
@@ -68,6 +69,10 @@ const defaultConversion = {
 };
 
 const conversion = reactive(props.conversion || defaultConversion);
+const isConfirmButtonDisabled = computed(() => {
+  return !(conversion.from.moneyCode && conversion.from.sum && conversion.to.moneyCode
+      && conversion.to.sum && conversion.date)
+})
 
 const onDateChange = (date) => {
   conversion.date = date;

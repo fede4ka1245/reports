@@ -1,3 +1,14 @@
+<template>
+  <section>
+    <q-btn color="orange" outline class="btn" @click="props.dismissHandler">
+      Отмена
+    </q-btn>
+    <q-btn :disable="isConfirmButtonDisabled" color="orange" class="btn" @click="props.confirmHandler">
+      Сохранить
+    </q-btn>
+  </section>
+</template>
+
 <script setup>
 const props = defineProps({
   dismissHandler: {
@@ -8,19 +19,13 @@ const props = defineProps({
     type: Function,
     required: true,
   },
+  isConfirmButtonDisabled: {
+    type: Boolean,
+    required: false,
+    default: false
+  }
 });
 </script>
-
-<template>
-  <section>
-    <q-btn color="orange" outline class="btn" @click="props.dismissHandler">
-      Отмена
-    </q-btn>
-    <q-btn color="orange" class="btn" @click="props.confirmHandler">
-      Сохранить
-    </q-btn>
-  </section>
-</template>
 
 <style scoped>
 section {

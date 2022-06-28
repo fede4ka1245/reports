@@ -36,6 +36,7 @@
   <form-confirmation
       :dismiss-handler="closeModalPage"
       :confirm-handler="onPaymentConfirm"
+      :is-confirm-button-disabled="isConfirmButtonDisabled"
       class="item"
   />
 </template>
@@ -86,6 +87,10 @@ const paymentData = reactive({
   instructors: [],
 });
 let instructors = [];
+
+const isConfirmButtonDisabled = computed(() => {
+  return !(paymentData.payment.sum && paymentData.payment.date && paymentData.payment.moneyCode)
+})
 
 const onDateChange = (date) => {
   paymentData.payment.date = date;

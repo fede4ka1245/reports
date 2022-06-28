@@ -35,13 +35,14 @@
   <form-confirmation
       :dismiss-handler="closeModalPage"
       :confirm-handler="onExpenseConfirm"
+      :is-confirm-button-disabled="isConfirmButtonDisabled"
   />
 </template>
 
 <script setup>
 import { closeModalPage } from "@/modalPages/helpers/closeModalPage";
 import { store } from "@/store/store";
-import { reactive } from "vue";
+import { reactive, computed } from "vue";
 import { getFormattedCurrentDate } from "@/helpers/getFormattedCurrentDate";
 import FormConfirmation from "@/components/fromConfirmation/FormConfirmation";
 import PaymentInput from "@/components/paymentInput/PaymentInput";
@@ -67,6 +68,10 @@ const defaultExpense = {
 };
 
 const expense = reactive(props?.expense || defaultExpense);
+
+const isConfirmButtonDisabled = computed(() => {
+  return !(expense.sum && expense.date && expense.expenseDescription && expense.category && expense.moneyCode)
+})
 
 const onDateChange = (date) => {
   expense.date = date
