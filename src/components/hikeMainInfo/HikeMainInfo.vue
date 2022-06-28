@@ -26,7 +26,8 @@
 
 <script setup>
 import { reactive } from "vue";
-import { getRoutes } from "@/api/getRoutes";
+import { cachedRequestRoutes } from "@/api/cachedRequests";
+
 const props = defineProps({
   hike: {
     type: Object,
@@ -88,7 +89,7 @@ async function filterSearch(input, update) {
     return;
   }
 
-  data.routes = await getRoutes();
+  data.routes = await cachedRequestRoutes();
   data.filteredRoutes = [...data.routes];
   update();
 

@@ -54,7 +54,8 @@ import { getFormattedCurrentDate } from "@/helpers/getFormattedCurrentDate";
 import FormConfirmation from "@/components/fromConfirmation/FormConfirmation";
 import PaymentInput from "@/components/paymentInput/PaymentInput";
 import TextHeader from "@/components/textHeader/TextHeader";
-import { getInstructors } from "@/api";
+import { cachedRequestInstructors } from "@/api/cachedRequests";
+import InputDate from "@/components/inputDate/InputDate";
 
 const onPaymentConfirm = () => {
   closeModalPage();
@@ -102,7 +103,7 @@ async function filter(inputValue, update) {
     return;
   }
 
-  instructors = format(await getInstructors());
+  instructors = format(await cachedRequestInstructors());
 
   update(() => {
     paymentData.instructors = instructors;

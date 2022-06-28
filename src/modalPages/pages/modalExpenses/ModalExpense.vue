@@ -46,7 +46,8 @@ import { getFormattedCurrentDate } from "@/helpers/getFormattedCurrentDate";
 import FormConfirmation from "@/components/fromConfirmation/FormConfirmation";
 import PaymentInput from "@/components/paymentInput/PaymentInput";
 import TextHeader from "@/components/textHeader/TextHeader";
-import { getExpenseCategories } from "@/api/getExpenseCategories";
+import { cachedRequestExpensesCategories } from "@/api/cachedRequests";
+import InputDate from "@/components/inputDate/InputDate";
 
 const props = store.modalPages.props;
 
@@ -73,7 +74,7 @@ async function filter(inputValue, update) {
     return;
   }
 
-  const categories = await getExpenseCategories();
+  const categories = await cachedRequestExpensesCategories();
 
   update(() => {
     expense.categories = categories;
