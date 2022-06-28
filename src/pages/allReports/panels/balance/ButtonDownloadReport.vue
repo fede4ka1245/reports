@@ -10,8 +10,13 @@ import { getMainReport } from "@/helpers/excel/reports/getMainReport";
 import { downloadXLSX } from "@/helpers/downloadXLSX";
 
 const downloadClickHandler = async () => {
-  const report = await getMainReport(store.allReports);
-  downloadXLSX(report, "Главный");
+  const reportData = JSON.parse(JSON.stringify(store.allReports));
+  if (store.currentReport) {
+    reportData.reports.push(store.currentReport)
+  }
+
+  const xlsx = await getMainReport(reportData);
+  downloadXLSX(xlsx, "Главный");
 };
 </script>
 
