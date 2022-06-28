@@ -4,7 +4,7 @@
     <payment-table
       :edit="(index) => edit(payment, index)"
       :remove="(index) => remove(payment, index)"
-      :columns="paymentsColumns"
+      :columns="getPaymentColumns(payment)"
       :rows="getRows(payment)"
     />
     <button-add :handler="() => add(payment)" />
@@ -15,10 +15,17 @@
 import TextHeader from "@/components/textHeader/TextHeader";
 import ButtonAdd from "@/components/buttonAdd/ButtonAdd";
 import PaymentTable from "@/components/table/PaymentTable";
-import { paymentsColumns } from "@/components/table/columns";
-import { defineProps } from "vue";
+import { paymentsColumns, officePaymentColumns } from "@/components/table/columns";
 import { openModalPage } from "@/modalPages/utils/openModalPage";
 import { modalName } from "@/modalPages/utils/modalName";
+
+const getPaymentColumns = (payment) => {
+  if (payment.type === "office") {
+    return officePaymentColumns;
+  }
+
+  return paymentsColumns;
+}
 
 const remove = (payment, index) => {
   payment.payments.splice(index, 1);
