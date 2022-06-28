@@ -21,11 +21,12 @@
     label="Сроки"
     popup-content-style="height: 50vh"
     @update:model-value="onDateUpdate"
+    @filter="filterSearch"
   />
 </template>
 
 <script setup>
-import { reactive } from "vue";
+import {reactive} from "vue";
 import { cachedRequestRoutes } from "@/api/cachedRequests";
 
 const props = defineProps({
