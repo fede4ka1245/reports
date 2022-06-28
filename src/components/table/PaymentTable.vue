@@ -90,6 +90,7 @@ table {
 
 td {
   white-space: break-spaces !important;
+  word-break: break-word !important;
   padding: 0 0 0 5px !important;
 }
 
