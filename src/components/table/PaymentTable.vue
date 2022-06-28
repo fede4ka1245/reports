@@ -1,5 +1,6 @@
 <template>
   <q-table
+      class="app-table"
       separator="cell"
       :columns="tableProps.columns"
       :rows="tableProps.rows"
@@ -38,7 +39,16 @@
     </template>
     <template #body-cell-highlighted="props">
       <q-td :style="props.row.key === store.currentReport?.key && 'color: orange'">
-        {{ props.value }}
+        <div class="cell">
+          {{ props.value }}
+        </div>
+      </q-td>
+    </template>
+    <template v-slot:body-cell="props">
+      <q-td :props="props">
+        <div class="cell">
+          {{props.value}}
+        </div>
       </q-td>
     </template>
   </q-table>
@@ -80,27 +90,34 @@ const tableProps = defineProps({
 </script>
 
 <style>
-tr:nth-child(even) {
+.app-table tr:nth-child(even) {
   background-color: #dfdfdf;
 }
 
-table {
+.app-table table {
   max-width: 100%;
 }
 
-td {
-  white-space: break-spaces !important;
-  word-break: break-word !important;
+.app-table td {
   padding: 0 0 0 5px !important;
 }
 
-th {
-  padding: 0 0 0 5px !important;
-  text-overflow: clip;
+.app-table .cell {
+  text-overflow: ellipsis;
+  white-space: break-spaces;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-tr {
+.app-table th {
+  padding: 0 0 0 5px !important;
+}
+
+.app-table tr {
+  max-height: 60px !important;
   max-width: 100% !important;
 }
 </style>

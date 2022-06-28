@@ -1,6 +1,8 @@
 <template>
   <q-td :class="className">
-    {{ props.value }}
+    <div class="cell">
+      {{ props.value }}
+    </div>
   </q-td>
 </template>
 
