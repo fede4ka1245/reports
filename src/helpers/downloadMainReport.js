@@ -10,6 +10,6 @@ export const downloadMainReport = async () => {
   }
 
   const xlsx = await getMainReport(reportData);
-  const {path, directory, mimeType} = await downloadXLSX(xlsx, "Главный");
-  sendFileDownloadedNotification("Главный", "Загружен отчет", path, directory, mimeType)
+  const {path, directory, mimeType} = await downloadXLSX(xlsx, "Общий");
+  sendFileDownloadedNotification("Общий", "Загружен отчет", path, directory, mimeType)
 };
