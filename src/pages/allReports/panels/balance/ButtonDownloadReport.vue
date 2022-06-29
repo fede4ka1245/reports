@@ -1,6 +1,6 @@
 <template>
   <div class="button">
-    <q-btn color="orange" @click="downloadMainReport"> Скачать отчёт </q-btn>
+    <q-btn no-caps color="orange" @click="downloadMainReport"> Скачать общий отчёт </q-btn>
   </div>
 </template>
 
