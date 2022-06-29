@@ -5,8 +5,7 @@ import {
   setExpenses,
   setHikeInformation,
   setCommonPayments,
-  setOutgoingPayments,
-  setIncomingPayments,
+  setPayments,
   setGroupedExpenses,
 } from "@/helpers/excel/sheetDataSetters";
 
@@ -21,7 +20,7 @@ export const getHikeReport = (reportData) => {
   });
 
   setHikeInformation(sheet, reportData);
-  setOutgoingPayments(sheet, reportData.outgoingPayments);
+  setPayments(sheet, reportData.outgoingPayments);
 
   styleSheet(sheet);
 
@@ -31,7 +30,7 @@ export const getHikeReport = (reportData) => {
 
   setCommonPayments(incomingPaymentsSheet, reportData.moneySums);
   setPadding(incomingPaymentsSheet);
-  setIncomingPayments(incomingPaymentsSheet, reportData.incomingPayments);
+  setPayments(incomingPaymentsSheet, reportData.incomingPayments);
 
   styleSheet(incomingPaymentsSheet);
 

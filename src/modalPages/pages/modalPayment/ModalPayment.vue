@@ -9,8 +9,10 @@
   />
   <q-select
       v-if="props?.type === 'instructors'"
-      v-model="paymentData.payment.name"
-      :options="instructorsOptions"
+      :options="paymentData.instructors"
+      :model-value="paymentData.payment.name"
+      :option-label="getInstructorSelectLabel"
+      @update:model-value="onInstructorUpdate"
       class="item"
       outlined
       use-input
@@ -46,7 +48,6 @@ import { closeModalPage } from "@/modalPages/helpers/closeModalPage";
 import { store } from "@/store/store";
 import { reactive, computed } from "vue";
 import { getFormattedCurrentDate } from "@/helpers/reports/getFormattedCurrentDate";
-
 import FormConfirmation from "@/components/fromConfirmation/FormConfirmation";
 import PaymentInput from "@/components/paymentInput/PaymentInput";
 import TextHeader from "@/components/textHeader/TextHeader";
@@ -76,17 +77,28 @@ const props = store.modalPages.props;
 
 const payment = {
   name: String(),
-  sum: "",
+  sum: String(),
   moneyCode: String(),
   comment: String(),
   date: getFormattedCurrentDate(),
+  instructorId: String(),
+  id: "",
 };
+
 
 const paymentData = reactive({
   payment: props?.payment || payment,
   instructors: [],
 });
 let instructors = [];
+
+const onInstructorUpdate = (instructor) => {
+  paymentData.payment.id = instructor
+  paymentData.payment.name = instructor.name;
+  paymentData.payment.instructorId = instructor.id;
+}
+
+const getInstructorSelectLabel = (instructor) => instructor.name || instructor
 
 const isConfirmButtonDisabled = computed(() => {
   return !(paymentData.payment.sum && paymentData.payment.date && paymentData.payment.moneyCode)
@@ -113,8 +125,4 @@ async function filter(inputValue, update) {
     paymentData.instructors = instructors;
   });
 }
-
-const instructorsOptions = computed(() => {
-  return paymentData.instructors.map((instructor) => instructor.name);
-});
 </script>
