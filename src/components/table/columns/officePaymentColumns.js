@@ -5,12 +5,14 @@ export const officePaymentColumns = [
     field: "sum",
     label: "Сумма",
     sortable: true,
+    style: "width: 50%"
   },
   {
     align: "left",
     name: "comment",
     field: "comment",
     label: "Комментарий",
+    style: "width: 50%"
   },
   {
     align: "left",

@@ -1,5 +1,5 @@
 import ExcelJS from "exceljs";
-import { groupExpenses } from "@/helpers/groupExpenses";
+import { groupExpenses } from "@/helpers/reports/groupExpenses";
 import {
   setConversions,
   setExpenses,

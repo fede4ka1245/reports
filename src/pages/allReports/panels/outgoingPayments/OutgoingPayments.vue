@@ -23,7 +23,7 @@ import Payments from "@/components/paymentsInformation/PaymentsInformation";
 import TextHeader from "@/components/textHeader/TextHeader";
 import PaymentTable from "@/components/table/PaymentTable";
 import ButtonAdd from "@/components/buttonAdd/ButtonAdd";
-import { getMoneyCodes } from "@/helpers/getMoneyCodes";
+import { getMoneyCodes } from "@/helpers/reports/getMoneyCodes";
 
 const editExpense = (index) => {
   openModalPage(modalName.modalExpense, {

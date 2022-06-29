@@ -1,24 +1,24 @@
 <template>
   <q-table
-      class="app-table"
-      separator="cell"
-      :columns="tableProps.columns"
-      :rows="tableProps.rows"
-      hide-no-data
-      hide-pagination
-      :table-header-style="{
+    class="app-table"
+    separator="cell"
+    :columns="tableProps.columns"
+    :rows="tableProps.rows"
+    hide-no-data
+    hide-pagination
+    :table-header-style="{
       background: '#808080',
       color: 'white',
       fontWeight: 'bold',
     }"
-      :pagination="{
+    :pagination="{
       rowsPerPage: 0,
     }"
   >
     <template #body-cell-edit="props">
       <cell-edit
-          :delete="() => tableProps.remove(props.pageIndex)"
-          :fix="() => tableProps.edit(props.pageIndex)"
+        :delete="() => tableProps.remove(props.pageIndex)"
+        :fix="() => tableProps.edit(props.pageIndex)"
       />
     </template>
     <template #body-cell-edit-time="props">
@@ -26,28 +26,22 @@
     </template>
     <template #body-cell-edit-report="props">
       <cell-edit-report
-          :promote-to-current="tableProps.promoteToCurrent"
-          :download="tableProps.download"
-          :remove="tableProps.remove"
-          :row="props.row"
+        :promote-to-current="tableProps.promoteToCurrent"
+        :download="tableProps.download"
+        :remove="tableProps.remove"
+        :row="props.row"
       />
     </template>
     <template #body-cell-filled="props">
-      <cell-filled
-          :value="props.value"
-      />
+      <cell-filled :value="props.value" />
     </template>
     <template #body-cell-highlighted="props">
-      <q-td :style="props.row.key === store.currentReport?.key && 'color: orange'">
-        <div class="cell">
-          {{ props.value }}
-        </div>
-      </q-td>
+      <cell-highlighted :value="props.value" :row="props.row" />
     </template>
     <template v-slot:body-cell="props">
       <q-td :props="props">
         <div class="cell">
-          {{props.value}}
+          {{ props.value }}
         </div>
       </q-td>
     </template>
@@ -59,7 +53,7 @@ import CellEdit from "./cellEdit/CellEdit";
 import CellEditTime from "./cellEditTime/CellEditTime";
 import CellEditReport from "@/components/table/cellEditReport/CellEditReport";
 import CellFilled from "@/components/table/cellFilled/cellFilled";
-import {store} from "@/store/store";
+import CellHighlighted from "@/components/table/cellHighlighted/cellHighlighted";
 
 const tableProps = defineProps({
   columns: {
@@ -102,6 +96,10 @@ const tableProps = defineProps({
   padding: 0 0 0 5px !important;
 }
 
+.app-table td:not(:last-child) {
+  width: 30%;
+}
+
 .app-table .cell {
   text-overflow: ellipsis;
   white-space: break-spaces;
@@ -110,14 +108,12 @@ const tableProps = defineProps({
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-align: center;
 }
 
 .app-table th {
-  padding: 0 0 0 5px !important;
-}
-
-.app-table tr {
-  max-height: 60px !important;
-  max-width: 100% !important;
+  text-align: center;
+  padding: 0 !important;
+  min-width: 30px;
 }
 </style>

@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import { getFormattedCurrentDate } from "@/helpers/getFormattedCurrentDate";
+import { getFormattedCurrentDate } from "@/helpers/reports/getFormattedCurrentDate";
 import { ref } from "vue";
 
 const props = defineProps({

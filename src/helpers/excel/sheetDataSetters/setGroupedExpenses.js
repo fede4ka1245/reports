@@ -1,5 +1,5 @@
 import { createHeaderCell } from "@/helpers/excel/helpers/createHeaderCell";
-import {groupExpenses} from "@/helpers/groupExpenses";
+import {groupExpenses} from "@/helpers/reports/groupExpenses";
 
 export function setGroupedExpenses(sheet, expenses) {
   let rowIndex = sheet.rowCount + 1;

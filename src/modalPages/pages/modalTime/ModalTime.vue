@@ -15,7 +15,7 @@ import { reactive, computed} from "vue";
 import TextHeader from "@/components/textHeader/TextHeader";
 import FormConfirmation from "@/components/fromConfirmation/FormConfirmation";
 import { closeModalPage } from "@/modalPages/helpers/closeModalPage";
-import {getFormattedCurrentDate} from "@/helpers/getFormattedCurrentDate";
+import {getFormattedCurrentDate} from "@/helpers/reports/getFormattedCurrentDate";
 import InputDate from "@/components/inputDate/InputDate";
 
 const props = store.modalPages.props;

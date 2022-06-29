@@ -4,14 +4,14 @@ export const reportsColumns = [
     field: "name",
     label: "Маршрут",
     sortable: true,
-    name: "highlighted"
+    name: "highlighted",
   },
   {
     align: "left",
     field: "dates",
     label: "Сроки",
     sortable: true,
-    name: "highlighted"
+    name: "highlighted",
   },
   {
     align: "left",

@@ -43,7 +43,7 @@
 import { closeModalPage } from "@/modalPages/helpers/closeModalPage";
 import { store } from "@/store/store";
 import {computed, reactive} from "vue";
-import { getFormattedCurrentDate } from "@/helpers/getFormattedCurrentDate";
+import { getFormattedCurrentDate } from "@/helpers/reports/getFormattedCurrentDate";
 import FormConfirmation from "@/components/fromConfirmation/FormConfirmation";
 import TextHeader from "@/components/textHeader/TextHeader";
 import InputDate from "@/components/inputDate/InputDate";

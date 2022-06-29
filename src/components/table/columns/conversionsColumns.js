@@ -5,6 +5,7 @@ export const conversionsColumns = [
     field: "from",
     label: "Из",
     sortable: true,
+    style: "width: 25%"
   },
   {
     align: "left",
@@ -12,18 +13,21 @@ export const conversionsColumns = [
     field: "to",
     label: "В",
     sortable: true,
+    style: "width: 25%"
   },
   {
     align: "left",
     name: "rate",
     field: "rate",
     label: "Курс",
+    style: "width: 25%"
   },
   {
     align: "left",
     name: "date",
     field: "date",
     label: "Дата",
+    style: "width: 25%"
   },
   {
     align: "left",

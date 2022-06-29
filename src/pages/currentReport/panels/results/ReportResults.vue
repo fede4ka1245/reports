@@ -13,8 +13,8 @@
 <script setup>
 import { store } from "@/store/store";
 import { onMounted, watch } from "vue";
-import { countResultForMoneyCode } from "@/helpers/countResultForMoneyCode";
-import { countProfitForMoneyCode } from "@/helpers/countProfitForMoneyCode";
+import { countResultForMoneyCode } from "@/helpers/reports/countResultForMoneyCode";
+import { countProfitForMoneyCode } from "@/helpers/reports/countProfitForMoneyCode";
 import { resultsColumns } from "@/components/table/columns/";
 import Payments from "@/components/paymentsInformation/PaymentsInformation";
 

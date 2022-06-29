@@ -29,7 +29,7 @@ import { expensesColumns } from "@/components/table/columns";
 import PaymentTable from "@/components/table/PaymentTable";
 import { reactive, computed } from "vue";
 import { groupedExpensesColumns } from "@/components/table/columns";
-import { groupExpenses } from "@/helpers/groupExpenses";
+import { groupExpenses } from "@/helpers/reports/groupExpenses";
 
 const groupedExpenses = computed(() => {
   return groupExpenses(store.currentReport.expenses);

@@ -7,6 +7,6 @@
 
 <script setup>
 import { store } from "@/store/store";
-import { getMoneyCodes } from "@/helpers/getMoneyCodes";
+import { getMoneyCodes } from "@/helpers/reports/getMoneyCodes";
 import Payments from "@/components/paymentsInformation/PaymentsInformation";
 </script>

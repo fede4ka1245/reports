@@ -32,7 +32,7 @@ import { childRoutes } from "@/pages/currentReport/childRoutes";
 import { routes } from "@/router/router";
 import { store } from "@/store/store";
 import EmptyReport from "@/pages/currentReport/EmptyReport";
-import { isTabDisable } from "@/helpers/isTabDisable";
+import { isTabDisable } from "@/helpers/reports/isTabDisable";
 
 const panels = [
   {
