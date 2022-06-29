@@ -1,23 +1,11 @@
 <template>
   <div class="button">
-    <q-btn color="orange" @click="downloadClickHandler"> Скачать отчёт </q-btn>
+    <q-btn color="orange" @click="downloadMainReport"> Скачать отчёт </q-btn>
   </div>
 </template>
 
 <script setup>
-import { store } from "@/store/store";
-import { getMainReport } from "@/helpers/excel/reports/getMainReport";
-import { downloadXLSX } from "@/helpers/downloadXLSX";
-
-const downloadClickHandler = async () => {
-  const reportData = JSON.parse(JSON.stringify(store.allReports));
-  if (store.currentReport) {
-    reportData.reports.push(store.currentReport)
-  }
-
-  const xlsx = await getMainReport(reportData);
-  downloadXLSX(xlsx, "Главный");
-};
+import { downloadMainReport } from "@/helpers/downloadMainReport";
 </script>
 
 <style scoped>
