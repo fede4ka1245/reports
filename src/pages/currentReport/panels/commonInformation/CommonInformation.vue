@@ -29,6 +29,7 @@
 import { store } from "@/store/store";
 import MoneyCodeSelect from "@/components/moneyCodeSelect/MoneyCodeSelect";
 import HikeMainInfo from "@/components/hikeMainInfo/HikeMainInfo";
+import { hasPaymentsForMoneyCode } from "@/helpers/reports/hasPaymentsForMoneyCode";
 
 const updateHikeName = (name) => {
   store.currentReport.name = name;
@@ -43,7 +44,11 @@ const updateHikeInformation = (dates, hikeId) => {
 };
 
 const onCodeRemove = (index) => {
-  store.currentReport.moneyCodes.splice(index, 1);
+  if (hasPaymentsForMoneyCode(store.currentReport.moneyCodes[index])) {
+    alert("Нельзя удалить использующуюся валюту");
+  } else {
+    store.currentReport.moneyCodes.splice(index, 1);
+  }
 };
 
 const onCodeSelect = (code) => {
