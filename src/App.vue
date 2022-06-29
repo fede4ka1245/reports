@@ -39,7 +39,7 @@ body {
 }
 
 .tabbar-margin {
-  margin: 3em;
+  margin: 4em;
 }
 
 .content {

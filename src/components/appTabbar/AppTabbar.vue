@@ -24,7 +24,7 @@ const targetTabIndex = ref(0);
 </script>
 
 <template>
-  <div class="app">
+  <div class="app-navbar">
     <q-tabs
       v-model="targetTabIndex"
       narrow-indicator
@@ -47,7 +47,7 @@ const targetTabIndex = ref(0);
 </template>
 
 <style scoped>
-.app {
+.app-navbar {
   position: fixed;
   left: 0;
   right: 0;
