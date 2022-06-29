@@ -1,8 +1,8 @@
 <template>
   <q-td>
     <q-btn round flat color="grey" icon="more_horiz">
-      <q-menu>
-        <q-list style="min-width: 100px">
+      <q-menu style="width: 150px">
+        <q-list>
           <q-item v-close-popup clickable @click="props.fix()">
             Изменить
           </q-item>

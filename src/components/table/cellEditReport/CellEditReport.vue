@@ -1,9 +1,10 @@
 <template>
   <q-td>
     <q-btn round flat color="grey" icon="more_horiz">
-      <q-menu>
-        <q-list style="min-width: 100px">
+      <q-menu style="width: 150px">
+        <q-list>
           <q-item
+              class="item"
             v-close-popup
             clickable
             @click="props.promoteToCurrent(props.row)"
@@ -11,12 +12,12 @@
             Cделать текущим
           </q-item>
         </q-list>
-        <q-list style="min-width: 100px">
-          <q-item v-close-popup clickable @click="props.download(props.row)">
+        <q-list>
+          <q-item style="" v-close-popup clickable @click="props.download(props.row)">
             Скачать
           </q-item>
         </q-list>
-        <q-list style="min-width: 100px">
+        <q-list>
           <q-item v-close-popup clickable @click="props.remove(props.row)">
             Удалить
           </q-item>
