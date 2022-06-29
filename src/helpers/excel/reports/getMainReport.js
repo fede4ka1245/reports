@@ -42,7 +42,7 @@ export const getMainReport = (reportData) => {
   styleSheet(sheet);
 
   for (let report of reportData.reports) {
-    const sheet = workbook.addWorksheet(`${report.dates} (${report.name})`, {
+    const sheet = workbook.addWorksheet(getHikeReportName(report), {
       properties: { tabColor: { argb: "FFC0000" } },
     });
 
