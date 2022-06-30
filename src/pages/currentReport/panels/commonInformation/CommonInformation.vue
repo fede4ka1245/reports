@@ -23,6 +23,7 @@
     :on-code-select="onCodeSelect"
     :on-code-remove="onCodeRemove"
   />
+  <notification-data-saved v-if="isNotificationVisible" />
 </template>
 
 <script setup>
@@ -30,17 +31,16 @@ import { store } from "@/store/store";
 import MoneyCodeSelect from "@/components/moneyCodeSelect/MoneyCodeSelect";
 import HikeMainInfo from "@/components/hikeMainInfo/HikeMainInfo";
 import { hasPaymentsForMoneyCode } from "@/helpers/reports/hasPaymentsForMoneyCode";
+import NotificationDataSaved from "@/components/notificationDataSaved/NotificationDataSaved";
+import { useMutationEmitted } from "@/hooks/useMutationEmitted";
 
 const updateHikeName = (name) => {
   store.currentReport.name = name;
 };
 
 const updateHikeInformation = (dates, hikeId) => {
-  store.currentReport = {
-    ...store.currentReport,
-    dates,
-    hikeId,
-  };
+  store.currentReport.dates = dates;
+  store.currentReport.hikeDate = hikeId;
 };
 
 const onCodeRemove = (index) => {
@@ -54,6 +54,8 @@ const onCodeRemove = (index) => {
 const onCodeSelect = (code) => {
   store.currentReport.moneyCodes.push(code);
 };
+
+const isNotificationVisible = useMutationEmitted(store.currentReport);
 </script>
 
 <style scoped>
