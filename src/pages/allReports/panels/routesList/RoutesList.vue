@@ -22,6 +22,7 @@ import { computed } from "vue";
 import { openModalPage } from "@/modalPages/helpers/openModalPage";
 import { modalName } from "@/modalPages/helpers/modalName";
 import { downloadHikeReport } from "@/helpers/downloadHikeReport";
+import {compareFormattedDates} from "@/helpers/compareFormattedDates";
 
 const isReportCreatorActive =
   !store.currentReport && !store.allReports?.reports?.length;
@@ -39,7 +40,14 @@ const rows = computed(() => {
   const currentReport = store.currentReport;
   const reports = store.allReports.reports;
 
-  return currentReport ? [currentReport, ...reports] : reports;
+  const targetRows = currentReport ? [currentReport, ...reports] : reports;
+
+  return targetRows.sort((firstReport, secondReport) => {
+    const firstReportStartDate = firstReport.dates.split("-")[0]
+    const secondReportStartDate = secondReport.dates.split("-")[0]
+
+    return -compareFormattedDates(firstReportStartDate, secondReportStartDate);
+  })
 });
 
 const remove = (report) => {
@@ -71,12 +79,7 @@ const promoteToCurrent = (report) => {
 };
 
 const download = (report) => {
-  if (getReportIndex(report) === -1) {
-    downloadHikeReport(store.currentReport);
-    return;
-  }
-
-  downloadHikeReport(store.allReports.reports[getReportIndex(report)]);
+  downloadHikeReport(report);
 };
 
 const buttonAddHandler = () => {
