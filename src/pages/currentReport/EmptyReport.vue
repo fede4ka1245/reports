@@ -12,7 +12,7 @@
 
 <script setup>
 import { store } from "@/store/store";
-import { getEmptyReport } from "@/helpers/getEmptyReport";
+import { getEmptyReport } from "@/helpers/reports/getEmptyReport";
 
 const createReport = () => {
   store.currentReport = getEmptyReport();

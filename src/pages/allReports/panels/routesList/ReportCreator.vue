@@ -14,7 +14,7 @@
 import { store } from "@/store/store";
 import { useRouter } from "vue-router";
 import { routes } from "@/router/router";
-import { getEmptyReport } from "@/helpers/getEmptyReport";
+import { getEmptyReport } from "@/helpers/reports/getEmptyReport";
 
 const router = useRouter();
 

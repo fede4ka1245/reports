@@ -20,7 +20,7 @@ import { reactive, computed } from "vue";
 import { closeModalPage } from "@/modalPages/helpers/closeModalPage";
 import FormConfirmation from "@/components/fromConfirmation/FormConfirmation";
 import HikeMainInfo from "@/components/hikeMainInfo/HikeMainInfo";
-import { getEmptyReport } from "@/helpers/getEmptyReport";
+import { getEmptyReport } from "@/helpers/reports/getEmptyReport";
 import TextHeader from "@/components/textHeader/TextHeader";
 
 const props = store.modalPages.props;

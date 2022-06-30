@@ -1,4 +1,4 @@
-import { currentReport } from "./reports/currentReport";
+import { currentReport } from "./currentReport";
 import { nanoid } from "nanoid";
 
 export const getEmptyReport = () => {
