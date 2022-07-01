@@ -60,7 +60,6 @@ const groupedExpensesRows = computed(() => {
   });
 });
 const expensesRows = computed(() => {
-  console.log(store.currentReport.expenses)
   return store.currentReport?.expenses.map((expense) => ({
     ...expense,
     sum: `${formatNumber(expense.sum)} ${expense.moneyCode}`,
