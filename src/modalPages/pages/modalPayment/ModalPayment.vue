@@ -93,9 +93,9 @@ const paymentData = reactive({
 let instructors = [];
 
 const onInstructorUpdate = (instructor) => {
-  paymentData.payment.id = instructor
-  paymentData.payment.name = instructor.name;
-  paymentData.payment.instructorId = instructor.id;
+  paymentData.payment.id = instructor || ""
+  paymentData.payment.name = instructor?.name || "";
+  paymentData.payment.instructorId = instructor?.id || "";
 }
 
 const getInstructorSelectLabel = (instructor) => instructor.name || instructor
