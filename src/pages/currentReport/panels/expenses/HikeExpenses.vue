@@ -26,10 +26,11 @@ import { openModalPage } from "@/modalPages/helpers/openModalPage";
 import { modalName } from "@/modalPages/helpers/modalName";
 import { store } from "@/store/store";
 import { expensesColumns } from "@/components/table/columns";
-import PaymentTable from "@/components/table/PaymentTable";
+import PaymentTable from "@/components/table/DefaultTable";
 import { reactive, computed } from "vue";
 import { groupedExpensesColumns } from "@/components/table/columns";
 import { groupExpenses } from "@/helpers/reports/groupExpenses";
+import {formatNumber} from "@/helpers/formatNumber";
 
 const groupedExpenses = computed(() => {
   return groupExpenses(store.currentReport.expenses);
@@ -54,14 +55,14 @@ const groupedExpensesRows = computed(() => {
 
     return {
       ...expense,
-      sum: `${expense.sum} ${expense.moneyCode}`,
+      sum: `${formatNumber(expense.sum)} ${expense.moneyCode}`,
     }
   });
 });
 const expensesRows = computed(() => {
   return store.currentReport?.expenses.map((expense) => ({
     ...expense,
-    sum: `${expense.sum} ${expense.moneyCode}`,
+    sum: `${formatNumber(expense.sum)} ${expense.moneyCode}`,
   }));
 });
 

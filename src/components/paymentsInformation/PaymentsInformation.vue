@@ -14,10 +14,11 @@
 <script setup>
 import TextHeader from "@/components/textHeader/TextHeader";
 import ButtonAdd from "@/components/buttonAdd/ButtonAdd";
-import PaymentTable from "@/components/table/PaymentTable";
+import PaymentTable from "@/components/table/DefaultTable";
 import { paymentsColumns, officePaymentColumns } from "@/components/table/columns";
 import { openModalPage } from "@/modalPages/helpers/openModalPage";
 import { modalName } from "@/modalPages/helpers/modalName";
+import {formatNumber} from "@/helpers/formatNumber";
 
 const getPaymentColumns = (payment) => {
   if (payment.type === "office") {
@@ -34,7 +35,7 @@ const remove = (payment, index) => {
 const getRows = (payment) => {
   return payment.payments.map((targetPayment) => ({
     ...targetPayment,
-    sum: `${targetPayment.sum} ${targetPayment.moneyCode}`,
+    sum: `${formatNumber(targetPayment.sum)} ${targetPayment.moneyCode}`,
   }));
 };
 

@@ -21,7 +21,7 @@ import { expensesColumns } from "@/components/table/columns/";
 import Payments from "@/components/paymentsInformation/PaymentsInformation";
 
 import TextHeader from "@/components/textHeader/TextHeader";
-import PaymentTable from "@/components/table/PaymentTable";
+import PaymentTable from "@/components/table/DefaultTable";
 import ButtonAdd from "@/components/buttonAdd/ButtonAdd";
 import { getMoneyCodes } from "@/helpers/reports/getMoneyCodes";
 

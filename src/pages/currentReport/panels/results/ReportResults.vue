@@ -19,15 +19,16 @@ import { resultsColumns } from "@/components/table/columns/";
 import Payments from "@/components/paymentsInformation/PaymentsInformation";
 
 import ButtonDownloadReport from "./buttonDownloadReport/ButtonDownloadReport";
-import PaymentTable from "@/components/table/PaymentTable";
+import PaymentTable from "@/components/table/DefaultTable";
+import {formatNumber} from "@/helpers/formatNumber";
 
 const getReportResults = () => {
   return [
     ...store.currentReport.moneyCodes.map((code) => {
       return {
         moneyCode: code,
-        result: countResultForMoneyCode(store.currentReport, code),
-        profit: countProfitForMoneyCode(store.currentReport, code),
+        result: formatNumber(countResultForMoneyCode(store.currentReport, code) || ""),
+        profit: formatNumber(countProfitForMoneyCode(store.currentReport, code) || ""),
       };
     }),
   ];

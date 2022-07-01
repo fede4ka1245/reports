@@ -52,8 +52,9 @@ export const modifyBalance = async () => {
       if (!balanceValue.date || !balanceValue.sum) {
         continue;
       }
-      if (balanceValue.moneyCode === "RUB") {
+      if (moneyCode === "RUB") {
         balanceValue.convertedSum = `${balanceValue.sum} ${moneyCode}`;
+        continue;
       }
 
       const [day, month, year] = balanceValue.date.split(".");

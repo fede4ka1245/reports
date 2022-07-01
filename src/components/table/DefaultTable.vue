@@ -45,7 +45,50 @@
         </div>
       </q-td>
     </template>
+    <template v-slot:header-cell-comment="props">
+      <q-th
+          style="width: calc(40% - 50px); min-width: 110px;"
+      >
+        {{props.col.label}}
+      </q-th>
+    </template>
+    <template v-slot:header-cell-sum="props">
+      <q-th
+          style="width: 100px;"
+      >
+        {{ props.col.label }}
+      </q-th>
+    </template>
+    <template v-slot:header-cell-name="props">
+      <q-th
+          style="width: calc(40% - 50px); min-width: 110px;"
+      >
+        {{props.col.label}}
+      </q-th>
+    </template>
+    <template v-slot:header-cell-edit="props">
+      <q-th
+          style="width: 42px; min-width: 42px;"
+      >
+        {{props.col.label}}
+      </q-th>
+    </template>
+    <template v-slot:header-cell-category="props">
+      <q-th
+          style="width: 100px;"
+      >
+        {{ props.col.label}}
+      </q-th>
+    </template>
+    <template v-slot:header-cell-filled="props">
+      <q-th
+          style="width: 33%;"
+      >
+        {{ props.col.label}}
+      </q-th>
+    </template>
   </q-table>
+
 </template>
 
 <script setup>
@@ -93,11 +136,7 @@ const tableProps = defineProps({
 }
 
 .app-table td {
-  padding: 0 0 0 5px !important;
-}
-
-.app-table td:not(:last-child) {
-  width: 30%;
+  padding: 0 !important;
 }
 
 .app-table .cell {

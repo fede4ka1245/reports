@@ -15,7 +15,7 @@
 <script setup>
 import ReportCreator from "./ReportCreator";
 import { store } from "@/store/store";
-import PaymentTable from "@/components/table/PaymentTable";
+import PaymentTable from "@/components/table/DefaultTable";
 import ButtonAdd from "@/components/buttonAdd/ButtonAdd";
 import { reportsColumns } from "@/components/table/columns/reportsColumns";
 import { computed } from "vue";
