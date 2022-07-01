@@ -70,7 +70,7 @@ const defaultExpense = {
 const expense = reactive(props?.expense || defaultExpense);
 
 const isConfirmButtonDisabled = computed(() => {
-  return !(expense.sum && expense.date && expense.description && expense.category && expense.moneyCode)
+  return !(expense.sum && expense.date && expense.category && expense.moneyCode)
 })
 
 const onDateChange = (date) => {
