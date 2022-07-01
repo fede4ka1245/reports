@@ -6,7 +6,6 @@ import {
   setExpenses,
   setGroupedExpenses,
   setHikeInformation,
-  setIncomingPayments,
   setPayments,
 } from "@/helpers/excel/sheetDataSetters";
 import { setPadding } from "@/helpers/excel/helpers/setPadding";
@@ -38,7 +37,7 @@ export const getMainReport = (reportData) => {
   setPadding(sheet);
   setPayments(sheet, reportData.outgoingPayments);
   setPadding(sheet);
-  setIncomingPayments(sheet, reportData.incomingPayments);
+  setPayments(sheet, reportData.incomingPayments);
 
   styleSheet(sheet);
 
