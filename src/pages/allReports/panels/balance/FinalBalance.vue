@@ -37,7 +37,7 @@ const resultRows = computed(() => {
   for (const [moneyCode, balance] of entries) {
     rows.push({
       sum: formatNumber(balance.sum) + " " + moneyCode,
-      date: balance.date || "Укажите дату для концертации",
+      date: balance.date || "Укажите дату для конвертации",
       convertedSum: formatNumber(balance.convertedSum || ""),
     });
   }
