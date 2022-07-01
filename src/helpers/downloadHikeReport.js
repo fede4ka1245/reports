@@ -9,5 +9,5 @@ export const downloadHikeReport = async (report) => {
 
   const {path, directory, mimeType} = await downloadXLSX(targetReport, getHikeReportName(report));
 
-  sendFileDownloadedNotification(report.name, "отчет загружен", path, directory, mimeType)
+  sendFileDownloadedNotification(getHikeReportName(report), "отчет загружен", path, directory, mimeType)
 };

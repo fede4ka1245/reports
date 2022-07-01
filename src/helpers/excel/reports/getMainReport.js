@@ -14,7 +14,7 @@ import { getHikeReportName } from "@/helpers/reports/getHikeReportName";
 export const getMainReport = (reportData) => {
   const workbook = new ExcelJS.Workbook();
 
-  const sheet = workbook.addWorksheet("общее", {
+  const sheet = workbook.addWorksheet("Общее", {
     properties: { tabColor: { argb: "FFC0000" } },
   });
 
