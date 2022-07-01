@@ -37,7 +37,7 @@ const remove = (index) => {
 const edit = (index) => {
   openModalPage(modalName.modalConversion, {
     saveData: (expense) => (store.currentReport.conversions[index] = expense),
-    expense: store.currentReport.conversions[index],
+    conversion: store.currentReport.conversions[index],
     moneyCodes: store.currentReport.moneyCodes,
   });
 };
