@@ -46,7 +46,7 @@ const rows = computed(() => {
     const firstReportStartDate = firstReport.dates.split("-")[0]
     const secondReportStartDate = secondReport.dates.split("-")[0]
 
-    return -compareFormattedDates(firstReportStartDate, secondReportStartDate);
+    return compareFormattedDates(firstReportStartDate, secondReportStartDate);
   })
 });
 
