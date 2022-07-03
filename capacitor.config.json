@@ -1,6 +1,6 @@
 {
   "appId": "com.finapp.app",
-  "appName": "finapp",
+  "appName": "КПинструктор",
   "webDir": "dist",
   "bundledWebRuntime": false,
   "plugins": {

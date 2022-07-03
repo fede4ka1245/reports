@@ -40,7 +40,7 @@ const updateHikeName = (name) => {
 
 const updateHikeInformation = (dates, hikeId) => {
   store.currentReport.dates = dates;
-  store.currentReport.hikeDate = hikeId;
+  store.currentReport.hikeId = hikeId;
 };
 
 const onCodeRemove = (index) => {

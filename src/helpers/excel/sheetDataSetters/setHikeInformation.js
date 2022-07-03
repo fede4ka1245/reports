@@ -4,6 +4,7 @@ export function setHikeInformation(sheet, hikeInformation) {
   let rowIndex = sheet.rowCount + 1;
 
   createHeaderCell(sheet.getCell(1, 1), "ID Маршрута");
+  console.log(hikeInformation.hikeId)
   sheet.getCell(rowIndex, 2).value = hikeInformation.hikeId;
   rowIndex += 1;
 

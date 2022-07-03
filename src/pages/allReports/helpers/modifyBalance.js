@@ -53,7 +53,7 @@ export const modifyBalance = async () => {
         continue;
       }
       if (moneyCode === "RUB") {
-        balanceValue.convertedSum = `${balanceValue.sum} ${moneyCode}`;
+        balanceValue.convertedSum = `${balanceValue.sum}`;
         continue;
       }
 
@@ -68,7 +68,6 @@ export const modifyBalance = async () => {
       );
     } catch (error) {
       console.log(error);
-      continue;
     }
   }
 };

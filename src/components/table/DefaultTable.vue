@@ -22,7 +22,7 @@
       />
     </template>
     <template #body-cell-edit-time="props">
-      <cell-edit-time :edit="tableProps.edit" :page-index="props.pageIndex" />
+      <cell-edit-time :money-code="props.row.moneyCode" :edit="tableProps.edit" :page-index="props.pageIndex" />
     </template>
     <template #body-cell-edit-report="props">
       <cell-edit-report
