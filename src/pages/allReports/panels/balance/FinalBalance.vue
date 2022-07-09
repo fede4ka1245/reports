@@ -39,7 +39,7 @@ const resultRows = computed(() => {
       moneyCode,
       sum: formatNumber(balance.sum) + " " + moneyCode,
       date: moneyCode === "RUB" ? "-" : balance.date || "Укажите дату для конвертации",
-      convertedSum: formatNumber(balance.convertedSum || ""),
+      convertedSum: balance.convertedSum ? formatNumber(balance.convertedSum || "") + " RUB" : "",
     });
   }
 
