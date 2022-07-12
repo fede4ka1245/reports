@@ -3,7 +3,7 @@ export const currentReport = {
   dates: "",
   hikeId: "",
   moneySums: {},
-  moneyCodes: [],
+  moneyCodes: ["RUB"],
   members: "",
   inactiveMembers: "",
   expenses: [],
