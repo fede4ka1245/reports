@@ -23,9 +23,11 @@ const editTime = (index) => {
   const balance = store.allReports.balance[moneyCode];
 
   openModalPage(modalName.modalTime, {
-    onConfirm: (day, month, year) => {
+    onConfirm: async (day, month, year) => {
       balance.date = `${day}.${month}.${year}`;
-      modifyBalance();
+      store.allReports.isBalanceLoading = true;
+      await modifyBalance();
+      store.allReports.isBalanceLoading = false;
     },
   });
 };
@@ -46,8 +48,10 @@ const resultRows = computed(() => {
   return rows;
 });
 
-onMounted(() => {
-  modifyBalance();
+onMounted(async () => {
+  store.allReports.isBalanceLoading = true;
+  await modifyBalance();
+  store.allReports.isBalanceLoading = false;
 });
 </script>
 

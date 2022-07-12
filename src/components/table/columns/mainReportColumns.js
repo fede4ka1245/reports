@@ -7,7 +7,7 @@ export const mainReportColumns = [
   },
   {
     align: "left",
-    name: "filled",
+    name: "balance-converted-sum",
     field: "convertedSum",
     label: "Баланс в RUB",
   },

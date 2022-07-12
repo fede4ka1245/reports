@@ -21,6 +21,9 @@
         :fix="() => tableProps.edit(props.pageIndex)"
       />
     </template>
+    <template #body-cell-balance-converted-sum="props">
+      <balance-converted-sum-cell :value="props.value" />
+    </template>
     <template #body-cell-edit-time="props">
       <cell-edit-time :money-code="props.row.moneyCode" :edit="tableProps.edit" :page-index="props.pageIndex" />
     </template>
@@ -87,6 +90,13 @@
         {{ props.col.label}}
       </q-th>
     </template>
+    <template v-slot:header-cell-date="props">
+      <q-th
+          style="min-width: 60px;"
+      >
+        {{ props.col.label }}
+      </q-th>
+    </template>
   </q-table>
 
 </template>
@@ -97,6 +107,7 @@ import CellEditTime from "./cellEditTime/CellEditTime";
 import CellEditReport from "@/components/table/cellEditReport/CellEditReport";
 import CellFilled from "@/components/table/cellFilled/cellFilled";
 import CellHighlighted from "@/components/table/cellHighlighted/cellHighlighted";
+import BalanceConvertedSumCell from "@/components/table/balanceConvertedSumCell";
 
 const tableProps = defineProps({
   columns: {
