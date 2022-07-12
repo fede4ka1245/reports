@@ -27,11 +27,9 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+import { ref } from "vue";
 import { childRoutes } from "./childRoutes";
 import { routes } from "@/router/router";
-import { modifyBalance } from "@/pages/allReports/helpers";
-import { store } from "@/store/store";
 import { isTabDisabled } from "./helpers/isTabDisabled";
 
 const panels = [
@@ -58,14 +56,6 @@ const panels = [
 ];
 
 const targetTabIndex = ref(0);
-watch(
-  [
-    store.allReports.expenses,
-    store.allReports.outgoingPayments,
-    store.allReports.incomingPayments,
-  ],
-  modifyBalance
-);
 </script>
 
 <style scoped>
