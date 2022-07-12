@@ -47,7 +47,7 @@ const props = defineProps({
 });
 
 const codes = currencyCodes.codes();
-console.log(currencyCodes.data)
+console.log(currencyCodes.data);
 const moneyCodes = ref(codes);
 
 const filter = (value, update) => {

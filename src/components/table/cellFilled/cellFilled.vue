@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import {computed} from "vue";
+import { computed } from "vue";
 
 const props = defineProps({
   value: {
@@ -19,10 +19,10 @@ const props = defineProps({
 
 const className = computed(() => {
   let sum;
-  if (typeof(props.value) !== "number"){
+  if (typeof props.value !== "number") {
     sum = Number(props.value.split(" ")[0]);
   } else {
-    sum = Number(props.value)
+    sum = Number(props.value);
   }
 
   if (Number(sum) > 0) {

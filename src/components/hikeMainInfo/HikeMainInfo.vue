@@ -1,5 +1,6 @@
 <template>
   <q-select
+    ref="reportInput"
     :options="data.filteredRoutes"
     option-label="name"
     class="item"
@@ -10,7 +11,6 @@
     menu-self="center middle"
     @update:model-value="onRouteUpdate"
     @filter="filterSearch"
-    ref="reportInput"
   >
   </q-select>
   <q-select
@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-import {reactive, ref} from "vue";
+import { reactive, ref } from "vue";
 import { cachedRequestRoutes } from "@/api/cachedRequests";
 
 const reportInput = ref();
@@ -48,7 +48,7 @@ const props = defineProps({
 });
 
 const onRouteUpdate = (targetRoute) => {
-  setTimeout(() => reportInput.value.blur(), 0)
+  setTimeout(() => reportInput.value.blur(), 0);
   if (!targetRoute?.name) {
     props.updateHikeName("");
     props.updateHikeInformation("", "");

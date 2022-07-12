@@ -1,20 +1,20 @@
 <template>
   <q-dialog
-      v-model="isOpen"
-      persistent
-      :maximized="true"
-      transition-show="slide-up"
-      transition-hide="slide-down"
+    v-model="isOpen"
+    persistent
+    :maximized="true"
+    transition-show="slide-up"
+    transition-hide="slide-down"
   >
     <div class="content">
       <q-btn
-          @click="closeModalPage"
-          round
-          dark-percentage
-          unelevated
-          text-color="grey-9"
-          icon="reply"
-          class="button-back"
+        round
+        dark-percentage
+        unelevated
+        text-color="grey-9"
+        icon="reply"
+        class="button-back"
+        @click="closeModalPage"
       />
       <modal-payment v-if="getIsModalOpen(modalName.modalPayment)" />
       <modal-expense v-if="getIsModalOpen(modalName.modalExpense)" />
@@ -34,7 +34,7 @@ import ModalConversion from "@/modalPages/pages/modalConversion/ModalConversion"
 import ModalPayment from "@/modalPages/pages/modalPayment/ModalPayment";
 import ModalTime from "@/modalPages/pages/modalTime/ModalTime";
 import ModalCreateRoute from "@/modalPages/pages/modalRoute/ModalCreateRoute";
-import {closeModalPage} from "@/modalPages/helpers/closeModalPage";
+import { closeModalPage } from "@/modalPages/helpers/closeModalPage";
 
 const getIsModalOpen = (modal) => {
   return store.modalPages.activePageName === modal;
@@ -48,7 +48,7 @@ const isOpen = computed(() => {
 <style>
 .button-back {
   width: 50px;
-  height: 50px
+  height: 50px;
 }
 
 .content {

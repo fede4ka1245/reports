@@ -4,8 +4,8 @@
       <q-menu style="width: 150px">
         <q-list>
           <q-item
-              class="item"
             v-close-popup
+            class="item"
             clickable
             @click="props.promoteToCurrent(props.row)"
           >
@@ -13,7 +13,12 @@
           </q-item>
         </q-list>
         <q-list>
-          <q-item style="" v-close-popup clickable @click="props.download(props.row)">
+          <q-item
+            v-close-popup
+            style=""
+            clickable
+            @click="props.download(props.row)"
+          >
             Скачать
           </q-item>
         </q-list>

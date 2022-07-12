@@ -25,7 +25,11 @@
       <balance-converted-sum-cell :value="props.value" />
     </template>
     <template #body-cell-edit-time="props">
-      <cell-edit-time :money-code="props.row.moneyCode" :edit="tableProps.edit" :page-index="props.pageIndex" />
+      <cell-edit-time
+        :money-code="props.row.moneyCode"
+        :edit="tableProps.edit"
+        :page-index="props.pageIndex"
+      />
     </template>
     <template #body-cell-edit-report="props">
       <cell-edit-report
@@ -41,64 +45,49 @@
     <template #body-cell-highlighted="props">
       <cell-highlighted :value="props.value" :row="props.row" />
     </template>
-    <template v-slot:body-cell="props">
+    <template #body-cell="props">
       <q-td :props="props">
         <div class="cell">
           {{ props.value }}
         </div>
       </q-td>
     </template>
-    <template v-slot:header-cell-comment="props">
-      <q-th
-          style="width: calc(40% - 50px); min-width: 110px;"
-      >
-        {{props.col.label}}
-      </q-th>
-    </template>
-    <template v-slot:header-cell-sum="props">
-      <q-th
-          style="width: 100px;"
-      >
+    <template #header-cell-comment="props">
+      <q-th style="width: calc(40% - 50px); min-width: 110px">
         {{ props.col.label }}
       </q-th>
     </template>
-    <template v-slot:header-cell-name="props">
-      <q-th
-          style="width: calc(40% - 50px); min-width: 110px;"
-      >
-        {{props.col.label}}
+    <template #header-cell-sum="props">
+      <q-th style="width: 100px">
+        {{ props.col.label }}
       </q-th>
     </template>
-    <template v-slot:header-cell-edit="props">
-      <q-th
-          style="width: 42px; min-width: 42px;"
-      >
-        {{props.col.label}}
+    <template #header-cell-name="props">
+      <q-th style="width: calc(40% - 50px); min-width: 110px">
+        {{ props.col.label }}
       </q-th>
     </template>
-    <template v-slot:header-cell-category="props">
-      <q-th
-          style="width: 100px;"
-      >
-        {{ props.col.label}}
+    <template #header-cell-edit="props">
+      <q-th style="width: 42px; min-width: 42px">
+        {{ props.col.label }}
       </q-th>
     </template>
-    <template v-slot:header-cell-filled="props">
-      <q-th
-          style="width: 33%;"
-      >
-        {{ props.col.label}}
+    <template #header-cell-category="props">
+      <q-th style="width: 100px">
+        {{ props.col.label }}
       </q-th>
     </template>
-    <template v-slot:header-cell-date="props">
-      <q-th
-          style="min-width: 60px;"
-      >
+    <template #header-cell-filled="props">
+      <q-th style="width: 33%">
+        {{ props.col.label }}
+      </q-th>
+    </template>
+    <template #header-cell-date="props">
+      <q-th style="min-width: 60px">
         {{ props.col.label }}
       </q-th>
     </template>
   </q-table>
-
 </template>
 
 <script setup>

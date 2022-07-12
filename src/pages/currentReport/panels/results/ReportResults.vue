@@ -6,10 +6,12 @@
   />
   <app-informer>
     <p>
-      <strong>Итого =</strong> вкладка сборы - вкладка расходы - доходы инструктора
+      <strong>Итого =</strong> вкладка сборы - вкладка расходы - доходы
+      инструктора
     </p>
     <p>
-      <strong>Итого на руках = Итого</strong> - передачи инструкторам/кураторам/офису
+      <strong>Итого на руках = Итого</strong> - передачи
+      инструкторам/кураторам/офису
     </p>
   </app-informer>
   <payments
@@ -28,7 +30,7 @@ import Payments from "@/components/paymentsInformation/PaymentsInformation";
 
 import ButtonDownloadReport from "./buttonDownloadReport/ButtonDownloadReport";
 import PaymentTable from "@/components/table/DefaultTable";
-import {formatNumber} from "@/helpers/formatNumber";
+import { formatNumber } from "@/helpers/formatNumber";
 import AppInformer from "@/components/appInformer/AppInformer";
 
 const getReportResults = () => {
@@ -36,8 +38,12 @@ const getReportResults = () => {
     ...store.currentReport.moneyCodes.map((code) => {
       return {
         moneyCode: code,
-        result: formatNumber(countResultForMoneyCode(store.currentReport, code) || ""),
-        profit: formatNumber(countProfitForMoneyCode(store.currentReport, code) || ""),
+        result: formatNumber(
+          countResultForMoneyCode(store.currentReport, code) || ""
+        ),
+        profit: formatNumber(
+          countProfitForMoneyCode(store.currentReport, code) || ""
+        ),
       };
     }),
   ];
@@ -51,4 +57,3 @@ watch(store.currentReport.outgoingPayments, () => {
   store.currentReport.balance = getReportResults();
 });
 </script>
-

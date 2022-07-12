@@ -16,7 +16,7 @@ import ButtonDownloadReport from "./ButtonDownloadReport";
 import PaymentTable from "@/components/table/DefaultTable";
 import { modalName } from "@/modalPages/helpers/modalName";
 import { modifyBalance } from "@/pages/allReports/helpers";
-import {formatNumber} from "@/helpers/formatNumber";
+import { formatNumber } from "@/helpers/formatNumber";
 
 const editTime = (index) => {
   const moneyCode = Object.keys(store.allReports.balance)[index];
@@ -40,8 +40,13 @@ const resultRows = computed(() => {
     rows.push({
       moneyCode,
       sum: formatNumber(balance.sum) + " " + moneyCode,
-      date: moneyCode === "RUB" ? "-" : balance.date || "Укажите дату для конвертации",
-      convertedSum: balance.convertedSum ? formatNumber(balance.convertedSum || "") + " RUB" : "",
+      date:
+        moneyCode === "RUB"
+          ? "-"
+          : balance.date || "Укажите дату для конвертации",
+      convertedSum: balance.convertedSum
+        ? formatNumber(balance.convertedSum || "") + " RUB"
+        : "",
     });
   }
 

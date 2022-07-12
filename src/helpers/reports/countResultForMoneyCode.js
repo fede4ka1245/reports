@@ -1,5 +1,7 @@
 export const countResultForMoneyCode = (currentReport, code) => {
-  let result = currentReport.moneySums[code] ? Number(currentReport.moneySums[code]) : 0;
+  let result = currentReport.moneySums[code]
+    ? Number(currentReport.moneySums[code])
+    : 0;
 
   const instructorsRevenues = currentReport.outgoingPayments[0].payments;
 

@@ -5,7 +5,7 @@ export const expensesColumns = [
     field: "category",
     label: "Категория",
     sortable: true,
-    style: "width: 30%"
+    style: "width: 30%",
   },
   {
     align: "left",
@@ -13,7 +13,7 @@ export const expensesColumns = [
     field: "sum",
     label: "Сумма",
     sortable: true,
-    style: "width: 30%"
+    style: "width: 30%",
   },
   {
     align: "left",
@@ -21,7 +21,7 @@ export const expensesColumns = [
     field: "description",
     label: "Описание",
     sortable: true,
-    style: "width: 30%"
+    style: "width: 30%",
   },
   {
     align: "left",

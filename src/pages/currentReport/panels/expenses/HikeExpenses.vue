@@ -4,18 +4,18 @@
     <q-toggle v-model="data.isGrouped" color="orange" />
   </div>
   <payment-table
-      v-if="!data.isGrouped"
-      :rows="expensesRows"
-      :columns="expensesColumns"
-      :edit="edit"
-      :remove="remove"
+    v-if="!data.isGrouped"
+    :rows="expensesRows"
+    :columns="expensesColumns"
+    :edit="edit"
+    :remove="remove"
   />
   <payment-table
-      v-if="data.isGrouped"
-      :rows="groupedExpensesRows"
-      :columns="groupedExpensesColumns"
-      :edit="edit"
-      :remove="remove"
+    v-if="data.isGrouped"
+    :rows="groupedExpensesRows"
+    :columns="groupedExpensesColumns"
+    :edit="edit"
+    :remove="remove"
   />
   <button-add :handler="onExpenseAdd" />
 </template>
@@ -30,7 +30,7 @@ import PaymentTable from "@/components/table/DefaultTable";
 import { reactive, computed } from "vue";
 import { groupedExpensesColumns } from "@/components/table/columns";
 import { groupExpenses } from "@/helpers/reports/groupExpenses";
-import {formatNumber} from "@/helpers/formatNumber";
+import { formatNumber } from "@/helpers/formatNumber";
 
 const groupedExpenses = computed(() => {
   return groupExpenses(store.currentReport.expenses);
@@ -49,14 +49,14 @@ const groupedExpensesRows = computed(() => {
     if (expense.isUncountable) {
       return {
         ...expense,
-        sum: "-"
-      }
+        sum: "-",
+      };
     }
 
     return {
       ...expense,
       sum: `${formatNumber(expense.sum)} ${expense.moneyCode}`,
-    }
+    };
   });
 });
 const expensesRows = computed(() => {
@@ -69,10 +69,10 @@ const expensesRows = computed(() => {
 const onExpenseAdd = () => {
   openModalPage(modalName.modalExpense, {
     saveData: (expense) =>
-        (store.currentReport.expenses = [
-          ...store.currentReport.expenses,
-          expense,
-        ]),
+      (store.currentReport.expenses = [
+        ...store.currentReport.expenses,
+        expense,
+      ]),
     moneyCodes: store.currentReport.moneyCodes,
   });
 };

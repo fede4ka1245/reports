@@ -17,7 +17,7 @@ import { modalName } from "@/modalPages/helpers/modalName";
 import { store } from "@/store/store";
 import { computed } from "vue";
 import { conversionsColumns } from "@/components/table/columns";
-import {formatNumber} from "@/helpers/formatNumber";
+import { formatNumber } from "@/helpers/formatNumber";
 
 const onConversionAdd = () => {
   openModalPage(modalName.modalConversion, {

@@ -4,5 +4,5 @@ export const storageKey = {
   expensesCategories: "expensesCategories",
   instructors: "instructors",
   rates: "ratesXML",
-  routes: "routes"
+  routes: "routes",
 };

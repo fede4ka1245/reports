@@ -1,4 +1,4 @@
-import {ref, watch} from "vue";
+import { ref, watch } from "vue";
 
 export const useMutationEmitted = (target, ms = 5000) => {
   const isEmitted = ref(false);
@@ -16,10 +16,10 @@ export const useMutationEmitted = (target, ms = 5000) => {
       timeoutId = setTimeout(() => {
         isEmitted.value = false;
       }, ms);
-    }
-  })()
+    };
+  })();
 
-  watch(target, watcher)
+  watch(target, watcher);
 
   return isEmitted;
-}
+};

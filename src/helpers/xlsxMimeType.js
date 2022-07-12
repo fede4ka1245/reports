@@ -1,1 +1,2 @@
-export const xlsxMimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+export const xlsxMimeType =
+  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";

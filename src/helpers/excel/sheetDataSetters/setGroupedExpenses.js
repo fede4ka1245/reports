@@ -1,5 +1,5 @@
 import { createHeaderCell } from "@/helpers/excel/helpers/createHeaderCell";
-import {groupExpenses} from "@/helpers/reports/groupExpenses";
+import { groupExpenses } from "@/helpers/reports/groupExpenses";
 
 export function setGroupedExpenses(sheet, expenses) {
   let rowIndex = sheet.rowCount + 1;
@@ -13,7 +13,9 @@ export function setGroupedExpenses(sheet, expenses) {
 
   for (let expense of groupExpenses(expenses)) {
     sheet.getCell(rowIndex, 2).value = expense.category;
-    sheet.getCell(rowIndex, 3).value = expense.isUncountable ? "-" : `${expense.sum} ${expense.moneyCode}`;
+    sheet.getCell(rowIndex, 3).value = expense.isUncountable
+      ? "-"
+      : `${expense.sum} ${expense.moneyCode}`;
 
     rowIndex += 1;
   }

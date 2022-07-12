@@ -1,41 +1,41 @@
 <template>
   <text-header>Добавить расход</text-header>
   <q-select
-      v-model="expense.category"
-      :options="expense.categories"
-      option-label="name"
-      class="item"
-      outlined
-      label="Расход"
-      @filter="filter"
+    v-model="expense.category"
+    :options="expense.categories"
+    option-label="name"
+    class="item"
+    outlined
+    label="Расход"
+    @filter="filter"
   />
   <payment-input
-      :code="expense.moneyCode"
-      :codes="props.moneyCodes"
-      :sum="expense.sum"
-      :update-code="(code) => (expense.moneyCode = code)"
-      :update-sum="(sum) => (expense.sum = sum)"
-      class="item"
+    :code="expense.moneyCode"
+    :codes="props.moneyCodes"
+    :sum="expense.sum"
+    :update-code="(code) => (expense.moneyCode = code)"
+    :update-sum="(sum) => (expense.sum = sum)"
+    class="item"
   />
   <q-input
-      v-model="expense.description"
-      type="textarea"
-      outlined
-      label="Описание расхода"
-      class="item"
+    v-model="expense.description"
+    type="textarea"
+    outlined
+    label="Описание расхода"
+    class="item"
   />
   <q-input
-      v-model="expense.comment"
-      type="textarea"
-      outlined
-      label="Расчет и комментарии"
-      class="item"
+    v-model="expense.comment"
+    type="textarea"
+    outlined
+    label="Расчет и комментарии"
+    class="item"
   />
-  <input-date :date="expense.date" :on-date-change="onDateChange"/>
+  <input-date :date="expense.date" :on-date-change="onDateChange" />
   <form-confirmation
-      :dismiss-handler="closeModalPage"
-      :confirm-handler="onExpenseConfirm"
-      :is-confirm-button-disabled="isConfirmButtonDisabled"
+    :dismiss-handler="closeModalPage"
+    :confirm-handler="onExpenseConfirm"
+    :is-confirm-button-disabled="isConfirmButtonDisabled"
   />
 </template>
 
@@ -70,12 +70,17 @@ const defaultExpense = {
 const expense = reactive(props?.expense || defaultExpense);
 
 const isConfirmButtonDisabled = computed(() => {
-  return !(expense.sum && expense.date && expense.category && expense.moneyCode)
-})
+  return !(
+    expense.sum &&
+    expense.date &&
+    expense.category &&
+    expense.moneyCode
+  );
+});
 
 const onDateChange = (date) => {
-  expense.date = date
-}
+  expense.date = date;
+};
 
 async function filter(inputValue, update) {
   if (expense.categories.length) {

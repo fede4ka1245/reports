@@ -11,10 +11,9 @@ export function styleSheet(sheet) {
     for (let columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
       sheet.getCell(rowIndex, columnIndex).font = {
         ...sheet.getCell(rowIndex, columnIndex).font,
-        name: 'Arial',
+        name: "Arial",
         size: 10,
       };
-
 
       sheet.getCell(rowIndex, columnIndex).alignment = {
         horizontal: "center",

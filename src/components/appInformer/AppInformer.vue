@@ -2,7 +2,7 @@
   <section>
     <div class="flex no-wrap margin-vertical">
       <div class="text-grey-8">
-        <q-icon size="30px" name="error"/>
+        <q-icon size="30px" name="error" />
       </div>
       <div>
         <slot></slot>

@@ -21,7 +21,7 @@ import PaymentInput from "@/components/paymentInput/PaymentInput";
 import TextHeader from "@/components/textHeader/TextHeader";
 import Payments from "@/components/paymentsInformation/PaymentsInformation";
 import NotificationDataSaved from "@/components/notificationDataSaved/NotificationDataSaved";
-import {useMutationEmitted} from "@/hooks/useMutationEmitted";
+import { useMutationEmitted } from "@/hooks/useMutationEmitted";
 
 const isNotificationVisible = useMutationEmitted(store.currentReport.moneySums);
 

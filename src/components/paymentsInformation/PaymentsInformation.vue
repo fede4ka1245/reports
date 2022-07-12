@@ -15,10 +15,13 @@
 import TextHeader from "@/components/textHeader/TextHeader";
 import ButtonAdd from "@/components/buttonAdd/ButtonAdd";
 import PaymentTable from "@/components/table/DefaultTable";
-import { paymentsColumns, officePaymentColumns } from "@/components/table/columns";
+import {
+  paymentsColumns,
+  officePaymentColumns,
+} from "@/components/table/columns";
 import { openModalPage } from "@/modalPages/helpers/openModalPage";
 import { modalName } from "@/modalPages/helpers/modalName";
-import {formatNumber} from "@/helpers/formatNumber";
+import { formatNumber } from "@/helpers/formatNumber";
 
 const getPaymentColumns = (payment) => {
   if (payment.type === "office") {
@@ -26,7 +29,7 @@ const getPaymentColumns = (payment) => {
   }
 
   return paymentsColumns;
-}
+};
 
 const remove = (payment, index) => {
   payment.payments.splice(index, 1);

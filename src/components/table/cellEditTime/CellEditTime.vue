@@ -24,11 +24,11 @@ const props = defineProps({
   },
   moneyCode: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 });
 
-const isDisabled = props.moneyCode === "RUB"
+const isDisabled = props.moneyCode === "RUB";
 </script>
 
 <style scoped></style>

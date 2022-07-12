@@ -1,4 +1,4 @@
-import {LocalNotifications} from "@capacitor/local-notifications";
+import { LocalNotifications } from "@capacitor/local-notifications";
 
 export const sendNotification = async (title, body, actionId) => {
   await LocalNotifications.schedule({
@@ -7,9 +7,8 @@ export const sendNotification = async (title, body, actionId) => {
         id: 1,
         title,
         body,
-        actionTypeId: actionId
-      }
-    ]
-  })
-}
-
+        actionTypeId: actionId,
+      },
+    ],
+  });
+};

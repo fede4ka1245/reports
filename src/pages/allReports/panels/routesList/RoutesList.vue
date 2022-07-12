@@ -22,7 +22,7 @@ import { computed } from "vue";
 import { openModalPage } from "@/modalPages/helpers/openModalPage";
 import { modalName } from "@/modalPages/helpers/modalName";
 import { downloadHikeReport } from "@/helpers/downloadHikeReport";
-import {compareFormattedDates} from "@/helpers/compareFormattedDates";
+import { compareFormattedDates } from "@/helpers/compareFormattedDates";
 
 const isReportCreatorActive =
   !store.currentReport && !store.allReports?.reports?.length;
@@ -43,11 +43,11 @@ const rows = computed(() => {
   const targetRows = currentReport ? [currentReport, ...reports] : reports;
 
   return targetRows.sort((firstReport, secondReport) => {
-    const firstReportStartDate = firstReport.dates.split("-")[0]
-    const secondReportStartDate = secondReport.dates.split("-")[0]
+    const firstReportStartDate = firstReport.dates.split("-")[0];
+    const secondReportStartDate = secondReport.dates.split("-")[0];
 
     return compareFormattedDates(firstReportStartDate, secondReportStartDate);
-  })
+  });
 });
 
 const remove = (report) => {

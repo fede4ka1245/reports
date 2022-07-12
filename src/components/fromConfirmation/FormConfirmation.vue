@@ -3,7 +3,12 @@
     <q-btn color="orange" outline class="btn" @click="props.dismissHandler">
       Отмена
     </q-btn>
-    <q-btn :disable="isConfirmButtonDisabled" color="orange" class="btn" @click="props.confirmHandler">
+    <q-btn
+      :disable="isConfirmButtonDisabled"
+      color="orange"
+      class="btn"
+      @click="props.confirmHandler"
+    >
       Сохранить
     </q-btn>
   </section>
@@ -22,8 +27,8 @@ const props = defineProps({
   isConfirmButtonDisabled: {
     type: Boolean,
     required: false,
-    default: false
-  }
+    default: false,
+  },
 });
 </script>
 

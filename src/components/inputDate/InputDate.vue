@@ -2,11 +2,11 @@
   <q-input outlined :model-value="props.date" place label="Дата">
     <q-popup-proxy ref="popup" color="orange" cover>
       <q-date
-        v-on:update:model-value="onDateChange"
         :model-value="props.date"
         :options="options"
         mask="DD.MM.YYYY"
         color="orange"
+        @update:model-value="onDateChange"
       >
       </q-date>
     </q-popup-proxy>

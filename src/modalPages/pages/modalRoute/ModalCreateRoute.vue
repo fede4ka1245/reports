@@ -1,16 +1,14 @@
 <template>
-  <text-header>
-    Добавить/Редактировать отчет по походу
-  </text-header>
+  <text-header> Добавить/Редактировать отчет по походу </text-header>
   <hike-main-info
-      :hike="data"
-      :update-hike-name="onHikeNameUpdate"
-      :update-hike-information="onHikeInformationUpdate"
+    :hike="data"
+    :update-hike-name="onHikeNameUpdate"
+    :update-hike-information="onHikeInformationUpdate"
   />
   <form-confirmation
-      :dismiss-handler="closeModalPage"
-      :confirm-handler="onConfirm"
-      :is-confirm-button-disabled="isConfirmButtonDisabled"
+    :dismiss-handler="closeModalPage"
+    :confirm-handler="onConfirm"
+    :is-confirm-button-disabled="isConfirmButtonDisabled"
   />
 </template>
 
@@ -31,17 +29,17 @@ const data = reactive({
 });
 
 const isConfirmButtonDisabled = computed(() => {
-  return !(data.name && data.dates)
-})
+  return !(data.name && data.dates);
+});
 
 const onHikeInformationUpdate = (dates, hikeId) => {
   data.dates = dates;
   data.hikeId = hikeId;
-}
+};
 
 const onHikeNameUpdate = (name) => {
   data.name = name;
-}
+};
 
 const onConfirm = () => {
   const report = {

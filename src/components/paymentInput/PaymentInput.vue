@@ -66,7 +66,7 @@ onMounted(() => {
   if (props.codes?.length === 1) {
     props.updateCode(props.codes[0]);
   }
-})
+});
 </script>
 
 <style scoped>

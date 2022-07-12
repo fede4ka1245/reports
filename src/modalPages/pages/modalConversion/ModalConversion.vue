@@ -8,7 +8,12 @@
         :options="props.moneyCodes"
         outlined
       />
-      <q-input v-model="conversion.from.sum" outlined label="Сумма" type="number"/>
+      <q-input
+        v-model="conversion.from.sum"
+        outlined
+        label="Сумма"
+        type="number"
+      />
     </section>
     <section>
       <span class="to"></span>
@@ -20,7 +25,12 @@
         :options="store.currentReport.moneyCodes"
         outlined
       />
-      <q-input v-model="conversion.to.sum" outlined label="Сумма" type="number"/>
+      <q-input
+        v-model="conversion.to.sum"
+        outlined
+        label="Сумма"
+        type="number"
+      />
     </section>
   </div>
   <q-input
@@ -42,7 +52,7 @@
 <script setup>
 import { closeModalPage } from "@/modalPages/helpers/closeModalPage";
 import { store } from "@/store/store";
-import {computed, reactive} from "vue";
+import { computed, reactive } from "vue";
 import { getFormattedCurrentDate } from "@/helpers/reports/getFormattedCurrentDate";
 import FormConfirmation from "@/components/fromConfirmation/FormConfirmation";
 import TextHeader from "@/components/textHeader/TextHeader";
@@ -70,9 +80,14 @@ const defaultConversion = {
 
 const conversion = reactive(props.conversion || defaultConversion);
 const isConfirmButtonDisabled = computed(() => {
-  return !(conversion.from.moneyCode && conversion.from.sum && conversion.to.moneyCode
-      && conversion.to.sum && conversion.date)
-})
+  return !(
+    conversion.from.moneyCode &&
+    conversion.from.sum &&
+    conversion.to.moneyCode &&
+    conversion.to.sum &&
+    conversion.date
+  );
+});
 
 const onDateChange = (date) => {
   conversion.date = date;

@@ -1,4 +1,4 @@
-import {getItem, setItem} from "@/helpers/localStorage";
+import { getItem, setItem } from "@/helpers/localStorage";
 
 export const cachedRequest = (requestFunction, key) => {
   return async (...args) => {
@@ -6,13 +6,13 @@ export const cachedRequest = (requestFunction, key) => {
     try {
       const result = await requestFunction.apply(this, args);
       setItem($key, result);
-      return result
-    } catch(error) {
+      return result;
+    } catch (error) {
       if (getItem($key)) {
         return getItem($key);
       }
 
       throw error;
     }
-  }
-}
+  };
+};

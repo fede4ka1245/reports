@@ -4,7 +4,8 @@ export const compareFormattedDates = (firstDate, secondDate) => {
   }
 
   const [firstDateDay, firstDateMonth, firstDateYear] = firstDate.split(".");
-  const [secondDateDay, secondDateMonth, secondDateYear] = secondDate.split(".");
+  const [secondDateDay, secondDateMonth, secondDateYear] =
+    secondDate.split(".");
 
   if (
     Number(firstDateYear) > Number(secondDateYear) ||

@@ -13,5 +13,5 @@ export {
   expensesColumns,
   conversionsColumns,
   groupedExpensesColumns,
-  officePaymentColumns
+  officePaymentColumns,
 };

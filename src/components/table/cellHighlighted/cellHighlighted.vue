@@ -2,7 +2,7 @@
   <q-td class="half">
     <div
       class="cell"
-      v-bind:class="{ orange: props.row.key === store.currentReport?.key }"
+      :class="{ orange: props.row?.key === store.currentReport?.key }"
     >
       {{ props.value }}
     </div>
@@ -19,8 +19,9 @@ const props = defineProps({
     type: String,
   },
   row: {
-    default: Object,
+    type: Object,
     required: true,
+    default: undefined
   },
 });
 </script>
