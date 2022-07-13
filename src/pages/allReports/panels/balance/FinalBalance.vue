@@ -1,6 +1,6 @@
 <template>
   <button-download-report />
-  <payment-table
+  <balance-table
     :columns="mainReportColumns"
     :rows="resultRows"
     :edit="editTime"
@@ -12,11 +12,11 @@ import { store } from "@/store/store";
 import { computed, onMounted } from "vue";
 import { mainReportColumns } from "@/components/table/columns";
 import { openModalPage } from "@/modalPages/helpers/openModalPage";
-import ButtonDownloadReport from "./ButtonDownloadReport";
-import PaymentTable from "@/components/table/DefaultTable";
+import ButtonDownloadReport from "./components/buttonDownloadReport/ButtonDownloadReport";
 import { modalName } from "@/modalPages/helpers/modalName";
 import { modifyBalance } from "@/pages/allReports/helpers";
 import { formatNumber } from "@/helpers/formatNumber";
+import BalanceTable from "@/pages/allReports/panels/balance/components/balanceTable/BalanceTable";
 
 const editTime = (index) => {
   const moneyCode = Object.keys(store.allReports.balance)[index];

@@ -1,5 +1,5 @@
 <template>
-  <q-td>
+  <q-td style="width: 42px; min-width: 42px">
     <q-btn :disable="isDisabled" round flat color="grey" icon="more_horiz">
       <q-menu style="width: 150px">
         <q-list style="min-width: 100px">
