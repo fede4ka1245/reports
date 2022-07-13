@@ -1,5 +1,5 @@
 <template>
-  <payment-table
+  <conversion-table
     :columns="conversionsColumns"
     :rows="rows"
     :remove="remove"
@@ -10,14 +10,13 @@
 
 <script setup>
 import ButtonAdd from "@/components/buttonAdd/ButtonAdd";
-import PaymentTable from "@/components/table/DefaultTable";
-
 import { openModalPage } from "@/modalPages/helpers/openModalPage";
 import { modalName } from "@/modalPages/helpers/modalName";
 import { store } from "@/store/store";
 import { computed } from "vue";
-import { conversionsColumns } from "@/components/table/columns";
+import { conversionsColumns } from "@/pages/currentReport/panels/conversion/components/conversionsColumns";
 import { formatNumber } from "@/helpers/formatNumber";
+import ConversionTable from "@/pages/currentReport/panels/conversion/components/ConversionTable";
 
 const onConversionAdd = () => {
   openModalPage(modalName.modalConversion, {

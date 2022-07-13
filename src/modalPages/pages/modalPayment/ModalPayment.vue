@@ -74,6 +74,7 @@ const format = (instructors) => {
 };
 
 const props = store.modalPages.props;
+console.log(props?.payment);
 
 const payment = {
   name: String(),

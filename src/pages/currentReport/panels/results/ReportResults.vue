@@ -1,9 +1,6 @@
 <template>
   <button-download-report />
-  <payment-table
-    :columns="resultsColumns"
-    :rows="store.currentReport.balance"
-  />
+  <current-report-table :rows="store.currentReport.balance" />
   <app-informer>
     <p>
       <strong>Итого =</strong> вкладка сборы - вкладка расходы - доходы
@@ -14,7 +11,7 @@
       инструкторам/кураторам/офису
     </p>
   </app-informer>
-  <payments
+  <payments-information
     :payments="store.currentReport.outgoingPayments"
     :money-codes="store.currentReport.moneyCodes"
   />
@@ -25,13 +22,11 @@ import { store } from "@/store/store";
 import { onMounted, watch } from "vue";
 import { countResultForMoneyCode } from "@/helpers/reports/countResultForMoneyCode";
 import { countProfitForMoneyCode } from "@/helpers/reports/countProfitForMoneyCode";
-import { resultsColumns } from "@/components/table/columns/";
-import Payments from "@/components/paymentsInformation/PaymentsInformation";
-
-import ButtonDownloadReport from "./buttonDownloadReport/ButtonDownloadReport";
-import PaymentTable from "@/components/table/DefaultTable";
+import PaymentsInformation from "@/components/paymentsInformation/PaymentsInformation";
+import ButtonDownloadReport from "@/pages/currentReport/panels/results/components/buttonDownloadReport/ButtonDownloadReport";
 import { formatNumber } from "@/helpers/formatNumber";
 import AppInformer from "@/components/appInformer/AppInformer";
+import CurrentReportTable from "@/pages/currentReport/panels/results/components/currentReportTable/CurrentReportTable";
 
 const getReportResults = () => {
   return [

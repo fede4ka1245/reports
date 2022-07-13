@@ -9,7 +9,7 @@
     :code="store.currentReport.moneyCodes[index]"
   />
   <notification-data-saved v-if="isNotificationVisible" />
-  <payments
+  <payments-information
     :payments="store.currentReport.incomingPayments"
     :money-codes="store.currentReport.moneyCodes"
   />
@@ -19,7 +19,7 @@
 import { store } from "@/store/store";
 import PaymentInput from "@/components/paymentInput/PaymentInput";
 import TextHeader from "@/components/textHeader/TextHeader";
-import Payments from "@/components/paymentsInformation/PaymentsInformation";
+import PaymentsInformation from "@/components/paymentsInformation/PaymentsInformation";
 import NotificationDataSaved from "@/components/notificationDataSaved/NotificationDataSaved";
 import { useMutationEmitted } from "@/hooks/useMutationEmitted";
 

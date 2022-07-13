@@ -7,5 +7,5 @@ export const convertToRUB = async (sum, code, day, month, year) => {
 
   const { value, nominal } = rates[code];
 
-  return (sum * value) / nominal;
+  return ((sum * value) / nominal).toFixed(2);
 };

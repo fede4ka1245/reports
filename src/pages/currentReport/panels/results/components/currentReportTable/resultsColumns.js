@@ -7,14 +7,14 @@ export const resultsColumns = [
   },
   {
     align: "left",
-    name: "filled",
+    name: "result",
     field: "result",
     label: "Итого",
     sortable: true,
   },
   {
     align: "left",
-    name: "filled",
+    name: "profit",
     field: "profit",
     label: "Итого на руках",
   },

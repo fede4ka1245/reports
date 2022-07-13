@@ -1,10 +1,10 @@
 <template>
-  <payments
+  <payments-information
     :money-codes="getMoneyCodes()"
     :payments="store.allReports.outgoingPayments"
   />
   <text-header>Общие расходы</text-header>
-  <payment-table
+  <expense-table
     :rows="store.allReports.expenses"
     :columns="expensesColumns"
     :edit="editExpense"
@@ -17,13 +17,12 @@
 import { store } from "@/store/store";
 import { openModalPage } from "@/modalPages/helpers/openModalPage";
 import { modalName } from "@/modalPages/helpers/modalName";
-import { expensesColumns } from "@/components/table/columns/";
-import Payments from "@/components/paymentsInformation/PaymentsInformation";
-
+import { expensesColumns } from "@/components/expenseTable/columns/expensesColumns";
+import PaymentsInformation from "@/components/paymentsInformation/PaymentsInformation";
 import TextHeader from "@/components/textHeader/TextHeader";
-import PaymentTable from "@/components/table/DefaultTable";
 import ButtonAdd from "@/components/buttonAdd/ButtonAdd";
 import { getMoneyCodes } from "@/helpers/reports/getMoneyCodes";
+import ExpenseTable from "@/components/expenseTable/ExpenseTable";
 
 const editExpense = (index) => {
   openModalPage(modalName.modalExpense, {

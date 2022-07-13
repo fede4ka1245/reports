@@ -8,7 +8,7 @@ export const officePaymentColumns = [
   },
   {
     align: "left",
-    name: "comment",
+    name: "office-comment",
     field: "comment",
     label: "Комментарий",
   },

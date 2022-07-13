@@ -1,7 +1,7 @@
-export const mainReportColumns = [
+export const appBalanceColumns = [
   {
     align: "left",
-    name: "filled",
+    name: "balance-sum",
     field: "sum",
     label: "Баланс в валюте",
   },

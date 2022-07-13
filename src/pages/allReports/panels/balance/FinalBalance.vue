@@ -1,16 +1,11 @@
 <template>
   <button-download-report />
-  <balance-table
-    :columns="mainReportColumns"
-    :rows="resultRows"
-    :edit="editTime"
-  />
+  <balance-table :rows="resultRows" :edit="editTime" />
 </template>
 
 <script setup>
 import { store } from "@/store/store";
 import { computed, onMounted } from "vue";
-import { mainReportColumns } from "@/components/table/columns";
 import { openModalPage } from "@/modalPages/helpers/openModalPage";
 import ButtonDownloadReport from "./components/buttonDownloadReport/ButtonDownloadReport";
 import { modalName } from "@/modalPages/helpers/modalName";
@@ -37,6 +32,16 @@ const resultRows = computed(() => {
   const entries = Array.from(Object.entries(store.allReports.balance));
 
   for (const [moneyCode, balance] of entries) {
+    let convertedSum;
+
+    if (moneyCode === "RUB") {
+      convertedSum = formatNumber(balance.sum || "") + " RUB";
+    } else {
+      convertedSum = balance.convertedSum
+        ? formatNumber(balance.convertedSum || "") + " RUB"
+        : "";
+    }
+
     rows.push({
       moneyCode,
       sum: formatNumber(balance.sum) + " " + moneyCode,
@@ -44,9 +49,7 @@ const resultRows = computed(() => {
         moneyCode === "RUB"
           ? "-"
           : balance.date || "Укажите дату для конвертации",
-      convertedSum: balance.convertedSum
-        ? formatNumber(balance.convertedSum || "") + " RUB"
-        : "",
+      convertedSum,
     });
   }
 

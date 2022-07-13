@@ -17,7 +17,7 @@ export const expensesColumns = [
   },
   {
     align: "left",
-    name: "sum",
+    name: "description",
     field: "description",
     label: "Описание",
     sortable: true,

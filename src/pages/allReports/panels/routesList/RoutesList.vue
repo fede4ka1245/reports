@@ -1,7 +1,7 @@
 <template>
   <report-creator v-if="isReportCreatorActive" />
   <section v-else>
-    <payment-table
+    <routes-list-table
       :rows="rows"
       :columns="reportsColumns"
       :download="download"
@@ -13,16 +13,16 @@
 </template>
 
 <script setup>
-import ReportCreator from "./ReportCreator";
+import ReportCreator from "./components/reportCreator/ReportCreator";
 import { store } from "@/store/store";
-import PaymentTable from "@/components/table/DefaultTable";
 import ButtonAdd from "@/components/buttonAdd/ButtonAdd";
-import { reportsColumns } from "@/components/table/columns/reportsColumns";
+import { reportsColumns } from "@/pages/allReports/panels/routesList/components/routesListTable/reportsColumns";
 import { computed } from "vue";
 import { openModalPage } from "@/modalPages/helpers/openModalPage";
 import { modalName } from "@/modalPages/helpers/modalName";
 import { downloadHikeReport } from "@/helpers/downloadHikeReport";
 import { compareFormattedDates } from "@/helpers/compareFormattedDates";
+import RoutesListTable from "@/pages/allReports/panels/routesList/components/routesListTable/RoutesListTable";
 
 const isReportCreatorActive =
   !store.currentReport && !store.allReports?.reports?.length;

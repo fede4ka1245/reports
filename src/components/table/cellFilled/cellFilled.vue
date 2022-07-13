@@ -34,13 +34,3 @@ const className = computed(() => {
   }
 });
 </script>
-
-<style scoped>
-.positive {
-  background: #eef0cb !important;
-}
-
-.negative {
-  background: #f5d1c5 !important;
-}
-</style>

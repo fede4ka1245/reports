@@ -1,7 +1,7 @@
 <template>
-  <section v-for="payment in payments" :key="payment.label">
+  <section v-for="payment in props.payments" :key="payment.label">
     <text-header>{{ payment.label }}</text-header>
-    <payment-table
+    <payments-table
       :edit="(index) => edit(payment, index)"
       :remove="(index) => remove(payment, index)"
       :columns="getPaymentColumns(payment)"
@@ -14,11 +14,9 @@
 <script setup>
 import TextHeader from "@/components/textHeader/TextHeader";
 import ButtonAdd from "@/components/buttonAdd/ButtonAdd";
-import PaymentTable from "@/components/table/DefaultTable";
-import {
-  paymentsColumns,
-  officePaymentColumns,
-} from "@/components/table/columns";
+import PaymentsTable from "@/components/paymentsTable/PaymentsTable";
+import { paymentsColumns } from "@/components/paymentsTable/paymentsColumns";
+import { officePaymentColumns } from "@/components/paymentsTable/officePaymentColumns";
 import { openModalPage } from "@/modalPages/helpers/openModalPage";
 import { modalName } from "@/modalPages/helpers/modalName";
 import { formatNumber } from "@/helpers/formatNumber";
@@ -43,6 +41,7 @@ const getRows = (payment) => {
 };
 
 const edit = (payment, index) => {
+  console.log(index);
   openModalPage(modalName.modalPayment, {
     saveData: (newPayment) => {
       payment.payments[index] = newPayment;

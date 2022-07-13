@@ -3,13 +3,13 @@ export const reportsColumns = [
     align: "left",
     field: "name",
     label: "Маршрут",
-    name: "highlighted",
+    name: "report-name",
   },
   {
     align: "left",
     field: "dates",
     label: "Сроки",
-    name: "highlighted",
+    name: "report-dates",
   },
   {
     align: "left",
