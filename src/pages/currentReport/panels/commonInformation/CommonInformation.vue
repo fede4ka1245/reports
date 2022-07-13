@@ -52,6 +52,9 @@ const onCodeRemove = (index) => {
 };
 
 const onCodeSelect = (code) => {
+  if (store.currentReport?.moneyCodes?.includes(code)) {
+    return;
+  }
   store.currentReport.moneyCodes.push(code);
 };
 

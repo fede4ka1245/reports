@@ -21,7 +21,7 @@ const props = defineProps({
   row: {
     type: Object,
     required: true,
-    default: undefined
+    default: undefined,
   },
 });
 </script>

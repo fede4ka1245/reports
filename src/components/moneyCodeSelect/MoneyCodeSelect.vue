@@ -2,7 +2,7 @@
   <q-select
     ref="select"
     :model-value="props.moneyCodes"
-    :options="moneyCodes"
+    :options="dynamicMoneyCodes"
     outlined
     multiple
     label="Валюты"
@@ -18,8 +18,9 @@
 </template>
 
 <script setup>
-import * as currencyCodes from "currency-codes";
 import { ref } from "vue";
+import { getRates } from "@/helpers/reports/getRates";
+import { getMoneyCodes } from "@/helpers/reports/getMoneyCodes";
 
 const select = ref(null);
 
@@ -31,6 +32,7 @@ const onMoneyCodeAdd = ({ value }) => {
 const onMoneyCodeRemove = ({ index }) => {
   props.onCodeRemove(index);
 };
+
 const props = defineProps({
   moneyCodes: {
     type: Array,
@@ -46,18 +48,18 @@ const props = defineProps({
   },
 });
 
-const codes = currencyCodes.codes();
-console.log(currencyCodes.data);
-const moneyCodes = ref(codes);
+const dynamicMoneyCodes = ref(getMoneyCodes());
 
 const filter = (value, update) => {
   update(() => {
     if (value === "") {
-      moneyCodes.value = codes;
+      dynamicMoneyCodes.value = getMoneyCodes();
     } else {
-      const needle = value.toLowerCase();
-      moneyCodes.value = codes.filter((code) =>
-        code.toLowerCase().startsWith(needle)
+      const input = value.toLowerCase();
+      dynamicMoneyCodes.value = getMoneyCodes().filter(
+        (code) =>
+          getRates()[code].name.toLowerCase().includes(input) ||
+          code.toLowerCase().startsWith(input)
       );
     }
   });

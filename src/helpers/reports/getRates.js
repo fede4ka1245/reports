@@ -1,5 +1,24 @@
 export const getRates = () => {
   return {
+    RUB: {
+      charCode: "RUB",
+      name: "Рубль",
+    },
+    USD: {
+      charCode: "USD",
+      numCode: "840",
+      name: "Доллар США",
+    },
+    EUR: {
+      charCode: "EUR",
+      numCode: "978",
+      name: "Евро",
+    },
+    KZT: {
+      charCode: "KZT",
+      numCode: "398",
+      name: "Казахстанских тенге",
+    },
     AUD: {
       charCode: "AUD",
       numCode: "036",
@@ -50,25 +69,10 @@ export const getRates = () => {
       numCode: "208",
       name: "Датских крон",
     },
-    USD: {
-      charCode: "USD",
-      numCode: "840",
-      name: "Доллар США",
-    },
-    EUR: {
-      charCode: "EUR",
-      numCode: "978",
-      name: "Евро",
-    },
     INR: {
       charCode: "INR",
       numCode: "356",
       name: "Индийских рупий",
-    },
-    KZT: {
-      charCode: "KZT",
-      numCode: "398",
-      name: "Казахстанских тенге",
     },
     CAD: {
       charCode: "CAD",

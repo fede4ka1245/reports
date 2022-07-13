@@ -1,5 +1,5 @@
-import * as currencyCodes from "currency-codes";
+import { getRates } from "@/helpers/reports/getRates";
 
 export const getMoneyCodes = () => {
-  return currencyCodes.codes();
+  return Array.from(Object.keys(getRates()));
 };
