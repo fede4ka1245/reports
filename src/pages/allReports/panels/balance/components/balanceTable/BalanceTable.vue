@@ -51,11 +51,7 @@ const isRubles = (label) => {
     return false;
   }
 
-  if (label.split(" ")[1] === "RUB") {
-    return true;
-  } else {
-    return false;
-  }
+  return label.split(" ")[1] === "RUB";
 };
 
 const tableProps = defineProps({

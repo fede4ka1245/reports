@@ -9,7 +9,7 @@
             clickable
             @click="props.promoteToCurrent(props.row)"
           >
-            Cделать текущим
+            Сделать текущим
           </q-item>
         </q-list>
         <q-list>

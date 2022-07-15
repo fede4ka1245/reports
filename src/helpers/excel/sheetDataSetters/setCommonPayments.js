@@ -3,7 +3,7 @@ import { createHeaderCell } from "@/helpers/excel/helpers/createHeaderCell";
 export function setCommonPayments(sheet, commonPayments) {
   let rowIndex = sheet.rowCount + 1;
 
-  createHeaderCell(sheet.getCell(rowIndex, 1), "Общаяя сумма оплат участников");
+  createHeaderCell(sheet.getCell(rowIndex, 1), "Общая сумма оплат участников");
 
   rowIndex += 1;
   createHeaderCell(sheet.getCell(rowIndex, 2), "Сумма");

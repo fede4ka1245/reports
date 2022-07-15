@@ -7,7 +7,7 @@ export function setGroupedExpenses(sheet, expenses) {
   createHeaderCell(sheet.getCell(rowIndex, 1), "Расходы по категориям");
   rowIndex += 1;
 
-  createHeaderCell(sheet.getCell(rowIndex, 2), "Карегория");
+  createHeaderCell(sheet.getCell(rowIndex, 2), "Категория");
   createHeaderCell(sheet.getCell(rowIndex, 3), "Сумма");
   rowIndex += 1;
 

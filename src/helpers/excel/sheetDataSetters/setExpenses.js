@@ -3,10 +3,10 @@ import { createHeaderCell } from "@/helpers/excel/helpers/createHeaderCell";
 export function setExpenses(sheet, expenses) {
   let rowIndex = sheet.rowCount + 1;
 
-  createHeaderCell(sheet.getCell(rowIndex, 1), "Рacходы");
+  createHeaderCell(sheet.getCell(rowIndex, 1), "Расходы");
   rowIndex += 1;
 
-  createHeaderCell(sheet.getCell(rowIndex, 2), "Карегория");
+  createHeaderCell(sheet.getCell(rowIndex, 2), "Категория");
   createHeaderCell(sheet.getCell(rowIndex, 3), "Сумма");
   createHeaderCell(sheet.getCell(rowIndex, 4), "Дата");
   createHeaderCell(sheet.getCell(rowIndex, 5), "Комментарий");
