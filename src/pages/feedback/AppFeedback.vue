@@ -23,6 +23,8 @@
     <form-confirmation
       :dismiss-handler="clearForm"
       :confirm-handler="sendEmail"
+      :is-confirm-button-disabled="!isSendButtonActive"
+      :confirmation-button-label="'Отправить'"
     />
   </section>
 </template>
@@ -31,7 +33,7 @@
 import FormConfirmation from "@/components/fromConfirmation/FormConfirmation";
 import TextHeader from "@/components/textHeader/TextHeader";
 import { EmailComposer } from "capacitor-email-composer";
-import { reactive } from "vue";
+import { computed, reactive } from "vue";
 import AppInformer from "@/components/appInformer/AppInformer";
 
 const errorData = reactive({
@@ -51,7 +53,10 @@ const sendEmail = () => {
 
 const clearForm = () => {
   errorData.name = "";
-  errorData.email = "";
   errorData.description = "";
 };
+
+const isSendButtonActive = computed(() => {
+  return errorData.name && errorData.description;
+});
 </script>
