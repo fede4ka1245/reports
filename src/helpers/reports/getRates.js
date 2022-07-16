@@ -2,7 +2,7 @@ export const getRates = () => {
   return {
     RUB: {
       charCode: "RUB",
-      name: "Рубль",
+      name: "Российский рубль",
     },
     USD: {
       charCode: "USD",

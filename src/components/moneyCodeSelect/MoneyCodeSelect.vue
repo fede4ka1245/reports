@@ -3,6 +3,7 @@
     ref="select"
     :model-value="props.moneyCodes"
     :options="dynamicMoneyCodes"
+    :option-label="getOptionLabel"
     outlined
     multiple
     label="Валюты"
@@ -14,6 +15,18 @@
     @add="onMoneyCodeAdd"
     @remove="onMoneyCodeRemove"
   >
+    <template v-slot:selected-item="scope">
+      <q-chip
+          removable
+          dense
+          :tabindex="scope.tabindex"
+          @remove="() => {
+            onMoneyCodeRemove({ index: scope.tabindex })
+          }"
+      >
+        {{ scope.opt }}
+      </q-chip>
+    </template>
   </q-select>
 </template>
 
@@ -33,6 +46,8 @@ const onMoneyCodeRemove = ({ index }) => {
   props.onCodeRemove(index);
 };
 
+const getOptionLabel = (option) => `${option} (${rates[option]?.name})`;
+
 const props = defineProps({
   moneyCodes: {
     type: Array,
@@ -50,6 +65,8 @@ const props = defineProps({
 
 const dynamicMoneyCodes = ref(getMoneyCodes());
 
+const rates = getRates();
+
 const filter = (value, update) => {
   update(() => {
     if (value === "") {
@@ -57,9 +74,7 @@ const filter = (value, update) => {
     } else {
       const input = value.toLowerCase();
       dynamicMoneyCodes.value = getMoneyCodes().filter(
-        (code) =>
-          getRates()[code].name.toLowerCase().includes(input) ||
-          code.toLowerCase().startsWith(input)
+        (code) => rates[code].name.toLowerCase().includes(input) || code.toLowerCase().startsWith(input)
       );
     }
   });
