@@ -9,8 +9,6 @@ export const formatRatesXMLtoMap = (rates) => {
     const value = el.getElementsByTagName("Value")[0].textContent;
     const nominal = el.getElementsByTagName("Nominal")[0].textContent;
 
-    console.log(Number(value.replace(",", ".")), Number(nominal));
-
     ratesMap[charCode] = {
       numCode,
       value: Number(value.replace(",", ".")),

@@ -41,7 +41,6 @@ const getRows = (payment) => {
 };
 
 const edit = (payment, index) => {
-  console.log(index);
   openModalPage(modalName.modalPayment, {
     saveData: (newPayment) => {
       payment.payments[index] = newPayment;
