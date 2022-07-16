@@ -12,7 +12,8 @@
     type="number"
   />
   <q-input
-    v-model="store.currentReport.inactiveMembers"
+    :model-value="store.currentReport.inactiveMembers"
+    @update:model-value="onInactiveMembersInputChange"
     class="item"
     outlined
     label="Не явившиеся участники"
@@ -33,6 +34,7 @@ import HikeMainInfo from "@/components/hikeMainInfo/HikeMainInfo";
 import { hasPaymentsForMoneyCode } from "@/helpers/reports/hasPaymentsForMoneyCode";
 import NotificationDataSaved from "@/components/notificationDataSaved/NotificationDataSaved";
 import { useMutationEmitted } from "@/hooks/useMutationEmitted";
+import {toCamelCase} from "@/helpers/toCamelCase";
 
 const updateHikeName = (name) => {
   store.currentReport.name = name;
@@ -59,6 +61,8 @@ const onCodeSelect = (code) => {
 };
 
 const isNotificationVisible = useMutationEmitted(store.currentReport);
+
+const onInactiveMembersInputChange = (inactiveMembers) => store.currentReport.inactiveMembers = toCamelCase(inactiveMembers);
 </script>
 
 <style scoped>

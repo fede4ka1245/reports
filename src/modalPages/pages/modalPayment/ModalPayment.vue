@@ -2,7 +2,8 @@
   <text-header class="item">Добавить/передать оплату</text-header>
   <q-input
     v-if="props?.type === 'members'"
-    v-model="paymentData.payment.name"
+    :model-value="paymentData.payment.name"
+    @update:model-value="onMemberNameInputChange"
     outlined
     label="ФИО"
     class="item"
@@ -53,6 +54,7 @@ import PaymentInput from "@/components/paymentInput/PaymentInput";
 import TextHeader from "@/components/textHeader/TextHeader";
 import { cachedRequestInstructors } from "@/api/cachedRequests";
 import InputDate from "@/components/inputDate/InputDate";
+import { toCamelCase } from "@/helpers/toCamelCase";
 
 const onPaymentConfirm = () => {
   closeModalPage();
@@ -74,7 +76,6 @@ const format = (instructors) => {
 };
 
 const props = store.modalPages.props;
-console.log(props?.payment);
 
 const payment = {
   name: String(),
@@ -111,6 +112,10 @@ const isConfirmButtonDisabled = computed(() => {
 const onDateChange = (date) => {
   paymentData.payment.date = date;
 };
+
+const onMemberNameInputChange = (name) => {
+  paymentData.payment.name = toCamelCase(name);
+}
 
 async function filter(inputValue, update) {
   if (paymentData.instructors.length) {
