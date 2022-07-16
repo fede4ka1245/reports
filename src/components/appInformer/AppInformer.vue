@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="flex no-wrap margin-vertical">
-      <div class="text-grey-8">
+      <div class="text-grey-8 icon">
         <q-icon size="30px" name="error" />
       </div>
       <div>
@@ -14,5 +14,9 @@
 <style scoped>
 .margin-vertical {
   margin: 20px 0;
+}
+
+.icon {
+  margin-right: 10px;
 }
 </style>
