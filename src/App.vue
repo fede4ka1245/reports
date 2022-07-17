@@ -14,6 +14,7 @@ import { onMounted } from "vue";
 import { store } from "./store/store";
 import { getItem, setItem, storageKey } from "@/helpers/localStorage";
 import { watch } from "vue";
+import {sendCachedErrors} from "@/helpers/errors/sendCachedErrors";
 
 onMounted(() => {
   if (
@@ -25,6 +26,8 @@ onMounted(() => {
   if (getItem(storageKey.allReports)) {
     store.allReports = getItem(storageKey.allReports);
   }
+
+  sendCachedErrors();
 });
 
 watch(store, (store) => {

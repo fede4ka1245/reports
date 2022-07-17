@@ -48,26 +48,22 @@ export const modifyBalance = async () => {
   }
 
   for (let [moneyCode, balanceValue] of Array.from(Object.entries(balance))) {
-    try {
-      if (!balanceValue.date || !balanceValue.sum) {
-        continue;
-      }
-      if (moneyCode === "RUB") {
-        balanceValue.convertedSum = `${balanceValue.sum}`;
-        continue;
-      }
-
-      const [day, month, year] = balanceValue.date.split(".");
-
-      balanceValue.convertedSum = await convertToRUB(
-        balanceValue.sum,
-        moneyCode,
-        day,
-        month,
-        year
-      );
-    } catch (error) {
-      console.log(error);
+    if (!balanceValue.date || !balanceValue.sum) {
+      continue;
     }
+    if (moneyCode === "RUB") {
+      balanceValue.convertedSum = `${balanceValue.sum}`;
+      continue;
+    }
+
+    const [day, month, year] = balanceValue.date.split(".");
+
+    balanceValue.convertedSum = await convertToRUB(
+      balanceValue.sum,
+      moneyCode,
+      day,
+      month,
+      year
+    );
   }
 };
