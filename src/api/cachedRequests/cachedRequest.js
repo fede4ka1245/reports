@@ -1,5 +1,4 @@
 import { getItem, setItem } from "@/helpers/localStorage";
-import {sendError} from "@/helpers/errors/sendError";
 
 export const cachedRequest = (requestFunction, key) => {
   return async (...args) => {
@@ -10,8 +9,6 @@ export const cachedRequest = (requestFunction, key) => {
       setItem($key, result);
       return result;
     } catch (error) {
-      sendError(error);
-
       if (getItem($key)) {
         return getItem($key);
       }
