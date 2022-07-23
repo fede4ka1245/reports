@@ -19,9 +19,9 @@
       <q-chip
           removable
           dense
-          :tabindex="scope.tabindex"
+          :tabindex="scope.index"
           @remove="() => {
-            onMoneyCodeRemove({ index: scope.tabindex })
+            onMoneyCodeRemove({ index: scope.index })
           }"
       >
         {{ scope.opt }}
