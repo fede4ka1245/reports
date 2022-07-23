@@ -2,9 +2,7 @@
   <q-td>
     <q-btn round flat color="grey" icon="more_horiz">
       <q-menu style="width: 150px">
-        <q-list
-          v-if="store.currentReport?.key !== row?.key"
-        >
+        <q-list v-if="store.currentReport?.key !== row?.key">
           <q-item
             v-close-popup
             class="item"
@@ -25,7 +23,7 @@
 </template>
 
 <script setup>
-import {store} from "@/store/store";
+import { store } from "@/store/store";
 
 const props = defineProps({
   remove: {

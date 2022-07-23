@@ -15,14 +15,16 @@
     @add="onMoneyCodeAdd"
     @remove="onMoneyCodeRemove"
   >
-    <template v-slot:selected-item="scope">
+    <template #selected-item="scope">
       <q-chip
-          removable
-          dense
-          :tabindex="scope.index"
-          @remove="() => {
-            onMoneyCodeRemove({ index: scope.index })
-          }"
+        removable
+        dense
+        :tabindex="scope.index"
+        @remove="
+          () => {
+            onMoneyCodeRemove({ index: scope.index });
+          }
+        "
       >
         {{ scope.opt }}
       </q-chip>
@@ -74,7 +76,9 @@ const filter = (value, update) => {
     } else {
       const input = value.toLowerCase();
       dynamicMoneyCodes.value = getMoneyCodes().filter(
-        (code) => rates[code].name.toLowerCase().includes(input) || code.toLowerCase().startsWith(input)
+        (code) =>
+          rates[code].name.toLowerCase().includes(input) ||
+          code.toLowerCase().startsWith(input)
       );
     }
   });

@@ -5,5 +5,5 @@ export const storageKey = {
   instructors: "instructors",
   rates: "ratesXML",
   routes: "routes",
-  errors: "errors"
+  errors: "errors",
 };

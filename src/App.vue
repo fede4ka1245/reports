@@ -34,9 +34,9 @@ watch(store, (store) => {
 
 onMounted(() => {
   window.onerror = (msg) => {
-    alert(msg)
-  }
-})
+    alert(msg);
+  };
+});
 </script>
 
 <style>

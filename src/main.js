@@ -7,8 +7,8 @@ import { store } from "./store/store";
 import * as Sentry from "@sentry/vue";
 import { BrowserTracing } from "@sentry/tracing";
 import { Offline as OfflineIntegration } from "@sentry/integrations";
-import {Capacitor} from "@capacitor/core";
-import {Device} from "@capacitor/device";
+import { Capacitor } from "@capacitor/core";
+import { Device } from "@capacitor/device";
 
 const app = createApp(App);
 
@@ -31,14 +31,16 @@ Sentry.init({
   beforeSend: async (event, hint) => {
     const error = hint.originalException;
 
-    const deviceInformation = Capacitor.isNativePlatform() ? await Device.getInfo() : {};
+    const deviceInformation = Capacitor.isNativePlatform()
+      ? await Device.getInfo()
+      : {};
 
     event.extra = {
       errorName: error?.name || "unresolved error",
       error: String(error),
       currentReport: JSON.stringify(store.currentReport),
       allReports: JSON.stringify(store.allReports),
-      deviceInformation: JSON.stringify(deviceInformation)
+      deviceInformation: JSON.stringify(deviceInformation),
     };
 
     return event;

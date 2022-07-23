@@ -3,10 +3,10 @@
   <q-input
     v-if="props?.type === 'members'"
     :model-value="paymentData.payment.name"
-    @update:model-value="onMemberNameInputChange"
     outlined
     label="ФИО"
     class="item"
+    @update:model-value="onMemberNameInputChange"
   />
   <q-select
     v-if="props?.type === 'instructors'"
@@ -115,7 +115,7 @@ const onDateChange = (date) => {
 
 const onMemberNameInputChange = (name) => {
   paymentData.payment.name = toCamelCase(name);
-}
+};
 
 async function filter(inputValue, update) {
   if (paymentData.instructors.length) {

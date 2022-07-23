@@ -9,7 +9,7 @@
       class="btn"
       @click="props.confirmHandler"
     >
-      {{props.confirmationButtonLabel || "Сохранить"}}
+      {{ props.confirmationButtonLabel || "Сохранить" }}
     </q-btn>
   </section>
 </template>
@@ -32,7 +32,7 @@ const props = defineProps({
   confirmationButtonLabel: {
     type: String,
     default: "",
-  }
+  },
 });
 </script>
 
