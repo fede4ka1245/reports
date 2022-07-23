@@ -9,7 +9,6 @@
     <template #body-cell-edit-report="{ props }">
       <cell-edit-report
         :promote-to-current="tableProps.promoteToCurrent"
-        :download="tableProps.download"
         :remove="tableProps.remove"
         :row="props.row"
       />
@@ -29,10 +28,6 @@ const tableProps = defineProps({
     default: () => [],
   },
   remove: {
-    type: Function,
-    default: undefined,
-  },
-  download: {
     type: Function,
     default: undefined,
   },

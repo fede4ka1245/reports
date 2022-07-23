@@ -2,7 +2,9 @@
   <q-td>
     <q-btn round flat color="grey" icon="more_horiz">
       <q-menu style="width: 150px">
-        <q-list>
+        <q-list
+          v-if="store.currentReport?.key !== row?.key"
+        >
           <q-item
             v-close-popup
             class="item"
@@ -10,16 +12,6 @@
             @click="props.promoteToCurrent(props.row)"
           >
             Сделать текущим
-          </q-item>
-        </q-list>
-        <q-list>
-          <q-item
-            v-close-popup
-            style=""
-            clickable
-            @click="props.download(props.row)"
-          >
-            Скачать
           </q-item>
         </q-list>
         <q-list>
@@ -33,12 +25,10 @@
 </template>
 
 <script setup>
+import {store} from "@/store/store";
+
 const props = defineProps({
   remove: {
-    type: Function,
-    default: undefined,
-  },
-  download: {
     type: Function,
     default: undefined,
   },

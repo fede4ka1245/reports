@@ -4,7 +4,6 @@
     <routes-list-table
       :rows="rows"
       :columns="reportsColumns"
-      :download="download"
       :promote-to-current="promoteToCurrent"
       :remove="remove"
     />
@@ -20,7 +19,6 @@ import { reportsColumns } from "@/pages/allReports/panels/routesList/components/
 import { computed } from "vue";
 import { openModalPage } from "@/modalPages/helpers/openModalPage";
 import { modalName } from "@/modalPages/helpers/modalName";
-import { downloadHikeReport } from "@/helpers/downloadHikeReport";
 import { compareFormattedDates } from "@/helpers/compareFormattedDates";
 import RoutesListTable from "@/pages/allReports/panels/routesList/components/routesListTable/RoutesListTable";
 
@@ -76,10 +74,6 @@ const promoteToCurrent = (report) => {
   }
 
   store.currentReport = report;
-};
-
-const download = (report) => {
-  downloadHikeReport(report);
 };
 
 const buttonAddHandler = () => {
