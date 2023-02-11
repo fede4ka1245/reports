@@ -5,6 +5,7 @@
     :model-value="paymentData.payment.name"
     outlined
     label="ФИО"
+    :error="!paymentData.payment.name"
     class="item"
     @update:model-value="onMemberNameInputChange"
   />
@@ -14,6 +15,7 @@
     :model-value="paymentData.payment.name"
     :option-label="getInstructorSelectLabel"
     class="item"
+    :error="!paymentData.payment.name"
     outlined
     use-input
     label="ФИО инструктора/куратора"
@@ -24,18 +26,25 @@
     :code="paymentData.payment.moneyCode"
     :codes="props.moneyCodes"
     :sum="paymentData.payment.sum"
+    :sum-error="!paymentData.payment.sum"
+    :money-code-error="!paymentData.payment.moneyCode"
     :update-code="(code) => (paymentData.payment.moneyCode = code)"
     :update-sum="(sum) => (paymentData.payment.sum = sum)"
     class="item"
   />
   <q-input
     v-model="paymentData.payment.comment"
+    :error="!paymentData.payment.comment"
     type="textarea"
     outlined
     label="Комментарий"
     class="item"
   />
-  <input-date :date="paymentData.payment.date" :on-date-change="onDateChange" />
+  <input-date
+    :date="paymentData.payment.date"
+    :on-date-change="onDateChange"
+    :error="!paymentData.payment.date"
+  />
   <form-confirmation
     :dismiss-handler="closeModalPage"
     :confirm-handler="onPaymentConfirm"
@@ -105,7 +114,9 @@ const isConfirmButtonDisabled = computed(() => {
   return !(
     paymentData.payment.sum &&
     paymentData.payment.date &&
-    paymentData.payment.moneyCode
+    paymentData.payment.moneyCode &&
+    paymentData.payment.comment &&
+    paymentData.payment.name
   );
 });
 

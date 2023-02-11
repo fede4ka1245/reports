@@ -1,5 +1,11 @@
 <template>
-  <q-input outlined :model-value="props.date" place label="Дата">
+  <q-input
+    outlined
+    :model-value="props.date"
+    :error="props.error"
+    place
+    label="Дата"
+  >
     <q-popup-proxy ref="popup" color="orange" cover>
       <q-date
         :model-value="props.date"
@@ -25,6 +31,10 @@ const props = defineProps({
   onDateChange: {
     type: Function,
     required: true,
+  },
+  error: {
+    type: Boolean,
+    default: () => false,
   },
 });
 

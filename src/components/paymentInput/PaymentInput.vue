@@ -6,6 +6,7 @@
       label="Сумма"
       :model-value="props.sum"
       type="number"
+      :error="props.sumError"
       @update:model-value="(value) => props.updateSum(value)"
     />
     <q-select
@@ -15,6 +16,7 @@
       label="Валюта"
       :options="moneyCodes"
       :model-value="props.code"
+      :error="props.moneyCodeError"
       @update:model-value="props.updateCode"
       @filter="filter"
     />
@@ -44,6 +46,14 @@ const props = defineProps({
   updateSum: {
     type: Function,
     required: true,
+  },
+  moneyCodeError: {
+    type: Boolean,
+    default: () => false,
+  },
+  sumError: {
+    type: Boolean,
+    default: () => false,
   },
 });
 

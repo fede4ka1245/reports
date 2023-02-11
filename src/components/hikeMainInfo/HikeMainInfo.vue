@@ -9,6 +9,7 @@
     label="Маршрут"
     :model-value="props.hike.name"
     menu-self="center middle"
+    :error="props.isNameError"
     @update:model-value="onRouteUpdate"
     @filter="filterSearch"
   >
@@ -17,6 +18,7 @@
     :options="data.hikes"
     :option-label="getDateOptionLabel"
     :model-value="props.hike?.dates"
+    :error="props.isDateError"
     class="item"
     outlined
     label="Сроки"
@@ -44,6 +46,14 @@ const props = defineProps({
   updateHikeInformation: {
     type: Function,
     required: true,
+  },
+  isNameError: {
+    type: Boolean,
+    default: () => false,
+  },
+  isDateError: {
+    type: Boolean,
+    default: () => false,
   },
 });
 

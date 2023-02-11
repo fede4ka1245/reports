@@ -6,10 +6,12 @@
         v-model="conversion.from.moneyCode"
         label="валюта"
         :options="props.moneyCodes"
+        :error="!conversion.from.moneyCode"
         outlined
       />
       <q-input
         v-model="conversion.from.sum"
+        :error="!conversion.from.sum"
         outlined
         label="Сумма"
         type="number"
@@ -21,12 +23,14 @@
     <section class="sum">
       <q-select
         v-model="conversion.to.moneyCode"
+        :error="!conversion.to.moneyCode"
         label="валюта"
         :options="store.currentReport.moneyCodes"
         outlined
       />
       <q-input
         v-model="conversion.to.sum"
+        :error="!conversion.to.sum"
         outlined
         label="Сумма"
         type="number"
@@ -35,12 +39,17 @@
   </div>
   <q-input
     v-model="conversion.comment"
+    :error="!conversion.comment"
     type="textarea"
     outlined
     label="Расчет и комментарии"
     class="item"
   />
-  <input-date :date="conversion.date" :on-date-change="onDateChange" />
+  <input-date
+    :date="conversion.date"
+    :on-date-change="onDateChange"
+    :error="!conversion.date"
+  />
   <form-confirmation
     :dismiss-handler="closeModalPage"
     :confirm-handler="onConversionConfirm"
@@ -85,7 +94,8 @@ const isConfirmButtonDisabled = computed(() => {
     conversion.from.sum &&
     conversion.to.moneyCode &&
     conversion.to.sum &&
-    conversion.date
+    conversion.date &&
+    conversion.comment
   );
 });
 

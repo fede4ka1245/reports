@@ -4,6 +4,8 @@
     :hike="data"
     :update-hike-name="onHikeNameUpdate"
     :update-hike-information="onHikeInformationUpdate"
+    :is-name-error="!data?.name"
+    :is-date-error="!data?.dates"
   />
   <form-confirmation
     :dismiss-handler="closeModalPage"

@@ -7,6 +7,7 @@
     class="item"
     outlined
     label="Расход"
+    :error="!expense.category"
     @filter="filter"
   />
   <payment-input
@@ -15,6 +16,8 @@
     :sum="expense.sum"
     :update-code="(code) => (expense.moneyCode = code)"
     :update-sum="(sum) => (expense.sum = sum)"
+    :sum-error="!expense.sum"
+    :money-code-error="!expense.moneyCode"
     class="item"
   />
   <q-input
@@ -22,6 +25,7 @@
     type="textarea"
     outlined
     label="Описание расхода"
+    :error="!expense.description"
     class="item"
   />
   <q-input
@@ -29,9 +33,14 @@
     type="textarea"
     outlined
     label="Расчет и комментарии"
+    :error="!expense.comment"
     class="item"
   />
-  <input-date :date="expense.date" :on-date-change="onDateChange" />
+  <input-date
+    :date="expense.date"
+    :on-date-change="onDateChange"
+    :error="!expense.date"
+  />
   <form-confirmation
     :dismiss-handler="closeModalPage"
     :confirm-handler="onExpenseConfirm"
@@ -74,7 +83,9 @@ const isConfirmButtonDisabled = computed(() => {
     expense.sum &&
     expense.date &&
     expense.category &&
-    expense.moneyCode
+    expense.moneyCode &&
+    expense.description &&
+    expense.comment
   );
 });
 

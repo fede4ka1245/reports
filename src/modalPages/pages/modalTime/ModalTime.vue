@@ -1,6 +1,10 @@
 <template>
   <text-header class="item">Добавить/Редактировать время</text-header>
-  <input-date :date="data.date" :on-date-change="onDateChange" />
+  <input-date
+    :error="!data.date"
+    :date="data.date"
+    :on-date-change="onDateChange"
+  />
   <form-confirmation
     :dismiss-handler="closeModalPage"
     :confirm-handler="onConfirm"
