@@ -6,12 +6,12 @@ export function createHeaderCell(cell, value) {
   cell.fill = {
     type: "pattern",
     pattern: "solid",
-    fgColor: { argb: "D9D9D9" },
+    fgColor: { argb: "b7b7b7" },
   };
   cell.border = {
-    top: { style: "thin", color: { argb: "C2C3C3" } },
-    left: { style: "thin", color: { argb: "C2C3C3" } },
-    bottom: { style: "thin", color: { argb: "C2C3C3" } },
-    right: { style: "thin", color: { argb: "C2C3C3" } },
+    top: { style: "thin", color: { argb: "a5a5a6" } },
+    left: { style: "thin", color: { argb: "a5a5a6" } },
+    bottom: { style: "thin", color: { argb: "a5a5a6" } },
+    right: { style: "thin", color: { argb: "a5a5a6" } },
   };
 }

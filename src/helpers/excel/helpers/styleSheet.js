@@ -19,6 +19,44 @@ export function styleSheet(sheet) {
         horizontal: "center",
         vertical: "middle",
       };
+
+      if (
+        columnIndex === columnCount &&
+        sheet.getCell(rowIndex, columnIndex).border
+      ) {
+        sheet.getCell(rowIndex, columnIndex).border.right = {
+          style: "thin",
+          color: { argb: "000000" },
+        };
+      }
+
+      if (
+        columnIndex === columnCount &&
+        !sheet.getCell(rowIndex, columnIndex).border
+      ) {
+        sheet.getCell(rowIndex, columnIndex).border = {
+          right: { style: "thin", color: { argb: "000000" } },
+        };
+      }
+
+      if (
+        rowIndex === rowCount &&
+        sheet.getCell(rowIndex, columnIndex).border
+      ) {
+        sheet.getCell(rowIndex, columnIndex).border.bottom = {
+          style: "thin",
+          color: { argb: "000000" },
+        };
+      }
+
+      if (
+        rowIndex === rowCount &&
+        !sheet.getCell(rowIndex, columnIndex).border
+      ) {
+        sheet.getCell(rowIndex, columnIndex).border = {
+          bottom: { style: "thin", color: { argb: "000000" } },
+        };
+      }
     }
   }
 }

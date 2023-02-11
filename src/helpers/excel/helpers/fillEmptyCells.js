@@ -9,7 +9,7 @@ export function fillEmptyCells(sheet) {
       sheet.getCell(rowIndex, columnIndex).fill = {
         type: "pattern",
         pattern: "solid",
-        fgColor: { argb: "999999" },
+        fgColor: { argb: "d9d9d9" },
       };
     }
   }

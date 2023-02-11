@@ -1,4 +1,5 @@
 import { createHeaderCell } from "@/helpers/excel/helpers/createHeaderCell";
+import { setDivider } from "@/helpers/excel/helpers/setDivider";
 
 export function setHikeInformation(sheet, hikeInformation) {
   let rowIndex = sheet.rowCount + 1;
@@ -15,28 +16,41 @@ export function setHikeInformation(sheet, hikeInformation) {
   sheet.getCell(rowIndex, 2).value = hikeInformation.dates;
   rowIndex += 1;
 
-  createHeaderCell(sheet.getCell(4, 1), "Реальное количество участников");
+  const instructorsPayments = hikeInformation.outgoingPayments.find(
+    (payment) => payment.label === "Доходы инструктора"
+  );
+
+  const instructorsLabel = [
+    ...instructorsPayments.payments.map(({ name, id }) => `${name} [${id.id}]`),
+  ].join(", ");
+
+  createHeaderCell(sheet.getCell(4, 1), "Инструкторы");
+  sheet.getCell(rowIndex, 2).value = instructorsLabel || "-";
+  rowIndex += 1;
+
+  createHeaderCell(sheet.getCell(5, 1), "Реальное количество участников");
   sheet.getCell(rowIndex, 2).value = hikeInformation.members;
   rowIndex += 1;
 
-  createHeaderCell(sheet.getCell(5, 1), "Не явившиеся участники");
+  createHeaderCell(sheet.getCell(6, 1), "Не явившиеся участники");
   sheet.getCell(rowIndex, 2).value = hikeInformation.inactiveMembers;
-  rowIndex += 3;
+  rowIndex += 1;
+  setDivider(sheet);
 
   createHeaderCell(sheet.getCell(rowIndex, 1), "Итого");
   rowIndex += 1;
 
-  createHeaderCell(sheet.getCell(rowIndex, 2), "Валюта");
-  createHeaderCell(sheet.getCell(rowIndex, 3), "Итого");
-  createHeaderCell(sheet.getCell(rowIndex, 4), "Итого на руках");
+  createHeaderCell(sheet.getCell(rowIndex, 2), "Итого");
+  createHeaderCell(sheet.getCell(rowIndex, 3), "Итого на руках");
+  createHeaderCell(sheet.getCell(rowIndex, 4), "Валюта");
   rowIndex += 1;
 
   if (!hikeInformation.balance?.length) return;
 
   for (let i = 0; i < hikeInformation.balance?.length; i++) {
-    sheet.getCell(rowIndex, 2).value = hikeInformation.balance[i].moneyCode;
-    sheet.getCell(rowIndex, 3).value = hikeInformation.balance[i].result;
-    sheet.getCell(rowIndex, 4).value = hikeInformation.balance[i].profit;
+    sheet.getCell(rowIndex, 2).value = hikeInformation.balance[i].result;
+    sheet.getCell(rowIndex, 3).value = hikeInformation.balance[i].profit;
+    sheet.getCell(rowIndex, 4).value = hikeInformation.balance[i].moneyCode;
     rowIndex += 1;
   }
 }

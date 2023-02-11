@@ -9,13 +9,17 @@ export function setGroupedExpenses(sheet, expenses) {
 
   createHeaderCell(sheet.getCell(rowIndex, 2), "Категория");
   createHeaderCell(sheet.getCell(rowIndex, 3), "Сумма");
+  createHeaderCell(sheet.getCell(rowIndex, 4), "Валюта");
   rowIndex += 1;
 
   for (let expense of groupExpenses(expenses)) {
     sheet.getCell(rowIndex, 2).value = expense.category;
     sheet.getCell(rowIndex, 3).value = expense.isUncountable
       ? "-"
-      : `${expense.sum} ${expense.moneyCode}`;
+      : expense.sum;
+    sheet.getCell(rowIndex, 4).value = expense.isUncountable
+      ? "-"
+      : expense.moneyCode;
 
     rowIndex += 1;
   }

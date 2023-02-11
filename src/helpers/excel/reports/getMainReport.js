@@ -8,15 +8,15 @@ import {
   setHikeInformation,
   setPayments,
 } from "@/helpers/excel/sheetDataSetters";
-import { setPadding } from "@/helpers/excel/helpers/setPadding";
+import { setDivider } from "@/helpers/excel/helpers/setDivider";
 import { getHikeReportName } from "@/helpers/reports/getHikeReportName";
+import { setPaymentsResult } from "@/helpers/excel/sheetDataSetters/setPaymentsResult";
+import { groupExpenses } from "@/helpers/reports/groupExpenses";
 
 export const getMainReport = (reportData) => {
   const workbook = new ExcelJS.Workbook();
 
-  const sheet = workbook.addWorksheet("Общее", {
-    properties: { tabColor: { argb: "FFC0000" } },
-  });
+  const sheet = workbook.addWorksheet("Общее");
 
   let rowIndex = 1;
   createHeaderCell(sheet.getCell(rowIndex, 1), "Общий баланс инструктора");
@@ -34,30 +34,53 @@ export const getMainReport = (reportData) => {
     rowIndex += 1;
   }
 
-  setPadding(sheet);
+  setDivider(sheet);
   setPayments(sheet, reportData.outgoingPayments);
-  setPadding(sheet);
+  setDivider(sheet);
   setPayments(sheet, reportData.incomingPayments);
 
   styleSheet(sheet);
 
   for (let report of reportData.reports) {
-    const sheet = workbook.addWorksheet(getHikeReportName(report), {
-      properties: { tabColor: { argb: "FFC0000" } },
-    });
+    const sheet = workbook.addWorksheet(getHikeReportName(report));
 
     setHikeInformation(sheet, report);
-    setPayments(sheet, report.outgoingPayments);
-    setPadding(sheet);
+    setPayments(
+      sheet,
+      report.outgoingPayments.filter(
+        (payment) => payment.label !== "Доходы инструктора"
+      )
+    );
+    setDivider(sheet);
     setCommonPayments(sheet, report.moneySums);
-    setPadding(sheet);
+    setDivider(sheet);
     setPayments(sheet, report.incomingPayments);
-    setPadding(sheet);
+    setDivider(sheet);
     setExpenses(sheet, report.expenses);
-    setPadding(sheet);
-    setGroupedExpenses(sheet, report.expenses);
-    setPadding(sheet);
+    setPaymentsResult(sheet, report.expenses);
+    setDivider(sheet);
+    setPayments(
+      sheet,
+      report.outgoingPayments.filter(
+        (payment) => payment.label === "Доходы инструктора"
+      )
+    );
+    setPaymentsResult(
+      sheet,
+      report.outgoingPayments.find(
+        (payment) => payment.label === "Доходы инструктора"
+      ).payments
+    );
+    setDivider(sheet);
+    setGroupedExpenses(sheet, groupExpenses(report.expenses));
+    setPaymentsResult(sheet, [
+      ...groupExpenses(report.expenses).filter(
+        ({ isUncountable }) => !isUncountable
+      ),
+    ]);
+    setDivider(sheet);
     setConversions(sheet, report.conversions);
+
     styleSheet(sheet);
   }
 

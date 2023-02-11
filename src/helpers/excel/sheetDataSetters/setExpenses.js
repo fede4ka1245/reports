@@ -8,15 +8,17 @@ export function setExpenses(sheet, expenses) {
 
   createHeaderCell(sheet.getCell(rowIndex, 2), "Категория");
   createHeaderCell(sheet.getCell(rowIndex, 3), "Сумма");
-  createHeaderCell(sheet.getCell(rowIndex, 4), "Дата");
-  createHeaderCell(sheet.getCell(rowIndex, 5), "Комментарий");
+  createHeaderCell(sheet.getCell(rowIndex, 4), "Валюта");
+  createHeaderCell(sheet.getCell(rowIndex, 5), "Дата");
+  createHeaderCell(sheet.getCell(rowIndex, 6), "Комментарий");
   rowIndex += 1;
 
   for (let expense of expenses) {
     sheet.getCell(rowIndex, 2).value = expense.category;
-    sheet.getCell(rowIndex, 3).value = `${expense.sum} ${expense.moneyCode}`;
-    sheet.getCell(rowIndex, 4).value = expense.date;
-    sheet.getCell(rowIndex, 5).value = expense.comment;
+    sheet.getCell(rowIndex, 3).value = expense.sum;
+    sheet.getCell(rowIndex, 4).value = expense.moneyCode;
+    sheet.getCell(rowIndex, 5).value = expense.date;
+    sheet.getCell(rowIndex, 6).value = expense.comment;
 
     rowIndex += 1;
   }
