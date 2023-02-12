@@ -1,6 +1,8 @@
 import { createHeaderCell } from "@/helpers/excel/helpers/createHeaderCell";
+import {setDivider} from "@/helpers/excel/helpers/setDivider";
 
 export function setPayments(sheet, outgoingPayments) {
+  setDivider(sheet);
   let rowIndex = sheet.rowCount + 1;
 
   for (let payment of outgoingPayments) {
@@ -39,5 +41,7 @@ export function setPayments(sheet, outgoingPayments) {
       sheet.getCell(rowIndex, 6).value = payments[i].comment || "-";
       rowIndex += 1;
     }
+
+    setDivider(sheet);
   }
 }
