@@ -1,7 +1,7 @@
 <template>
   <text-header class="item">Добавить/Редактировать время</text-header>
   <input-date
-    :error="!data.date"
+    :error="!data.date && state.isError"
     :date="data.date"
     :on-date-change="onDateChange"
   />
@@ -9,6 +9,7 @@
     :dismiss-handler="closeModalPage"
     :confirm-handler="onConfirm"
     :is-confirm-button-disabled="isConfirmButtonDisabled"
+    :on-disabled-button-click="activateError"
     class="item"
   />
 </template>
@@ -37,6 +38,13 @@ const data = reactive({
 const isConfirmButtonDisabled = computed(() => {
   return !data.date;
 });
+
+const state = reactive({ isError: false });
+const activateError = () => {
+  if (isConfirmButtonDisabled) {
+    state.isError = true;
+  }
+}
 
 const onDateChange = (date) => {
   data.date = date;

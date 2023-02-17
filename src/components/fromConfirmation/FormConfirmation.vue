@@ -1,16 +1,20 @@
 <template>
   <section>
-    <q-btn color="orange" outline class="btn" @click="props.dismissHandler">
-      Отмена
-    </q-btn>
-    <q-btn
-      :disable="isConfirmButtonDisabled"
-      color="orange"
-      class="btn"
-      @click="props.confirmHandler"
-    >
-      {{ props.confirmationButtonLabel || "Сохранить" }}
-    </q-btn>
+    <div style="width: calc(50% - 5px)">
+      <q-btn color="orange" outline class="btn" @click="props.dismissHandler">
+        Отмена
+      </q-btn>
+    </div>
+    <div style="width: calc(50% - 5px)" @click="props.onDisabledButtonClick">
+      <q-btn
+          :disable="isConfirmButtonDisabled"
+          color="orange"
+          class="btn"
+          @click="props.confirmHandler"
+      >
+        {{ props.confirmationButtonLabel || "Сохранить" }}
+      </q-btn>
+    </div>
   </section>
 </template>
 
@@ -23,6 +27,10 @@ const props = defineProps({
   confirmHandler: {
     type: Function,
     required: true,
+  },
+  onDisabledButtonClick: {
+    type: Function,
+    default: () => {},
   },
   isConfirmButtonDisabled: {
     type: Boolean,
@@ -44,6 +52,6 @@ section {
 }
 
 .btn {
-  width: 49%;
+  width: 100%;
 }
 </style>

@@ -7,7 +7,7 @@
     class="item"
     outlined
     label="Расход"
-    :error="!expense.category"
+    :error="!expense.category && state.isError"
     @filter="filter"
   />
   <payment-input
@@ -16,8 +16,8 @@
     :sum="expense.sum"
     :update-code="(code) => (expense.moneyCode = code)"
     :update-sum="(sum) => (expense.sum = sum)"
-    :sum-error="!expense.sum"
-    :money-code-error="!expense.moneyCode"
+    :sum-error="!expense.sum && state.isError"
+    :money-code-error="!expense.moneyCode && state.isError"
     class="item"
   />
   <q-input
@@ -25,7 +25,7 @@
     type="textarea"
     outlined
     label="Описание расхода"
-    :error="!expense.description"
+    :error="!expense.description && state.isError"
     class="item"
   />
   <q-input
@@ -33,17 +33,18 @@
     type="textarea"
     outlined
     label="Расчет и комментарии"
-    :error="!expense.comment"
+    :error="!expense.comment && state.isError"
     class="item"
   />
   <input-date
     :date="expense.date"
     :on-date-change="onDateChange"
-    :error="!expense.date"
+    :error="!expense.date && state.isError"
   />
   <form-confirmation
     :dismiss-handler="closeModalPage"
     :confirm-handler="onExpenseConfirm"
+    :on-disabled-button-click="activateError"
     :is-confirm-button-disabled="isConfirmButtonDisabled"
   />
 </template>
@@ -88,6 +89,13 @@ const isConfirmButtonDisabled = computed(() => {
     expense.comment
   );
 });
+
+const state = reactive({ isError: false });
+const activateError = () => {
+  if (isConfirmButtonDisabled) {
+    state.isError = true;
+  }
+}
 
 const onDateChange = (date) => {
   expense.date = date;

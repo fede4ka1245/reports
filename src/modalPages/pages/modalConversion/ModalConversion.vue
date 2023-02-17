@@ -6,12 +6,12 @@
         v-model="conversion.from.moneyCode"
         label="валюта"
         :options="props.moneyCodes"
-        :error="!conversion.from.moneyCode"
+        :error="!conversion.from.moneyCode && state.isError || !!conversion.to.moneyCode && conversion.to.moneyCode === conversion.from.moneyCode"
         outlined
       />
       <q-input
         v-model="conversion.from.sum"
-        :error="!conversion.from.sum"
+        :error="!conversion.from.sum && state.isError"
         outlined
         label="Сумма"
         type="number"
@@ -23,14 +23,14 @@
     <section class="sum">
       <q-select
         v-model="conversion.to.moneyCode"
-        :error="!conversion.to.moneyCode"
+        :error="!conversion.to.moneyCode && state.isError || !!conversion.to.moneyCode && conversion.to.moneyCode === conversion.from.moneyCode"
         label="валюта"
         :options="store.currentReport.moneyCodes"
         outlined
       />
       <q-input
         v-model="conversion.to.sum"
-        :error="!conversion.to.sum"
+        :error="!conversion.to.sum && state.isError"
         outlined
         label="Сумма"
         type="number"
@@ -39,7 +39,7 @@
   </div>
   <q-input
     v-model="conversion.comment"
-    :error="!conversion.comment"
+    :error="!conversion.comment && state.isError"
     type="textarea"
     outlined
     label="Расчет и комментарии"
@@ -48,12 +48,13 @@
   <input-date
     :date="conversion.date"
     :on-date-change="onDateChange"
-    :error="!conversion.date"
+    :error="!conversion.date && state.isError"
   />
   <form-confirmation
     :dismiss-handler="closeModalPage"
     :confirm-handler="onConversionConfirm"
     :is-confirm-button-disabled="isConfirmButtonDisabled"
+    :on-disabled-button-click="activateError"
     class="item"
   />
 </template>
@@ -95,9 +96,17 @@ const isConfirmButtonDisabled = computed(() => {
     conversion.to.moneyCode &&
     conversion.to.sum &&
     conversion.date &&
-    conversion.comment
+    conversion.comment &&
+    conversion.to.moneyCode !== conversion.from.moneyCode
   );
 });
+
+const state = reactive({ isError: false });
+const activateError = () => {
+  if (isConfirmButtonDisabled) {
+    state.isError = true;
+  }
+}
 
 const onDateChange = (date) => {
   conversion.date = date;

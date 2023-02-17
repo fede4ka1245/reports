@@ -4,13 +4,14 @@
     :hike="data"
     :update-hike-name="onHikeNameUpdate"
     :update-hike-information="onHikeInformationUpdate"
-    :is-name-error="!data?.name"
-    :is-date-error="!data?.dates"
+    :is-name-error="!data?.name && state.isError"
+    :is-date-error="!data?.dates && state.isError"
   />
   <form-confirmation
     :dismiss-handler="closeModalPage"
     :confirm-handler="onConfirm"
     :is-confirm-button-disabled="isConfirmButtonDisabled"
+    :on-disabled-button-click="activateError"
   />
 </template>
 
@@ -42,6 +43,13 @@ const onHikeInformationUpdate = (dates, hikeId) => {
 const onHikeNameUpdate = (name) => {
   data.name = name;
 };
+
+const state = reactive({ isError: false });
+const activateError = () => {
+  if (isConfirmButtonDisabled) {
+    state.isError = true;
+  }
+}
 
 const onConfirm = () => {
   const report = {

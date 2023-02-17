@@ -5,7 +5,7 @@
     :model-value="paymentData.payment.name"
     outlined
     label="ФИО"
-    :error="!paymentData.payment.name"
+    :error="!paymentData.payment.name && state.isError"
     class="item"
     @update:model-value="onMemberNameInputChange"
   />
@@ -15,7 +15,7 @@
     :model-value="paymentData.payment.name"
     :option-label="getInstructorSelectLabel"
     class="item"
-    :error="!paymentData.payment.name"
+    :error="!paymentData.payment.name && state.isError"
     outlined
     use-input
     label="ФИО инструктора/куратора"
@@ -26,15 +26,15 @@
     :code="paymentData.payment.moneyCode"
     :codes="props.moneyCodes"
     :sum="paymentData.payment.sum"
-    :sum-error="!paymentData.payment.sum"
-    :money-code-error="!paymentData.payment.moneyCode"
+    :sum-error="!paymentData.payment.sum && state.isError"
+    :money-code-error="!paymentData.payment.moneyCode && state.isError"
     :update-code="(code) => (paymentData.payment.moneyCode = code)"
     :update-sum="(sum) => (paymentData.payment.sum = sum)"
     class="item"
   />
   <q-input
     v-model="paymentData.payment.comment"
-    :error="!paymentData.payment.comment"
+    :error="!paymentData.payment.comment && state.isError"
     type="textarea"
     outlined
     label="Комментарий"
@@ -43,12 +43,13 @@
   <input-date
     :date="paymentData.payment.date"
     :on-date-change="onDateChange"
-    :error="!paymentData.payment.date"
+    :error="!paymentData.payment.date && state.isError"
   />
   <form-confirmation
     :dismiss-handler="closeModalPage"
     :confirm-handler="onPaymentConfirm"
     :is-confirm-button-disabled="isConfirmButtonDisabled"
+    :on-disabled-button-click="activateError"
     class="item"
   />
 </template>
@@ -101,6 +102,13 @@ const paymentData = reactive({
   instructors: [],
 });
 let instructors = [];
+
+const state = reactive({ isError: false });
+const activateError = () => {
+  if (isConfirmButtonDisabled) {
+    state.isError = true;
+  }
+}
 
 const onInstructorUpdate = (instructor) => {
   paymentData.payment.id = instructor || "";
