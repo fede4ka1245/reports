@@ -7,10 +7,10 @@
     </div>
     <div style="width: calc(50% - 5px)" @click="props.onDisabledButtonClick">
       <q-btn
-          :disable="isConfirmButtonDisabled"
-          color="orange"
-          class="btn"
-          @click="props.confirmHandler"
+        :disable="isConfirmButtonDisabled"
+        color="orange"
+        class="btn"
+        @click="props.confirmHandler"
       >
         {{ props.confirmationButtonLabel || "Сохранить" }}
       </q-btn>

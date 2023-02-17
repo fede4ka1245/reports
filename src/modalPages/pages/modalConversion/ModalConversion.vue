@@ -6,7 +6,11 @@
         v-model="conversion.from.moneyCode"
         label="валюта"
         :options="props.moneyCodes"
-        :error="!conversion.from.moneyCode && state.isError || !!conversion.to.moneyCode && conversion.to.moneyCode === conversion.from.moneyCode"
+        :error="
+          (!conversion.from.moneyCode && state.isError) ||
+          (!!conversion.to.moneyCode &&
+            conversion.to.moneyCode === conversion.from.moneyCode)
+        "
         outlined
       />
       <q-input
@@ -23,7 +27,11 @@
     <section class="sum">
       <q-select
         v-model="conversion.to.moneyCode"
-        :error="!conversion.to.moneyCode && state.isError || !!conversion.to.moneyCode && conversion.to.moneyCode === conversion.from.moneyCode"
+        :error="
+          (!conversion.to.moneyCode && state.isError) ||
+          (!!conversion.to.moneyCode &&
+            conversion.to.moneyCode === conversion.from.moneyCode)
+        "
         label="валюта"
         :options="store.currentReport.moneyCodes"
         outlined
@@ -103,10 +111,10 @@ const isConfirmButtonDisabled = computed(() => {
 
 const state = reactive({ isError: false });
 const activateError = () => {
-  if (isConfirmButtonDisabled) {
+  if (isConfirmButtonDisabled.value) {
     state.isError = true;
   }
-}
+};
 
 const onDateChange = (date) => {
   conversion.date = date;

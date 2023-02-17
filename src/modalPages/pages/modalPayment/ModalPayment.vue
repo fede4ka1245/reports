@@ -105,10 +105,10 @@ let instructors = [];
 
 const state = reactive({ isError: false });
 const activateError = () => {
-  if (isConfirmButtonDisabled) {
+  if (isConfirmButtonDisabled.value) {
     state.isError = true;
   }
-}
+};
 
 const onInstructorUpdate = (instructor) => {
   paymentData.payment.id = instructor || "";
@@ -124,7 +124,8 @@ const isConfirmButtonDisabled = computed(() => {
     paymentData.payment.date &&
     paymentData.payment.moneyCode &&
     paymentData.payment.comment &&
-      (paymentData.payment.name || (props?.type !== 'instructors' && props?.type !== 'members'))
+    (paymentData.payment.name ||
+      (props?.type !== "instructors" && props?.type !== "members"))
   );
 });
 

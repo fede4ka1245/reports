@@ -46,10 +46,10 @@ const onHikeNameUpdate = (name) => {
 
 const state = reactive({ isError: false });
 const activateError = () => {
-  if (isConfirmButtonDisabled) {
+  if (isConfirmButtonDisabled.value) {
     state.isError = true;
   }
-}
+};
 
 const onConfirm = () => {
   const report = {

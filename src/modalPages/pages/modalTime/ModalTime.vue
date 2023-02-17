@@ -41,10 +41,10 @@ const isConfirmButtonDisabled = computed(() => {
 
 const state = reactive({ isError: false });
 const activateError = () => {
-  if (isConfirmButtonDisabled) {
+  if (isConfirmButtonDisabled.value) {
     state.isError = true;
   }
-}
+};
 
 const onDateChange = (date) => {
   data.date = date;

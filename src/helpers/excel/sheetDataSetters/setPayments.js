@@ -1,5 +1,5 @@
 import { createHeaderCell } from "@/helpers/excel/helpers/createHeaderCell";
-import {setDivider} from "@/helpers/excel/helpers/setDivider";
+import { setDivider } from "@/helpers/excel/helpers/setDivider";
 
 export function setPayments(sheet, outgoingPayments) {
   setDivider(sheet);
