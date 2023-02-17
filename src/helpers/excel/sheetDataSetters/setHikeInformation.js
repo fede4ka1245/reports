@@ -48,8 +48,8 @@ export function setHikeInformation(sheet, hikeInformation) {
   if (!hikeInformation.balance?.length) return;
 
   for (let i = 0; i < hikeInformation.balance?.length; i++) {
-    sheet.getCell(rowIndex, 2).value = hikeInformation.balance[i].result;
-    sheet.getCell(rowIndex, 3).value = hikeInformation.balance[i].profit;
+    sheet.getCell(rowIndex, 2).value = hikeInformation.balance[i].result || 0;
+    sheet.getCell(rowIndex, 3).value = hikeInformation.balance[i].profit || 0;
     sheet.getCell(rowIndex, 4).value = hikeInformation.balance[i].moneyCode;
     rowIndex += 1;
   }
