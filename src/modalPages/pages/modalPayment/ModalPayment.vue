@@ -116,7 +116,7 @@ const isConfirmButtonDisabled = computed(() => {
     paymentData.payment.date &&
     paymentData.payment.moneyCode &&
     paymentData.payment.comment &&
-    paymentData.payment.name
+      (paymentData.payment.name || (props?.type !== 'instructors' && props?.type !== 'members'))
   );
 });
 
