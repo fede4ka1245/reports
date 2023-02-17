@@ -1,5 +1,6 @@
 import { setColumnsWidth } from "@/helpers/excel/helpers/setColumnsWidth";
 import { fillEmptyCells } from "@/helpers/excel/helpers/fillEmptyCells";
+import {castWorksheetStringsToNumbers} from "@/helpers/excel/helpers/castWorksheetStringsToNumbers";
 
 export function styleSheet(sheet) {
   setColumnsWidth(sheet, 36);
@@ -59,4 +60,6 @@ export function styleSheet(sheet) {
       }
     }
   }
+
+  castWorksheetStringsToNumbers(sheet);
 }
