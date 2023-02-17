@@ -21,7 +21,7 @@ export function setHikeInformation(sheet, hikeInformation) {
   );
 
   const instructorsLabel = [
-    ...instructorsPayments.payments.map(({ name, id }) => `${name} [${id.id}]`),
+    ...instructorsPayments.payments.map(({ name, id }) => `[${id.id}] ${name}`),
   ].join(", ");
 
   createHeaderCell(sheet.getCell(4, 1), "Инструкторы");

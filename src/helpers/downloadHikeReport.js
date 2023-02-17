@@ -1,6 +1,5 @@
 import { getHikeReport } from "@/helpers/excel/reports/getHikeReport";
 import { downloadXLSX } from "@/helpers/downloadXLSX";
-import { FileOpener } from "@awesome-cordova-plugins/file-opener/";
 import { sendFileDownloadedNotification } from "@/helpers/notifications/sendFileDownloadedNotification";
 import { getHikeReportName } from "@/helpers/reports/getHikeReportName";
 
