@@ -12,6 +12,10 @@ export const countResultForMoneyCode = (currentReport, code) => {
   }
 
   for (let incomingPayment of currentReport.incomingPayments) {
+    if (incomingPayment.type === 'members') {
+      continue;
+    }
+
     for (let payment of incomingPayment.payments) {
       if (payment.moneyCode === code) {
         result += Number(payment.sum);
