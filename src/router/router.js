@@ -15,7 +15,7 @@ export const routes = {
   current: {
     path: "/current",
     component: CurrentReport,
-    children: Array.from(Object.values(currentReportRoutes)),
+    children: Array.from(Object.values(currentReportRoutes)) || [],
     redirect: () => {
       return { path: `/current/${currentReportRoutes.common.path}` };
     },
@@ -23,7 +23,7 @@ export const routes = {
   allReports: {
     path: "/all-reports",
     component: AllReports,
-    children: Array.from(Object.values(allReportRoutes)),
+    children: Array.from(Object.values(allReportRoutes)) || [],
     redirect: () => {
       return { path: `/all-reports/${allReportRoutes.RoutesList.path}` };
     },
