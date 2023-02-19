@@ -12,7 +12,7 @@
       </q-th>
     </template>
     <template #header-cell-sum="{ props }">
-      <q-th style="width: calc(40% - 48px)">
+      <q-th style="width: 30%">
         {{ props.col.label }}
       </q-th>
     </template>
@@ -27,7 +27,7 @@
       </q-th>
     </template>
     <template #header-cell-edit="{ props }">
-      <q-th style="width: 48px">
+      <q-th style="width: 43px">
         {{ props.col.label }}
       </q-th>
     </template>
