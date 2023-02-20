@@ -33,12 +33,12 @@
     "exceljs": "^4.3.0",
     "jetifier": "^2.0.0",
     "nanoid": "^3.3.4",
-    "quasar": "^2.0.0",
+    "quasar": "^2.11.6",
     "vue": "^3.2.13",
     "vue-router": "^4.0.15"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.16",
+    "@babel/core": "^7.20.12",
     "@babel/eslint-parser": "^7.12.16",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
