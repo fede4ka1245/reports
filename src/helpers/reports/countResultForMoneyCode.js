@@ -12,7 +12,7 @@ export const countResultForMoneyCode = (currentReport, code) => {
   }
 
   for (let incomingPayment of currentReport.incomingPayments) {
-    if (incomingPayment.type === 'members') {
+    if (incomingPayment.type === "members") {
       continue;
     }
 

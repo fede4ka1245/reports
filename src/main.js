@@ -10,6 +10,17 @@ import { Offline as OfflineIntegration } from "@sentry/integrations";
 import { Capacitor } from "@capacitor/core";
 import { Device } from "@capacitor/device";
 
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .register("/sw.js")
+    .then((serviceWorker) => {
+      console.log("Service Worker registered: ", serviceWorker);
+    })
+    .catch((error) => {
+      console.error("Error registering the Service Worker: ", error);
+    });
+}
+
 const app = createApp(App);
 
 app.use(router);

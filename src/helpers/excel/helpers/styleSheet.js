@@ -19,7 +19,7 @@ export function styleSheet(sheet) {
       sheet.getCell(rowIndex, columnIndex).alignment = {
         horizontal: "center",
         vertical: "middle",
-        wrapText: true
+        wrapText: true,
       };
 
       if (
