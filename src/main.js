@@ -31,7 +31,7 @@ app.mount("#app");
 
 Sentry.init({
   app,
-  dsn: "https://d0083a8391be4737afb7bccfc1f7354f@o877535.ingest.sentry.io/6567756",
+  dsn: process.env.SENTRY_URL,
   integrations: [
     new BrowserTracing({
       routingInstrumentation: Sentry.vueRouterInstrumentation(router),

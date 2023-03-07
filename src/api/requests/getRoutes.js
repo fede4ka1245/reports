@@ -1,5 +1,5 @@
 import { request } from "@/api/requests/request";
 
 export const getRoutes = async () => {
-  return request("https://www.vpoxod.ru/app/routes");
+  return request(`${process.env.VUE_APP_API_URL}/app/routes`);
 };

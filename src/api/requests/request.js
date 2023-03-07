@@ -1,6 +1,6 @@
 export const request = async (url) => {
-  let username = "appuser";
-  let password = "rRDFazvmtVuQ4W6W";
+  let username = process.env.VUE_APP_API_USERNAME;
+  let password = process.env.VUE_APP_API_PASSWORD;
 
   let headers = new Headers();
 
