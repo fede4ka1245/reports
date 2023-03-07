@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  reports:
+    env_file:
+      - .env
+    container_name: reports
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    ports:
+      - '8080:80'
