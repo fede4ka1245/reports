@@ -1,39 +1,31 @@
 <template>
-  <section class="content">
+  <section class="content container">
     <text-header class="item">
       Хотите сообщить об ошибке или оставить отзыв о работе приложения?
     </text-header>
-    <q-input
-      v-model="errorData.description"
-      type="textarea"
-      outlined
-      label="Текст фидбэка"
+    <q-btn
       class="item"
+      color="orange"
+      icon="telegram"
+      label="Написать фидбэк"
+      @click="onFeedbackButtonClick"
+      no-caps
     />
-    <q-input v-model="errorData.name" outlined label="Твое имя" class="item" />
-    <app-informer>
+    <app-informer
+      class="item"
+    >
       <p>
-        Далее вы будете перенаправлены в почтовое приложение вашего телефона,
-        где сможете прикрепить необходимые скриншоты или видео, и отправить
-        письмо нам.
+        Вы будете перенаправлены в телеграм, где сможете прикрепить необходимые скриншоты или видео, и отправить сообщение об ошибке или пожелании нам.
         <br />
-        Мы обязательно его прочтем!
+        Мы обязательно на него ответим!
       </p>
     </app-informer>
-    <form-confirmation
-      :dismiss-handler="clearForm"
-      :confirm-handler="sendEmail"
-      :is-confirm-button-disabled="!isSendButtonActive"
-      :confirmation-button-label="'Отправить'"
-    />
   </section>
 </template>
 
 <script setup>
-import FormConfirmation from "@/components/fromConfirmation/FormConfirmation";
 import TextHeader from "@/components/textHeader/TextHeader";
-import { EmailComposer } from "capacitor-email-composer";
-import { computed, reactive } from "vue";
+import { reactive } from "vue";
 import AppInformer from "@/components/appInformer/AppInformer";
 
 const errorData = reactive({
@@ -41,22 +33,19 @@ const errorData = reactive({
   description: "",
 });
 
-const sendEmail = () => {
-  const email = {
-    to: ["marina@vpoxod.ru"],
-    subject: "app feedback",
-    body: `Пользователь: ${errorData.name} <br> Пишет: ${errorData.description}`,
-    isHtml: true,
-  };
-  EmailComposer.open(email);
-};
-
-const clearForm = () => {
-  errorData.name = "";
-  errorData.description = "";
-};
-
-const isSendButtonActive = computed(() => {
-  return errorData.name && errorData.description;
-});
+const onFeedbackButtonClick = () => {
+  window.open(process.env.VUE_APP_TELEGRAM_FEEDBACK)
+}
 </script>
+
+<style scoped>
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.item {
+  margin-bottom: 30px;
+}
+</style>
