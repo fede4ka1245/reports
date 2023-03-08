@@ -40,6 +40,11 @@ onMounted(() => {
 </script>
 
 <style>
+* {
+  overscroll-behavior-y: none;
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: #f5f2ec;
 }
