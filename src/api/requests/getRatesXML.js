@@ -1,16 +1,18 @@
 export const getRatesXML = async (day, month, year) => {
-  const ratesResponse = await fetch(`/api/server-cbr?date_req=${day}/${month}/${year}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'text/xml; charset=utf-8'
+  if (process.env.NODE_ENV === "development") {
+    return await fetch(
+      `https://www.cbr.ru/scripts/XML_daily.asp?date_req=${day}/${month}/${year}`,
+      {
+        method: "GET"
       }
-    })
-      .then((res) => {
-        console.log(res);
-        return res.text();
-      });
+    ).then((res) => {
+      return res.text();
+    });
+  }
 
-  console.log(ratesResponse);
-
-  return ratesResponse;
+  return fetch(`/api/server-cbr?date_req=${day}/${month}/${year}`, {
+    method: "GET",
+  }).then((res) => {
+    return res.text();
+  });
 };
