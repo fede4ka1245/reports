@@ -8,14 +8,13 @@
       color="orange"
       icon="telegram"
       label="Написать фидбэк"
-      @click="onFeedbackButtonClick"
       no-caps
+      @click="onFeedbackButtonClick"
     />
-    <app-informer
-      class="item"
-    >
+    <app-informer class="item">
       <p>
-        Вы будете перенаправлены в телеграм, где сможете прикрепить необходимые скриншоты или видео, и отправить сообщение об ошибке или пожелании нам.
+        Вы будете перенаправлены в телеграм, где сможете прикрепить необходимые
+        скриншоты или видео, и отправить сообщение об ошибке или пожелании нам.
         <br />
         Мы обязательно на него ответим!
       </p>
@@ -34,8 +33,8 @@ const errorData = reactive({
 });
 
 const onFeedbackButtonClick = () => {
-  window.open(process.env.VUE_APP_TELEGRAM_FEEDBACK)
-}
+  window.open(process.env.VUE_APP_TELEGRAM_FEEDBACK);
+};
 </script>
 
 <style scoped>

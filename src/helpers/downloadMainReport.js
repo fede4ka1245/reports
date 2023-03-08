@@ -1,7 +1,6 @@
 import { store } from "@/store/store";
 import { getMainReport } from "@/helpers/excel/reports/getMainReport";
 import { downloadXLSX } from "@/helpers/downloadXLSX";
-import { sendFileDownloadedNotification } from "@/helpers/notifications/sendFileDownloadedNotification";
 import { hasInternetConnection } from "@/helpers/hasInternetConnection";
 
 export const downloadMainReport = async () => {
@@ -16,12 +15,6 @@ export const downloadMainReport = async () => {
   }
 
   const xlsx = await getMainReport(reportData);
-  const { path, directory, mimeType } = await downloadXLSX(xlsx, "Общий отчет");
-  sendFileDownloadedNotification(
-    "Общий отчет",
-    "Загружен общий отчет",
-    path,
-    directory,
-    mimeType
-  );
+
+  await downloadXLSX(xlsx, "Общий отчет");
 };

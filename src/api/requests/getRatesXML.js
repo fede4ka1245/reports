@@ -1,8 +1,16 @@
-import { Http } from "@capacitor-community/http";
-
 export const getRatesXML = async (day, month, year) => {
-  const ratesResponse = await Http.get({
-    url: `https://www.cbr.ru/scripts/XML_daily.asp?date_req=${day}/${month}/${year}`,
-  });
-  return await ratesResponse.data;
+  const ratesResponse = await fetch(`/api/server-cbr?date_req=${day}/${month}/${year}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'text/xml; charset=utf-8'
+      }
+    })
+      .then((res) => {
+        console.log(res);
+        return res.text();
+      });
+
+  console.log(ratesResponse);
+
+  return ratesResponse;
 };

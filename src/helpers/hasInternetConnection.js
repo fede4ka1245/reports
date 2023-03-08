@@ -1,5 +1,5 @@
-import { Network } from "@capacitor/network";
+import isOnline from "is-online";
 
 export const hasInternetConnection = async () => {
-  return (await Network.getStatus()).connected;
+  return await isOnline();
 };
