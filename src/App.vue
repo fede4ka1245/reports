@@ -1,10 +1,12 @@
 <template>
-  <router-view></router-view>
-  <div>
-    <modal-root />
+  <div class="app-container">
+    <router-view></router-view>
+    <div>
+      <modal-root />
+    </div>
+    <div class="tabbar-margin"></div>
+    <app-tabbar />
   </div>
-  <div class="tabbar-margin"></div>
-  <app-tabbar />
 </template>
 
 <script setup>
@@ -55,5 +57,10 @@ body {
 
 .content {
   padding: 1em;
+}
+
+.app-container {
+  max-width: 650px;
+  margin: 0 auto;
 }
 </style>

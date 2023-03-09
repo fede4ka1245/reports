@@ -59,6 +59,8 @@ const targetTabIndex = ref(0);
   bottom: 0;
   background: #f5f2ec;
   z-index: 100;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
 .ios {
