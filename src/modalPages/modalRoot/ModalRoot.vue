@@ -7,20 +7,22 @@
     transition-hide="slide-down"
   >
     <div class="content">
-      <q-btn
-        round
-        dark-percentage
-        unelevated
-        text-color="grey-9"
-        icon="reply"
-        class="button-back"
-        @click="closeModalPage"
-      />
-      <modal-payment v-if="getIsModalOpen(modalName.modalPayment)" />
-      <modal-expense v-if="getIsModalOpen(modalName.modalExpense)" />
-      <modal-conversion v-if="getIsModalOpen(modalName.modalConversion)" />
-      <modal-time v-if="getIsModalOpen(modalName.modalTime)" />
-      <modal-create-route v-if="getIsModalOpen(modalName.modalRoute)" />
+      <div class="app-container">
+        <q-btn
+          round
+          dark-percentage
+          unelevated
+          text-color="grey-9"
+          icon="reply"
+          class="button-back"
+          @click="closeModalPage"
+        />
+        <modal-payment v-if="getIsModalOpen(modalName.modalPayment)" />
+        <modal-expense v-if="getIsModalOpen(modalName.modalExpense)" />
+        <modal-conversion v-if="getIsModalOpen(modalName.modalConversion)" />
+        <modal-time v-if="getIsModalOpen(modalName.modalTime)" />
+        <modal-create-route v-if="getIsModalOpen(modalName.modalRoute)" />s
+      </div>
     </div>
   </q-dialog>
 </template>
