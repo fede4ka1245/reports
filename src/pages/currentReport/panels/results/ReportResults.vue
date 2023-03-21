@@ -3,7 +3,7 @@
   <current-report-table :rows="store.currentReport.balance" />
   <app-informer>
     <p>
-      <strong>Итого =</strong> вкладка сборы - вкладка расходы - доходы
+      <strong>Итого =</strong> вкладка доходы - вкладка расходы - доходы
       инструктора
     </p>
     <p>

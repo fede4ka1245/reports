@@ -43,7 +43,7 @@ const panels = [
   {
     route: childRoutes.payments,
     icon: "social_distance",
-    label: "Сборы",
+    label: "Доходы",
   },
   {
     route: childRoutes.costs,
