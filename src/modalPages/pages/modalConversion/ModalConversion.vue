@@ -4,7 +4,7 @@
     <section class="sum">
       <q-select
         v-model="conversion.from.moneyCode"
-        label="валюта"
+        label="Валюта"
         :options="props.moneyCodes"
         :error="
           (!conversion.from.moneyCode && state.isError) ||
@@ -32,7 +32,7 @@
           (!!conversion.to.moneyCode &&
             conversion.to.moneyCode === conversion.from.moneyCode)
         "
-        label="валюта"
+        label="Валюта"
         :options="store.currentReport.moneyCodes"
         outlined
       />

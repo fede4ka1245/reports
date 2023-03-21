@@ -16,7 +16,7 @@ export function setPayments(sheet, outgoingPayments) {
     }
 
     if (payment.type === "members") {
-      createHeaderCell(sheet.getCell(rowIndex, 2), "участник");
+      createHeaderCell(sheet.getCell(rowIndex, 2), "Участник");
     }
 
     createHeaderCell(sheet.getCell(rowIndex, 3), "Сумма");
