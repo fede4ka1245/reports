@@ -8,7 +8,7 @@
     v-model="store.currentReport.members"
     class="item"
     outlined
-    label="Реальное количество участников"
+    label="Реальное количество участников (ФИО)"
     type="number"
   />
   <q-input
