@@ -22,7 +22,7 @@
     class="item"
     outlined
     label="Сроки"
-    popup-content-style="height: 50vh"
+    popup-content-class="hike-main-info-popup-content"
     @update:model-value="onDateUpdate"
     @filter="filterSearch"
   />
@@ -73,7 +73,7 @@ const onRouteUpdate = (targetRoute) => {
 
 const onDateUpdate = (targetHike) => {
   props.updateHikeInformation(
-    targetHike.beginDate + "-" + targetHike.endDate,
+    [targetHike.beginDate, targetHike.endDate].join(' - '),
     targetHike.id
   );
 };
@@ -85,7 +85,7 @@ const getDateOptionLabel = (optionHike) => {
     return optionHike;
   }
 
-  return optionHike?.beginDate + "-" + optionHike?.endDate;
+  return [optionHike?.beginDate, optionHike?.endDate].join(' - ');
 };
 
 const data = reactive({
@@ -116,4 +116,10 @@ async function filterSearch(input, update) {
 }
 </script>
 
-<style scoped></style>
+<style>
+@media screen and (max-width: 700px) {
+  .hike-main-info-popup-content {
+    max-height: 50vh !important;
+  }
+}
+</style>
