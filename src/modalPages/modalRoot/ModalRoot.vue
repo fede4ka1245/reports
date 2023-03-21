@@ -21,7 +21,7 @@
         <modal-expense v-if="getIsModalOpen(modalName.modalExpense)" />
         <modal-conversion v-if="getIsModalOpen(modalName.modalConversion)" />
         <modal-time v-if="getIsModalOpen(modalName.modalTime)" />
-        <modal-create-route v-if="getIsModalOpen(modalName.modalRoute)" />s
+        <modal-create-route v-if="getIsModalOpen(modalName.modalRoute)" />
       </div>
     </div>
   </q-dialog>
