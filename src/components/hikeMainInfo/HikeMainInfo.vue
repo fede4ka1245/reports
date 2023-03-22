@@ -8,7 +8,6 @@
     use-input
     label="Маршрут"
     :model-value="props.hike.name"
-    menu-self="center middle"
     :error="props.isNameError"
     @update:model-value="onRouteUpdate"
     @filter="filterSearch"
@@ -22,7 +21,7 @@
     class="item"
     outlined
     label="Сроки"
-    popup-content-class="hike-main-info-popup-content"
+    popup-content-style="width: 50vh"
     @update:model-value="onDateUpdate"
     @filter="filterSearch"
   />
@@ -115,11 +114,3 @@ async function filterSearch(input, update) {
   }
 }
 </script>
-
-<style>
-@media screen and (max-width: 700px) {
-  .hike-main-info-popup-content {
-    max-height: 50vh !important;
-  }
-}
-</style>

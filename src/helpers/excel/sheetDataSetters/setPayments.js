@@ -6,6 +6,8 @@ export function setPayments(sheet, outgoingPayments) {
   let rowIndex = sheet.rowCount + 1;
 
   for (let payment of outgoingPayments) {
+    setDivider(sheet);
+
     const { label, payments } = payment;
 
     createHeaderCell(sheet.getCell(rowIndex, 1), label);
@@ -41,7 +43,5 @@ export function setPayments(sheet, outgoingPayments) {
       sheet.getCell(rowIndex, 6).value = payments[i].comment || "-";
       rowIndex += 1;
     }
-
-    setDivider(sheet);
   }
 }

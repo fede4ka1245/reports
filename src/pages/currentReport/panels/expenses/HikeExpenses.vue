@@ -18,6 +18,12 @@
     :remove="remove"
   />
   <button-add :handler="onExpenseAdd" />
+  <payments-information
+    :payments="store.currentReport.outgoingPayments.filter(
+      (payment) => payment.label === 'Доходы инструктора'
+    )"
+    :money-codes="store.currentReport.moneyCodes"
+  />
 </template>
 
 <script setup>
@@ -31,6 +37,7 @@ import { groupedExpensesColumns } from "@/components/expenseTable/columns/groupe
 import { groupExpenses } from "@/helpers/reports/groupExpenses";
 import { formatNumber } from "@/helpers/formatNumber";
 import ExpenseTable from "@/components/expenseTable/ExpenseTable";
+import PaymentsInformation from "@/components/paymentsInformation/PaymentsInformation.vue";
 
 const groupedExpenses = computed(() => {
   return groupExpenses(store.currentReport.expenses);

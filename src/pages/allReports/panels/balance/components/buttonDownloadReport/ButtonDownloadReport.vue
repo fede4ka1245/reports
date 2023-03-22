@@ -14,6 +14,6 @@ import { downloadMainReport } from "@/helpers/downloadMainReport";
 .button {
   display: flex;
   justify-content: center;
-  margin: 1em;
+  margin: 3em 1em 1em 1em;
 }
 </style>

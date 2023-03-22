@@ -1,6 +1,6 @@
 <template>
-  <button-download-report />
   <balance-table :rows="resultRows" :edit="editTime" />
+  <button-download-report />
 </template>
 
 <script setup>

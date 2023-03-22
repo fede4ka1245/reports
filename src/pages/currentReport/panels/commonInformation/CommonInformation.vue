@@ -68,6 +68,6 @@ const onInactiveMembersInputChange = (inactiveMembers) =>
 
 <style scoped>
 .item {
-  padding: 0 0 1em 0;
+  padding: 0 0 5px 0;
 }
 </style>
