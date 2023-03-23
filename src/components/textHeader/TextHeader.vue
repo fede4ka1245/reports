@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import { appAlert } from "@/helpers/appAlert";
+import { appAlert } from "@/components/appAlert/appAlert";
 
 const props = defineProps({
   description: {

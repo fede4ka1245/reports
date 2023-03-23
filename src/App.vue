@@ -7,25 +7,8 @@
       </div>
       <div class="tabbar-margin"></div>
       <app-tabbar />
-      <q-dialog v-model="store.alert.isOpen">
-        <q-card>
-          <q-card-section
-            style="
-              width: 450px;
-              max-width: calc(100vw - 48px);
-              min-height: 40px;
-              margin: 16px 0;
-            "
-            class="q-pt-none"
-          >
-            {{ store.alert.text }}
-          </q-card-section>
-
-          <q-card-actions align="right">
-            <q-btn v-close-popup flat label="OK" color="primary" />
-          </q-card-actions>
-        </q-card>
-      </q-dialog>
+      <app-confirm />
+      <app-alert />
     </div>
   </div>
 </template>
@@ -37,7 +20,8 @@ import { onMounted } from "vue";
 import { store } from "./store/store";
 import { getItem, setItem, storageKey } from "@/helpers/localStorage";
 import { watch } from "vue";
-import { appAlert } from "@/helpers/appAlert";
+import AppConfirm from "@/components/appConfirm/AppConfirm.vue";
+import AppAlert from "@/components/appAlert/AppAlert.vue";
 
 onMounted(() => {
   if (

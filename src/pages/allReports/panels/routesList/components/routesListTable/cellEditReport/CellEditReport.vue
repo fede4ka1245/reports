@@ -6,14 +6,14 @@
           <q-item v-close-popup class="item" clickable @click="onPromoteClick">
             Сделать текущим
           </q-item>
-          <q-item v-close-popup clickable @click="props.remove(props.row)">
+          <q-item v-close-popup clickable @click="onDeleteClick">
             Удалить
           </q-item>
         </q-list>
       </q-menu>
       <q-menu v-else style="width: 150px">
         <q-list>
-          <q-item v-close-popup clickable @click="props.remove(props.row)">
+          <q-item v-close-popup clickable @click="onDeleteClick">
             Удалить
           </q-item>
         </q-list>
@@ -24,6 +24,15 @@
 
 <script setup>
 import { store } from "@/store/store";
+import { appConfirm } from "@/components/appConfirm/appConfirm";
+
+const onDeleteClick = async () => {
+  const res = await appConfirm("Вы уверены, что хотите удалить отчет?");
+
+  if (res) {
+    props.remove(props.row);
+  }
+};
 
 const props = defineProps({
   remove: {

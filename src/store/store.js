@@ -10,4 +10,10 @@ export const store = reactive({
     isOpen: false,
     text: "",
   },
+  propmt: {
+    isOpen: false,
+    text: "",
+    onSuccess: () => {},
+    onCancel: () => {},
+  },
 });
