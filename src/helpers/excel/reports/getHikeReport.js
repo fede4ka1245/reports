@@ -18,6 +18,8 @@ export const getHikeReport = (reportData) => {
 
   const sheet = workbook.addWorksheet("Общее");
 
+  sheet.getCell(1, 1).value = `Версия ${process.env.VUE_APP_VERSION}`;
+
   setHikeInformation(sheet, reportData);
   setDivider(sheet);
   setPayments(

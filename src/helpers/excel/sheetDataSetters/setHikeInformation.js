@@ -4,15 +4,15 @@ import { setDivider } from "@/helpers/excel/helpers/setDivider";
 export function setHikeInformation(sheet, hikeInformation) {
   let rowIndex = sheet.rowCount + 1;
 
-  createHeaderCell(sheet.getCell(1, 1), "ID Маршрута");
+  createHeaderCell(sheet.getCell(rowIndex, 1), "ID Маршрута");
   sheet.getCell(rowIndex, 2).value = hikeInformation.hikeId;
   rowIndex += 1;
 
-  createHeaderCell(sheet.getCell(2, 1), "Маршрут");
+  createHeaderCell(sheet.getCell(rowIndex, 1), "Маршрут");
   sheet.getCell(rowIndex, 2).value = hikeInformation.name;
   rowIndex += 1;
 
-  createHeaderCell(sheet.getCell(3, 1), "Даты похода");
+  createHeaderCell(sheet.getCell(rowIndex, 1), "Даты похода");
   sheet.getCell(rowIndex, 2).value = hikeInformation.dates;
   rowIndex += 1;
 
@@ -24,15 +24,15 @@ export function setHikeInformation(sheet, hikeInformation) {
     ...instructorsPayments.payments.map(({ name, id }) => `[${id.id}] ${name}`),
   ].join(", ");
 
-  createHeaderCell(sheet.getCell(4, 1), "Инструкторы");
+  createHeaderCell(sheet.getCell(rowIndex, 1), "Инструкторы");
   sheet.getCell(rowIndex, 2).value = instructorsLabel || "-";
   rowIndex += 1;
 
-  createHeaderCell(sheet.getCell(5, 1), "Реальное количество участников");
+  createHeaderCell(sheet.getCell(rowIndex, 1), "Реальное количество участников");
   sheet.getCell(rowIndex, 2).value = hikeInformation.members;
   rowIndex += 1;
 
-  createHeaderCell(sheet.getCell(6, 1), "Не явившиеся участники");
+  createHeaderCell(sheet.getCell(rowIndex, 1), "Не явившиеся участники");
   sheet.getCell(rowIndex, 2).value = hikeInformation.inactiveMembers;
   rowIndex += 1;
   setDivider(sheet);

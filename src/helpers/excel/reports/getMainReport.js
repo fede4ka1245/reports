@@ -19,6 +19,9 @@ export const getMainReport = (reportData) => {
   const sheet = workbook.addWorksheet("Общее");
 
   let rowIndex = 1;
+  sheet.getCell(1, 1).value = `Версия ${process.env.VUE_APP_VERSION}`;
+  rowIndex += 1;
+
   createHeaderCell(sheet.getCell(rowIndex, 1), "Общий баланс инструктора");
   rowIndex += 1;
   createHeaderCell(sheet.getCell(rowIndex, 2), "Баланс в валюте");
