@@ -54,6 +54,8 @@ const remove = (index) => {
 };
 
 const groupedExpensesRows = computed(() => {
+  console.log(groupedExpenses.value);
+
   return groupedExpenses.value?.map((expense) => {
     if (expense.isUncountable) {
       return {
