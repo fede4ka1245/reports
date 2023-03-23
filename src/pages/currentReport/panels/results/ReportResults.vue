@@ -11,9 +11,11 @@
     </p>
   </app-informer>
   <payments-information
-    :payments="store.currentReport.outgoingPayments.filter(
-      (payment) => payment.label !== 'Доходы инструктора'
-    )"
+    :payments="
+      store.currentReport.outgoingPayments.filter(
+        (payment) => payment.label !== 'Доходы инструктора'
+      )
+    "
     :money-codes="store.currentReport.moneyCodes"
   />
   <button-download-report />

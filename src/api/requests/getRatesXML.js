@@ -3,7 +3,7 @@ export const getRatesXML = async (day, month, year) => {
     return await fetch(
       `https://www.cbr.ru/scripts/XML_daily.asp?date_req=${day}/${month}/${year}`,
       {
-        method: "GET"
+        method: "GET",
       }
     ).then((res) => {
       return res.text();

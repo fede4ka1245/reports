@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import { routes } from "@/router/router";
-import IOS from 'is-ios';
+import IOS from "is-ios";
 
 const tabs = [
   {
@@ -44,10 +44,7 @@ const targetTabIndex = ref(0);
       >
       </q-route-tab>
     </q-tabs>
-    <div
-      v-if="IOS"
-      class="ios"
-    />
+    <div v-if="IOS" class="ios" />
   </div>
 </template>
 

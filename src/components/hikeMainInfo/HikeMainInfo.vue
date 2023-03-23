@@ -72,7 +72,7 @@ const onRouteUpdate = (targetRoute) => {
 
 const onDateUpdate = (targetHike) => {
   props.updateHikeInformation(
-    [targetHike.beginDate, targetHike.endDate].join(' - '),
+    [targetHike.beginDate, targetHike.endDate].join(" - "),
     targetHike.id
   );
 };
@@ -84,7 +84,7 @@ const getDateOptionLabel = (optionHike) => {
     return optionHike;
   }
 
-  return [optionHike?.beginDate, optionHike?.endDate].join(' - ');
+  return [optionHike?.beginDate, optionHike?.endDate].join(" - ");
 };
 
 const data = reactive({

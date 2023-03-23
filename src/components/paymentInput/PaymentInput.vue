@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <q-input
       class="sum"
       outlined
@@ -9,22 +9,32 @@
       :error="props.sumError"
       @update:model-value="(value) => props.updateSum(value)"
     />
-    <q-select
-      class="code"
-      outlined
-      use-input
-      label="Валюта"
-      :options="moneyCodes"
-      :model-value="props.code"
-      :error="props.moneyCodeError"
-      @update:model-value="props.updateCode"
-      @filter="filter"
-    />
+    <div class="code">
+      <money-code-select
+        :model-value="props.code"
+        :current-codes="props.codes"
+        :on-code-select="props.updateCode"
+        :is-error="props.moneyCodeError"
+        :is-multiply="false"
+      />
+    </div>
+    <!--    <q-select-->
+    <!--      class="code"-->
+    <!--      outlined-->
+    <!--      use-input-->
+    <!--      label="Валюта"-->
+    <!--      :options="moneyCodes"-->
+    <!--      :model-value="props.code"-->
+    <!--      :error="props.moneyCodeError"-->
+    <!--      @update:model-value="props.updateCode"-->
+    <!--      @filter="filter"-->
+    <!--    />-->
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
+import MoneyCodeSelect from "@/components/moneyCodeSelect/MoneyCodeSelect.vue";
 
 const props = defineProps({
   codes: {
@@ -80,20 +90,21 @@ onMounted(() => {
 </script>
 
 <style scoped>
-div {
+.main {
   display: flex;
   justify-content: space-between;
   padding-bottom: 5px;
 }
 
 .sum {
-  width: 55%;
+  flex: 1;
   height: 100%;
 }
 
 .code {
-  width: 44%;
+  width: 40%;
   overflow: hidden;
   max-height: 100%;
+  margin-left: 6px;
 }
 </style>

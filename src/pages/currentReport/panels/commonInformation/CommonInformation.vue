@@ -20,7 +20,7 @@
   />
   <p>Валюты для этого отчета:</p>
   <money-code-select
-    :money-codes="store.currentReport.moneyCodes"
+    :model-value="store.currentReport.moneyCodes"
     :on-code-select="onCodeSelect"
     :on-code-remove="onCodeRemove"
   />

@@ -1,7 +1,8 @@
 <template>
   <q-select
+    v-if="props.isMultiply"
     ref="select"
-    :model-value="props.moneyCodes"
+    :model-value="props.modelValue"
     :options="dynamicMoneyCodes"
     :option-label="getOptionLabel"
     outlined
@@ -30,6 +31,24 @@
       </q-chip>
     </template>
   </q-select>
+  <q-select
+    v-else
+    ref="select"
+    :model-value="props.modelValue"
+    :options="dynamicMoneyCodes"
+    :option-label="getOptionLabel"
+    outlined
+    label="Валюты"
+    use-input
+    input-debounce="2"
+    popup-content-style="height: 50vh"
+    @filter="filter"
+    @update:model-value="onMoneyCodeUpdate"
+  >
+    <template #selected-item="scope">
+      {{ scope.opt }}
+    </template>
+  </q-select>
 </template>
 
 <script setup>
@@ -37,7 +56,39 @@ import { ref } from "vue";
 import { getRates } from "@/helpers/reports/getRates";
 import { getMoneyCodes } from "@/helpers/reports/getMoneyCodes";
 
+const props = defineProps({
+  modelValue: {
+    required: true,
+  },
+  onCodeSelect: {
+    type: Function,
+    required: true,
+  },
+  onCodeRemove: {
+    type: Function,
+    default: () => undefined,
+  },
+  isError: {
+    type: Boolean,
+    default: () => false,
+  },
+  isMultiply: {
+    type: Boolean,
+    default: () => true,
+  },
+  currentCodes: {
+    type: Array,
+    default: () => getMoneyCodes(),
+  },
+});
+
+const dynamicMoneyCodes = ref(props.currentCodes);
+const rates = getRates();
 const select = ref(null);
+
+const onMoneyCodeUpdate = (moneyCode) => {
+  props.onCodeSelect(moneyCode);
+};
 
 const onMoneyCodeAdd = ({ value }) => {
   select.value?.updateInputValue("");
@@ -48,34 +99,17 @@ const onMoneyCodeRemove = ({ index }) => {
   props.onCodeRemove(index);
 };
 
-const getOptionLabel = (option) => `${option} (${rates[option]?.name})`;
-
-const props = defineProps({
-  moneyCodes: {
-    type: Array,
-    required: true,
-  },
-  onCodeSelect: {
-    type: Function,
-    required: true,
-  },
-  onCodeRemove: {
-    type: Function,
-    required: true,
-  },
-});
-
-const dynamicMoneyCodes = ref(getMoneyCodes());
-
-const rates = getRates();
+const getOptionLabel = (option) => {
+  return `${option} (${rates[option]?.name})`;
+};
 
 const filter = (value, update) => {
   update(() => {
     if (value === "") {
-      dynamicMoneyCodes.value = getMoneyCodes();
+      dynamicMoneyCodes.value = props.currentCodes;
     } else {
       const input = value.toLowerCase();
-      dynamicMoneyCodes.value = getMoneyCodes().filter(
+      dynamicMoneyCodes.value = props.currentCodes.filter(
         (code) =>
           rates[code].name.toLowerCase().includes(input) ||
           code.toLowerCase().startsWith(input)
