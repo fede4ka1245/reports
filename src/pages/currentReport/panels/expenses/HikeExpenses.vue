@@ -24,7 +24,7 @@
         (payment) => payment.label === 'Доходы инструктора'
       )
     "
-    :money-codes="store.currentReport.moneyCodes"
+    :money-codes="['RUB']"
   />
 </template>
 
