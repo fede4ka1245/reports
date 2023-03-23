@@ -1,6 +1,8 @@
 <template>
   <section v-for="payment in props.payments" :key="payment.label">
-    <text-header>{{ payment.label }}</text-header>
+    <text-header :description="payment.description || '-'">{{
+      payment.label
+    }}</text-header>
     <payments-table
       :edit="(index) => edit(payment, index)"
       :remove="(index) => remove(payment, index)"

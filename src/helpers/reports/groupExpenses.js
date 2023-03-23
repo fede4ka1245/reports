@@ -7,8 +7,9 @@ export const groupExpenses = (expenses) => {
     });
 
     if (targetExpenseIndex !== -1) {
-      grouped[targetExpenseIndex].count += 1
-      grouped[targetExpenseIndex].sum = Number(grouped[targetExpenseIndex].sum) + Number(expense.sum);
+      grouped[targetExpenseIndex].count += 1;
+      grouped[targetExpenseIndex].sum =
+        Number(grouped[targetExpenseIndex].sum) + Number(expense.sum);
       return;
     }
 

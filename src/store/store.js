@@ -6,4 +6,8 @@ export const store = reactive({
   currentReport: undefined,
   modalPages: modalPages,
   allReports: allReports,
+  alert: {
+    isOpen: false,
+    text: "",
+  },
 });

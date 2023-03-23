@@ -28,7 +28,10 @@ export function setHikeInformation(sheet, hikeInformation) {
   sheet.getCell(rowIndex, 2).value = instructorsLabel || "-";
   rowIndex += 1;
 
-  createHeaderCell(sheet.getCell(rowIndex, 1), "Реальное количество участников");
+  createHeaderCell(
+    sheet.getCell(rowIndex, 1),
+    "Реальное количество участников"
+  );
   sheet.getCell(rowIndex, 2).value = hikeInformation.members;
   rowIndex += 1;
 

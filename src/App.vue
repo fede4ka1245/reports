@@ -1,11 +1,32 @@
 <template>
-  <div class="app-container">
-    <router-view></router-view>
-    <div>
-      <modal-root />
+  <div class="app">
+    <div class="app-container">
+      <router-view></router-view>
+      <div>
+        <modal-root />
+      </div>
+      <div class="tabbar-margin"></div>
+      <app-tabbar />
+      <q-dialog v-model="store.alert.isOpen">
+        <q-card>
+          <q-card-section
+            style="
+              width: 450px;
+              max-width: calc(100vw - 48px);
+              min-height: 40px;
+              margin: 16px 0;
+            "
+            class="q-pt-none"
+          >
+            {{ store.alert.text }}
+          </q-card-section>
+
+          <q-card-actions align="right">
+            <q-btn v-close-popup flat label="OK" color="primary" />
+          </q-card-actions>
+        </q-card>
+      </q-dialog>
     </div>
-    <div class="tabbar-margin"></div>
-    <app-tabbar />
   </div>
 </template>
 
@@ -16,6 +37,7 @@ import { onMounted } from "vue";
 import { store } from "./store/store";
 import { getItem, setItem, storageKey } from "@/helpers/localStorage";
 import { watch } from "vue";
+import { appAlert } from "@/helpers/appAlert";
 
 onMounted(() => {
   if (
@@ -49,6 +71,9 @@ onMounted(() => {
 
 body {
   background-color: #f5f2ec;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .tabbar-margin {
@@ -62,5 +87,10 @@ body {
 .app-container {
   max-width: 650px;
   margin: 0 auto;
+}
+
+.app {
+  height: 100vh;
+  overflow: scroll;
 }
 </style>

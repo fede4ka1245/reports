@@ -3,7 +3,9 @@
     :money-codes="getMoneyCodes()"
     :payments="store.allReports.outgoingPayments"
   />
-  <text-header>Общие расходы</text-header>
+  <text-header :description="unitsDescriptions.generalExpenses.description">
+    Общие расходы
+  </text-header>
   <expense-table
     :rows="store.allReports.expenses"
     :columns="expensesColumns"
@@ -23,6 +25,7 @@ import TextHeader from "@/components/textHeader/TextHeader";
 import ButtonAdd from "@/components/buttonAdd/ButtonAdd";
 import { getMoneyCodes } from "@/helpers/reports/getMoneyCodes";
 import ExpenseTable from "@/components/expenseTable/ExpenseTable";
+import { unitsDescriptions } from "@/helpers/unitsDescriptions";
 
 const editExpense = (index) => {
   openModalPage(modalName.modalExpense, {

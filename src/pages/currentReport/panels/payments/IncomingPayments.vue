@@ -1,5 +1,7 @@
 <template>
-  <text-header>Сумма оплат участников</text-header>
+  <text-header :description="unitsDescriptions.clientsSum.description">
+    Сумма оплат участников
+  </text-header>
   <p v-if="!store.currentReport.moneyCodes.length">Не добавлено валют</p>
   <payment-input
     v-for="(code, index) in store.currentReport.moneyCodes"
@@ -22,6 +24,7 @@ import TextHeader from "@/components/textHeader/TextHeader";
 import PaymentsInformation from "@/components/paymentsInformation/PaymentsInformation";
 import NotificationDataSaved from "@/components/notificationDataSaved/NotificationDataSaved";
 import { useMutationEmitted } from "@/hooks/useMutationEmitted";
+import { unitsDescriptions } from "@/helpers/unitsDescriptions";
 
 const isNotificationVisible = useMutationEmitted(store.currentReport.moneySums);
 
