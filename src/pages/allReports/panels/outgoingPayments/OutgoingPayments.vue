@@ -7,7 +7,7 @@
     Общие расходы
   </text-header>
   <expense-table
-    :rows="store.allReports.expenses"
+    :rows="displayedExpenses"
     :columns="expensesColumns"
     :edit="editExpense"
     :remove="removeExpense"
@@ -26,6 +26,14 @@ import ButtonAdd from "@/components/buttonAdd/ButtonAdd";
 import { getMoneyCodes } from "@/helpers/reports/getMoneyCodes";
 import ExpenseTable from "@/components/expenseTable/ExpenseTable";
 import { unitsDescriptions } from "@/helpers/unitsDescriptions";
+import {computed} from "vue";
+
+const displayedExpenses = computed(() => {
+  return [...store.allReports.expenses.map((expense) => ({
+    ...expense,
+    sum: `${expense.sum} ${expense.moneyCode}`
+  }))]
+});
 
 const editExpense = (index) => {
   openModalPage(modalName.modalExpense, {
