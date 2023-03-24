@@ -4,7 +4,6 @@ import {
   setCommonPayments,
   setConversions,
   setExpenses,
-  setGroupedExpenses,
   setHikeInformation,
   setPayments,
 } from "@/helpers/excel/sheetDataSetters";
@@ -75,7 +74,7 @@ export const getMainReport = (reportData) => {
       ).payments
     );
     setDivider(sheet);
-    setGroupedExpenses(sheet, groupExpenses(report.expenses));
+    // setGroupedExpenses(sheet, groupExpenses(report.expenses));
     setPaymentsResult(sheet, [
       ...groupExpenses(report.expenses).filter(
         ({ isUncountable }) => !isUncountable

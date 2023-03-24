@@ -6,7 +6,6 @@ import {
   setHikeInformation,
   setCommonPayments,
   setPayments,
-  setGroupedExpenses,
 } from "@/helpers/excel/sheetDataSetters";
 
 import { createHeaderCell, styleSheet } from "@/helpers/excel/helpers";
@@ -55,7 +54,7 @@ export const getHikeReport = (reportData) => {
     ).payments
   );
   setDivider(expensesSheet);
-  setGroupedExpenses(expensesSheet, groupExpenses(reportData.expenses));
+  // setGroupedExpenses(expensesSheet, groupExpenses(reportData.expenses));
   setPaymentsResult(expensesSheet, [
     ...groupExpenses(reportData.expenses).filter(
       ({ isUncountable }) => !isUncountable
