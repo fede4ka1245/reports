@@ -9,7 +9,7 @@ import {
   setGroupedExpenses,
 } from "@/helpers/excel/sheetDataSetters";
 
-import { styleSheet } from "@/helpers/excel/helpers";
+import { createHeaderCell, styleSheet } from "@/helpers/excel/helpers";
 import { setDivider } from "@/helpers/excel/helpers/setDivider";
 import { setPaymentsResult } from "@/helpers/excel/sheetDataSetters/setPaymentsResult";
 
@@ -65,6 +65,19 @@ export const getHikeReport = (reportData) => {
   setConversions(expensesSheet, reportData.conversions);
 
   styleSheet(expensesSheet);
+
+  const checkListWorkSheet = workbook.addWorksheet("Чеклист");
+
+  reportData.checklist.forEach((checkListItem, index) => {
+    createHeaderCell(
+      checkListWorkSheet.getCell(index + 1, 1),
+      checkListItem.header
+    );
+    checkListWorkSheet.getCell(index + 1, 2).value = checkListItem.result;
+    checkListWorkSheet.getCell(index + 1, 3).value = checkListItem.comment;
+  });
+
+  styleSheet(checkListWorkSheet);
 
   return workbook.xlsx.writeBuffer();
 };

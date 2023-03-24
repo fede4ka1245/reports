@@ -26,7 +26,7 @@
           v-close-popup
           class="btn-2"
           flat
-          label="Отменит"
+          label="Отменить"
           color="red"
           @click="store.propmt.onCancel"
         />

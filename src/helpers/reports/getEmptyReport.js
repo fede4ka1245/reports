@@ -13,6 +13,44 @@ export const getEmptyReport = () => {
     inactiveMembers: "",
     expenses: [],
     conversions: [],
+    checklist: [
+      {
+        header: "Регистрация в МЧС",
+        hint: "Комментарии, номер группы",
+        result: "",
+        comment: "",
+      },
+      {
+        header: "ТБ фото отправлено на tb@vpoxod.ru",
+        hint: "Комментарии",
+        result: "",
+        comment: "",
+      },
+      {
+        header: "Все прошло хорошо",
+        hint: "Комментарии",
+        result: "",
+        comment: "",
+      },
+      {
+        header: "Фотоальбом есть",
+        hint: "Комментарии, ссылки",
+        result: "",
+        comment: "",
+      },
+      {
+        header: "Посты в соцсетях есть",
+        hint: "Комментарии, ссылки",
+        result: "",
+        comment: "",
+      },
+      {
+        header: "С общественным снаряжением четко",
+        hint: "Комментарии",
+        result: "",
+        comment: "",
+      },
+    ],
     incomingPayments: [
       {
         type: "members",

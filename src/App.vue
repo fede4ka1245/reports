@@ -22,6 +22,7 @@ import { getItem, setItem, storageKey } from "@/helpers/localStorage";
 import { watch } from "vue";
 import AppConfirm from "@/components/appConfirm/AppConfirm.vue";
 import AppAlert from "@/components/appAlert/AppAlert.vue";
+import { appAlert } from "@/components/appAlert/appAlert";
 
 onMounted(() => {
   if (
@@ -42,7 +43,7 @@ watch(store, (store) => {
 
 onMounted(() => {
   window.onerror = (msg) => {
-    alert(msg);
+    appAlert(msg);
   };
 });
 </script>

@@ -26,13 +26,15 @@ import ButtonAdd from "@/components/buttonAdd/ButtonAdd";
 import { getMoneyCodes } from "@/helpers/reports/getMoneyCodes";
 import ExpenseTable from "@/components/expenseTable/ExpenseTable";
 import { unitsDescriptions } from "@/helpers/unitsDescriptions";
-import {computed} from "vue";
+import { computed } from "vue";
 
 const displayedExpenses = computed(() => {
-  return [...store.allReports.expenses.map((expense) => ({
-    ...expense,
-    sum: `${expense.sum} ${expense.moneyCode}`
-  }))]
+  return [
+    ...store.allReports.expenses.map((expense) => ({
+      ...expense,
+      sum: `${expense.sum} ${expense.moneyCode}`,
+    })),
+  ];
 });
 
 const editExpense = (index) => {

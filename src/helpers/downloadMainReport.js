@@ -2,10 +2,11 @@ import { store } from "@/store/store";
 import { getMainReport } from "@/helpers/excel/reports/getMainReport";
 import { downloadXLSX } from "@/helpers/downloadXLSX";
 import { hasInternetConnection } from "@/helpers/hasInternetConnection";
+import { appAlert } from "@/components/appAlert/appAlert";
 
 export const downloadMainReport = async () => {
   if (!(await hasInternetConnection())) {
-    alert("Для скачивания отчета нужен интернет");
+    appAlert("Для скачивания отчета нужен интернет");
     return;
   }
 

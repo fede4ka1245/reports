@@ -56,6 +56,11 @@ const panels = [
     label: "Конвертация",
   },
   {
+    route: childRoutes.checkList,
+    icon: "check",
+    label: "Чеклист",
+  },
+  {
     route: childRoutes.summary,
     icon: "calculate",
     label: "Итог",

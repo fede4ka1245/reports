@@ -35,6 +35,7 @@ import { hasPaymentsForMoneyCode } from "@/helpers/reports/hasPaymentsForMoneyCo
 import NotificationDataSaved from "@/components/notificationDataSaved/NotificationDataSaved";
 import { useMutationEmitted } from "@/hooks/useMutationEmitted";
 import { toCamelCase } from "@/helpers/toCamelCase";
+import { appAlert } from "@/components/appAlert/appAlert";
 
 const updateHikeName = (name) => {
   store.currentReport.name = name;
@@ -47,7 +48,7 @@ const updateHikeInformation = (dates, hikeId) => {
 
 const onCodeRemove = (index) => {
   if (hasPaymentsForMoneyCode(store.currentReport.moneyCodes[index])) {
-    alert("Нельзя удалить использующуюся валюту");
+    appAlert("Нельзя удалить использующуюся валюту");
   } else {
     store.currentReport.moneyCodes.splice(index, 1);
   }

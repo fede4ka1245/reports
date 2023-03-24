@@ -83,6 +83,19 @@ export const getMainReport = (reportData) => {
     ]);
     setDivider(sheet);
     setConversions(sheet, report.conversions);
+    setDivider(sheet);
+    let rowIndex = sheet.rowCount + 1;
+    report.checklist.forEach((checkListItem, index) => {
+      createHeaderCell(
+        sheet.getCell(rowIndex + index, 1),
+        checkListItem.header
+      );
+      sheet.getCell(rowIndex + index, 2).value = checkListItem.result;
+      sheet.getCell(rowIndex + index, 3).value = "";
+      sheet.getCell(rowIndex + index, 4).value = "";
+      sheet.getCell(rowIndex + index, 5).value = "";
+      sheet.getCell(rowIndex + index, 6).value = checkListItem.comment;
+    });
 
     styleSheet(sheet);
   }

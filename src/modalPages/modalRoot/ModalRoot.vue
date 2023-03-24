@@ -22,6 +22,7 @@
         <modal-conversion v-if="getIsModalOpen(modalName.modalConversion)" />
         <modal-time v-if="getIsModalOpen(modalName.modalTime)" />
         <modal-create-route v-if="getIsModalOpen(modalName.modalRoute)" />
+        <modal-comment v-if="getIsModalOpen(modalName.modalComment)" />
       </div>
     </div>
   </q-dialog>
@@ -37,6 +38,7 @@ import ModalPayment from "@/modalPages/pages/modalPayment/ModalPayment";
 import ModalTime from "@/modalPages/pages/modalTime/ModalTime";
 import ModalCreateRoute from "@/modalPages/pages/modalRoute/ModalCreateRoute";
 import { closeModalPage } from "@/modalPages/helpers/closeModalPage";
+import ModalComment from "@/modalPages/pages/modalComment/ModalComment.vue";
 
 const getIsModalOpen = (modal) => {
   return store.modalPages.activePageName === modal;

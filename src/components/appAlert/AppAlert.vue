@@ -14,7 +14,7 @@
       </q-card-section>
 
       <q-card-actions align="right">
-        <q-btn v-close-popup flat label="Да" color="primary" />
+        <q-btn v-close-popup flat label="Хорошо" color="primary" />
       </q-card-actions>
     </q-card>
   </q-dialog>

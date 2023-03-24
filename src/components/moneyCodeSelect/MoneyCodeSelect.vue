@@ -59,6 +59,7 @@ import { getMoneyCodes } from "@/helpers/reports/getMoneyCodes";
 const props = defineProps({
   modelValue: {
     required: true,
+    type: null,
   },
   onCodeSelect: {
     type: Function,
