@@ -51,7 +51,6 @@ onMounted(() => {
 <style>
 * {
   overscroll-behavior-y: none;
-  scroll-behavior: smooth;
 }
 
 body {
