@@ -39,11 +39,11 @@ const resultRows = computed(() => {
     let convertedSum;
 
     if (moneyCode === "RUB") {
-      convertedSum = formatNumber(balance.sum || "") + " RUB";
+      convertedSum = formatNumber(balance.sum || 0) + " RUB";
     } else {
       convertedSum = balance.convertedSum
-        ? formatNumber(balance.convertedSum || "") + " RUB"
-        : "";
+        ? formatNumber(balance.convertedSum || 0) + " RUB"
+        : '';
     }
 
     rows.push({

@@ -40,12 +40,15 @@ const rows = computed(() => {
 
   const targetRows = currentReport ? [currentReport, ...reports] : reports;
 
-  return targetRows.sort((firstReport, secondReport) => {
+  return [...targetRows.sort((firstReport, secondReport) => {
     const firstReportStartDate = firstReport.dates.split("-")[0];
     const secondReportStartDate = secondReport.dates.split("-")[0];
 
     return compareFormattedDates(firstReportStartDate, secondReportStartDate);
-  });
+  }).map((report) => ({
+    ...report,
+    checked: report.balance.every(((balance) => +balance.finalResult === 0))
+  }))];
 });
 
 const remove = (report) => {

@@ -3,6 +3,7 @@
     <div
       class="cell"
       :class="{ orange: props.row?.key === store.currentReport?.key }"
+      style="white-space: break-spaces"
     >
       {{ props.value }}
     </div>

@@ -94,7 +94,6 @@ const tableRows = computed(() => {
     {
       moneyCode: "RUB",
       sum: 'Итого:',
-      date: '-',
       convertedSum: (tableProps.rows.reduce((previousValue, currentValue) => {
         let convertedSum = 0;
 
@@ -105,7 +104,7 @@ const tableRows = computed(() => {
         return {
           convertedSum: previousValue.convertedSum + Number(convertedSum)
         };
-      }, { convertedSum: 0 })).convertedSum + ' RUB'
+      }, { convertedSum: 0 })).convertedSum || 0 + ' RUB'
     },
   ];
 });

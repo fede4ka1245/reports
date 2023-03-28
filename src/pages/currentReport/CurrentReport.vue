@@ -79,16 +79,16 @@ const getReportResults = () => {
       return {
         moneyCode: code,
         result: formatNumber(
-          countResultForMoneyCode(store.currentReport, code) || ""
+          countResultForMoneyCode(store.currentReport, code) || 0
         ),
         resultWithIncomingPayments: formatNumber(
           countResultForMoneyCodeWithIncomingPayments(
             store.currentReport,
             code
-          ) || ""
+          ) || 0
         ),
         finalResult: formatNumber(
-          countFinalResult(store.currentReport, code) || ""
+          countFinalResult(store.currentReport, code) || 0
         ),
       };
     }),
