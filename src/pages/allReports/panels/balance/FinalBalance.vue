@@ -1,4 +1,9 @@
 <template>
+  <app-informer>
+    <p>
+      <strong>Баланс =</strong> Сумма балансов на руках после передач + Получено вне - Потрачено вне
+    </p>
+  </app-informer>
   <balance-table :rows="resultRows" :edit="editTime" />
   <button-download-report />
 </template>
@@ -11,6 +16,7 @@ import ButtonDownloadReport from "./components/buttonDownloadReport/ButtonDownlo
 import { modalName } from "@/modalPages/helpers/modalName";
 import { modifyBalance } from "@/pages/allReports/helpers";
 import { formatNumber } from "@/helpers/formatNumber";
+import AppInformer from "@/components/appInformer/AppInformer.vue";
 import BalanceTable from "@/pages/allReports/panels/balance/components/balanceTable/BalanceTable";
 
 const editTime = (index) => {
@@ -27,9 +33,13 @@ const editTime = (index) => {
   });
 };
 
+console.log(store.allReports.reports, 'here');
+
 const resultRows = computed(() => {
   const rows = [];
-  const entries = Array.from(Object.entries(store.allReports.balance));
+  const entries = [
+    ...Object.entries(store.allReports.balance),
+  ];
 
   for (const [moneyCode, balance] of entries) {
     let convertedSum;
