@@ -24,11 +24,7 @@
 <script setup>
 import { store } from "@/store/store";
 import { hasPaymentsForMoneyCode } from "@/helpers/reports/hasPaymentsForMoneyCode";
-import { useMutationEmitted } from "@/hooks/useMutationEmitted";
-import { toCamelCase } from "@/helpers/toCamelCase";
 import CheckListItem from "@/pages/currentReport/panels/checkList/CheckListItem.vue";
-
-const selectOptions = ["Да", "Нет", "Не указано"];
 
 const updateHikeName = (name) => {
   store.currentReport.name = name;
@@ -53,11 +49,6 @@ const onCodeSelect = (code) => {
   }
   store.currentReport.moneyCodes.push(code);
 };
-
-const isNotificationVisible = useMutationEmitted(store.currentReport);
-
-const onInactiveMembersInputChange = (inactiveMembers) =>
-  (store.currentReport.inactiveMembers = toCamelCase(inactiveMembers));
 </script>
 
 <style scoped>

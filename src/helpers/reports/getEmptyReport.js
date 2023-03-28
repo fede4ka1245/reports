@@ -1,5 +1,6 @@
 import { nanoid } from "nanoid";
 import { unitsDescriptions } from "@/helpers/unitsDescriptions";
+import {selectOptions} from "@/helpers/selectOptions";
 
 export const getEmptyReport = () => {
   return {
@@ -17,37 +18,37 @@ export const getEmptyReport = () => {
       {
         header: "Регистрация в МЧС",
         hint: "Комментарии, номер группы",
-        result: "",
+        result: selectOptions[2],
         comment: "",
       },
       {
         header: "ТБ фото отправлено на tb@vpoxod.ru",
         hint: "Комментарии",
-        result: "",
+        result: selectOptions[2],
         comment: "",
       },
       {
         header: "Все прошло хорошо",
         hint: "Комментарии",
-        result: "",
+        result: selectOptions[2],
         comment: "",
       },
       {
         header: "Фотоальбом есть",
         hint: "Комментарии, ссылки",
-        result: "",
+        result: selectOptions[2],
         comment: "",
       },
       {
         header: "Посты в соцсетях есть",
         hint: "Комментарии, ссылки",
-        result: "",
+        result: selectOptions[2],
         comment: "",
       },
       {
         header: "С общественным снаряжением четко",
         hint: "Комментарии",
-        result: "",
+        result: selectOptions[2],
         comment: "",
       },
     ],

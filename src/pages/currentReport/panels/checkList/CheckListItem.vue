@@ -8,33 +8,15 @@
       class="select"
       outlined
       :model-value="props.result"
-      label="Не указано/Да/Нет"
       size="sm"
       @update:model-value="updateResult"
     />
     <div class="comment">
-      <input
-        class="comment-input"
-        :value="props.comment"
-        :placeholder="props.hint"
+      <check-list-table
+        :rows="[{ comment: props.comment}]"
+        :disabled="isCommentEditDisabled"
+        :edit="onUpdateCommentClick"
       />
-      <div class="comment-btn">
-        <q-btn
-          :disable="isCommentEditDisabled"
-          round
-          flat
-          color="grey"
-          icon="more_horiz"
-        >
-          <q-menu style="width: 150px">
-            <q-list>
-              <q-item v-close-popup clickable @click="onUpdateCommentClick">
-                Редактировать
-              </q-item>
-            </q-list>
-          </q-menu>
-        </q-btn>
-      </div>
     </div>
   </div>
 </template>
@@ -43,6 +25,8 @@
 import { modalName } from "@/modalPages/helpers/modalName";
 import { openModalPage } from "@/modalPages/helpers/openModalPage";
 import { computed } from "vue";
+import { selectOptions } from "@/helpers/selectOptions";
+import CheckListTable from "@/pages/currentReport/panels/checkList/components/CheckListTable.vue";
 
 const props = defineProps({
   header: {
@@ -86,8 +70,6 @@ const onUpdateCommentClick = () => {
     placeholder: "",
   });
 };
-
-const selectOptions = ["Да", "Нет", "Не указано"];
 </script>
 
 <style scoped>
@@ -101,26 +83,6 @@ const selectOptions = ["Да", "Нет", "Не указано"];
 }
 
 .comment {
-  margin-top: 10px;
-  background: white;
-  display: flex;
-  height: 56px;
-  align-items: center;
-}
-
-.comment-input {
-  flex: 1;
-  pointer-events: none;
-  border: none;
-  padding: 15px;
-}
-
-.comment-btn {
-  width: 56px;
-  height: 56px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-left: grey solid 2px;
+  margin-top: 15px;
 }
 </style>
