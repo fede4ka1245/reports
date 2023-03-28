@@ -31,10 +31,21 @@ export const getMainReport = (reportData) => {
   const balanceEntries = [...Object.entries(reportData.balance)];
   for (let [moneyCode, balanceValue] of balanceEntries) {
     sheet.getCell(rowIndex, 2).value = balanceValue.sum + " " + moneyCode;
-    sheet.getCell(rowIndex, 3).value = Number(balanceValue.convertedSum);
+    sheet.getCell(rowIndex, 3).value = balanceValue.convertedSum;
     sheet.getCell(rowIndex, 4).value = balanceValue.date;
     rowIndex += 1;
   }
+
+  rowIndex += 1;
+
+  createHeaderCell(sheet.getCell(rowIndex, 2), "Итого");
+  sheet.getCell(rowIndex, 3).value = ([...Object.values(reportData.balance)].reduce((previousValue, currentValue) => {
+    let convertedSum = currentValue.convertedSum ?? 0;
+
+    return {
+      convertedSum: previousValue.convertedSum + Number(convertedSum)
+    };
+  }, { convertedSum: 0 })).convertedSum;
 
   setDivider(sheet);
   setPayments(sheet, reportData.outgoingPayments);

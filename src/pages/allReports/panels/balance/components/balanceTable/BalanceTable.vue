@@ -1,10 +1,15 @@
 <template>
-  <default-table :columns="appBalanceColumns" :rows="tableProps.rows">
+  <default-table :columns="appBalanceColumns" :rows="tableRows">
+    <template #body-cell-date="{ props }">
+      <q-td v-if="props.pageIndex !== tableRows.length - 1">
+        <div class="cell">{{ props.value }}</div>
+      </q-td>
+    </template>
     <template #body-cell-edit-time="{ props }">
       <cell-edit-time
+        v-if="props.pageIndex !== tableRows.length - 1"
         :money-code="props.row.moneyCode"
         :edit="tableProps.edit"
-        :page-index="props.pageIndex"
       />
     </template>
     <template #header-cell-date="{ props }">
@@ -13,7 +18,8 @@
       </q-th>
     </template>
     <template #body-cell-balance-converted-sum="{ props }">
-      <q-td v-if="store.allReports?.isBalanceLoading">
+      <cell-filled v-if="props.pageIndex === tableRows.length - 1" :value="props.value" />
+      <q-td v-else-if="store.allReports?.isBalanceLoading">
         <div class="cell">
           <q-spinner color="orange" size="24px" />
         </div>
@@ -32,7 +38,12 @@
       </q-td>
     </template>
     <template #body-cell-balance-sum="{ props }">
-      <cell-filled :value="props.value" />
+      <q-td v-if="props.pageIndex === tableRows.length - 1" style="background: rgb(128, 128, 128); color: white">
+        <div class="cell">
+          {{ props.value }}
+        </div>
+      </q-td>
+      <cell-filled v-else :value="props.value" />
     </template>
   </default-table>
 </template>
@@ -43,7 +54,7 @@ import CellEditTime from "@/pages/allReports/panels/balance/components/balanceTa
 import { appBalanceColumns } from "@/pages/allReports/panels/balance/components/balanceTable/appBalanceColumns";
 import CellFilled from "@/components/table/cellFilled/cellFilled";
 import { store } from "@/store/store";
-import { onMounted, reactive } from "vue";
+import { computed, onMounted, reactive } from "vue";
 import { hasInternetConnection } from "@/helpers/hasInternetConnection";
 
 const isRubles = (label) => {
@@ -75,5 +86,27 @@ const reactiveData = reactive({
 
 onMounted(async () => {
   reactiveData.hasConnection = await hasInternetConnection();
+});
+
+const tableRows = computed(() => {
+  return [
+    ...tableProps.rows,
+    {
+      moneyCode: "RUB",
+      sum: 'Итого:',
+      date: '-',
+      convertedSum: (tableProps.rows.reduce((previousValue, currentValue) => {
+        let convertedSum = 0;
+
+        if (currentValue.convertedSum.includes(' ')) {
+          convertedSum = Number(currentValue.convertedSum.split(' ')[0]);
+        }
+
+        return {
+          convertedSum: previousValue.convertedSum + Number(convertedSum)
+        };
+      }, { convertedSum: 0 })).convertedSum + ' RUB'
+    },
+  ];
 });
 </script>

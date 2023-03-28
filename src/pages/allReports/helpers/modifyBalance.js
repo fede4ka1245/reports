@@ -8,23 +8,24 @@ export const modifyBalance = async () => {
     store.currentReport.balance,
   ];
 
-  const moneyCodes = Array.from(
-    new Set([
-      ...getAllReportsMoneyCodes(
-        store.allReports.incomingPayments,
-        store.allReports.outgoingPayments,
-        store.allReports.expenses
-      ),
-      ...balances
-        .filter((balance) => balance?.moneyCode)
-        .map((balance) => balance.moneyCode),
-    ])
-  );
+  const moneyCodes = new Set([
+    ...getAllReportsMoneyCodes(
+      store.allReports.incomingPayments,
+      store.allReports.outgoingPayments,
+      store.allReports.expenses
+    )
+  ])
+
+  for (let reportBalance of balances) {
+    for (let moneyCodeBalance of reportBalance) {
+      moneyCodes.add(moneyCodeBalance.moneyCode);
+    }
+  }
 
   let balance = store.allReports.balance;
 
   for (let moneyCode of Object.keys({ ...balance })) {
-    if (!moneyCodes.includes(moneyCode)) {
+    if (![...moneyCodes].includes(moneyCode)) {
       delete store.allReports.balance[moneyCode];
     } else {
       store.allReports.balance[moneyCode].sum = 0;
@@ -37,7 +38,7 @@ export const modifyBalance = async () => {
         continue;
       }
 
-      if (moneyCodeBalance.moneyCode && balance[moneyCodeBalance.moneyCode]) {
+      if (balance[moneyCodeBalance.moneyCode]) {
         balance[moneyCodeBalance.moneyCode].sum += Number(
           moneyCodeBalance.finalResult
         );

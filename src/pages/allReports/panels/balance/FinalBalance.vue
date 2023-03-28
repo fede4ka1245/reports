@@ -20,21 +20,16 @@ import { formatNumber } from "@/helpers/formatNumber";
 import AppInformer from "@/components/appInformer/AppInformer.vue";
 import BalanceTable from "@/pages/allReports/panels/balance/components/balanceTable/BalanceTable";
 
-const editTime = (index) => {
-  const moneyCode = Object.keys(store.allReports.balance)[index];
-  const balance = store.allReports.balance[moneyCode];
-
+const editTime = (moneyCode) => {
   openModalPage(modalName.modalTime, {
     onConfirm: async (day, month, year) => {
-      balance.date = `${day}.${month}.${year}`;
+      store.allReports.balance[moneyCode].date = `${day}.${month}.${year}`;
       store.allReports.isBalanceLoading = true;
       await modifyBalance();
       store.allReports.isBalanceLoading = false;
     },
   });
 };
-
-console.log(store.allReports.reports, "here");
 
 const resultRows = computed(() => {
   const rows = [];

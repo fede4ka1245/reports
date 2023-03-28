@@ -3,7 +3,7 @@
     <q-btn :disable="isDisabled" round flat color="grey" icon="more_horiz">
       <q-menu style="width: 150px">
         <q-list style="min-width: 100px">
-          <q-item v-close-popup clickable @click="props.edit(props.pageIndex)">
+          <q-item v-close-popup clickable @click="() => props.edit(props.moneyCode)">
             Изменить дату
           </q-item>
         </q-list>
@@ -16,10 +16,6 @@
 const props = defineProps({
   edit: {
     type: Function,
-    required: true,
-  },
-  pageIndex: {
-    type: Number,
     required: true,
   },
   moneyCode: {
