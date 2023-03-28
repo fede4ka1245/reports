@@ -1,6 +1,6 @@
 <template>
   <default-table :columns="checklistColumns" :rows="tableProps.rows">
-    <template #body-cell-edit="{ props }">
+    <template #body-cell-edit>
       <q-th style="width: calc(100% - 36px)">
         <q-btn
           :disable="tableProps.disabled"
