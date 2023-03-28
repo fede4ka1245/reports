@@ -29,6 +29,6 @@ import { unitsDescriptions } from "@/helpers/unitsDescriptions";
 const isNotificationVisible = useMutationEmitted(store.currentReport.moneySums);
 
 const updateSum = (value, code) => {
-  store.currentReport.moneySums[code] = value;
+  store.currentReport.moneySums[code] = Math.abs(value);
 };
 </script>

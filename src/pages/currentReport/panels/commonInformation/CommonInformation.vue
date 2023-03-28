@@ -5,7 +5,8 @@
     :update-hike-information="updateHikeInformation"
   />
   <q-input
-    v-model="store.currentReport.members"
+    :model-value="store.currentReport.members"
+    @update:model-value="onMembersChange"
     class="item"
     outlined
     label="Реальное количество участников"
@@ -40,6 +41,10 @@ import { appAlert } from "@/components/appAlert/appAlert";
 const updateHikeName = (name) => {
   store.currentReport.name = name;
 };
+
+const onMembersChange = (members) => {
+  store.currentReport.members = Math.abs(members);
+}
 
 const updateHikeInformation = (dates, hikeId) => {
   store.currentReport.dates = dates;

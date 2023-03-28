@@ -1,5 +1,4 @@
 <template>
-  <current-report-table :rows="store.currentReport.balance" />
   <app-informer>
     <p>
       <strong>Итого =</strong> вкладка доходы - вкладка расходы - доходы
@@ -10,6 +9,7 @@
       инструкторам/кураторам/офису
     </p>
   </app-informer>
+  <current-report-table :rows="store.currentReport.balance" />
   <payments-information
     :payments="
       store.currentReport.outgoingPayments.filter(

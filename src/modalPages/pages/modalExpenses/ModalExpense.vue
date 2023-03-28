@@ -16,7 +16,7 @@
     :sum="expense.sum"
     :update-code="(code) => (expense.moneyCode = code)"
     :update-sum="(sum) => (expense.sum = sum)"
-    :sum-error="!expense.sum && state.isError"
+    :sum-error="!expense.sum && state.isError || expense.sum < 0"
     :money-code-error="!expense.moneyCode && state.isError"
     class="item"
   />
@@ -86,7 +86,8 @@ const isConfirmButtonDisabled = computed(() => {
     expense.category &&
     expense.moneyCode &&
     expense.description &&
-    expense.comment
+    expense.comment &&
+    expense.sum >= 0
   );
 });
 

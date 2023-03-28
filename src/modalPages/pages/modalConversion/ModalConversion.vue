@@ -15,7 +15,7 @@
       />
       <q-input
         v-model="conversion.from.sum"
-        :error="!conversion.from.sum && state.isError"
+        :error="!conversion.from.sum && state.isError || conversion.from.sum < 0"
         outlined
         label="Сумма"
         type="number"
@@ -38,7 +38,7 @@
       />
       <q-input
         v-model="conversion.to.sum"
-        :error="!conversion.to.sum && state.isError"
+        :error="!conversion.to.sum && state.isError || conversion.to.sum < 0"
         outlined
         label="Сумма"
         type="number"
@@ -105,7 +105,9 @@ const isConfirmButtonDisabled = computed(() => {
     conversion.to.sum &&
     conversion.date &&
     conversion.comment &&
-    conversion.to.moneyCode !== conversion.from.moneyCode
+    conversion.to.moneyCode !== conversion.from.moneyCode &&
+    conversion.to.sum >= 0 &&
+    conversion.from.sum >= 0
   );
 });
 
