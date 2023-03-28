@@ -4,6 +4,7 @@ export const checklistColumns = [
     name: "comment",
     field: "comment",
     label: "Комментарий",
+    sortable: true,
   },
   {
     align: "left",

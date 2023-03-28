@@ -13,7 +13,7 @@
     />
     <div class="comment">
       <check-list-table
-        :rows="[{ comment: props.comment}]"
+        :rows="[{ comment: props.comment }]"
         :disabled="isCommentEditDisabled"
         :edit="onUpdateCommentClick"
       />
