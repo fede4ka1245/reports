@@ -27,12 +27,16 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { childRoutes } from "@/pages/currentReport/childRoutes";
 import { routes } from "@/router/router";
 import { store } from "@/store/store";
 import EmptyReport from "@/pages/currentReport/EmptyReport";
 import { isTabDisable } from "@/helpers/reports/isTabDisable";
+import { formatNumber } from "@/helpers/formatNumber";
+import { countResultForMoneyCode } from "@/helpers/reports/countResultForMoneyCode";
+import { countResultForMoneyCodeWithIncomingPayments } from "@/helpers/reports/countResultForMoneyCodeWithIncomingPayments";
+import { countFinalResult } from "@/helpers/reports/countFinalResult";
 
 const panels = [
   {
@@ -68,6 +72,32 @@ const panels = [
 ];
 
 const targetTabIndex = ref(0);
+
+const getReportResults = () => {
+  return [
+    ...store.currentReport.moneyCodes.map((code) => {
+      return {
+        moneyCode: code,
+        result: formatNumber(
+          countResultForMoneyCode(store.currentReport, code) || ""
+        ),
+        resultWithIncomingPayments: formatNumber(
+          countResultForMoneyCodeWithIncomingPayments(
+            store.currentReport,
+            code
+          ) || ""
+        ),
+        finalResult: formatNumber(
+          countFinalResult(store.currentReport, code) || ""
+        ),
+      };
+    }),
+  ];
+};
+
+watch(store.currentReport, () => {
+  store.currentReport.balance = getReportResults();
+});
 </script>
 
 <style scoped>

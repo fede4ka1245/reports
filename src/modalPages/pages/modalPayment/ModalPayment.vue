@@ -26,7 +26,9 @@
     :code="paymentData.payment.moneyCode"
     :codes="props.moneyCodes"
     :sum="paymentData.payment.sum"
-    :sum-error="!paymentData.payment.sum && state.isError || paymentData.payment.sum < 0"
+    :sum-error="
+      (!paymentData.payment.sum && state.isError) || paymentData.payment.sum < 0
+    "
     :money-code-error="!paymentData.payment.moneyCode && state.isError"
     :update-code="(code) => (paymentData.payment.moneyCode = code)"
     :update-sum="(sum) => (paymentData.payment.sum = sum)"

@@ -1,6 +1,6 @@
 import { nanoid } from "nanoid";
 import { unitsDescriptions } from "@/helpers/unitsDescriptions";
-import {selectOptions} from "@/helpers/selectOptions";
+import { selectOptions } from "@/helpers/selectOptions";
 
 export const getEmptyReport = () => {
   return {

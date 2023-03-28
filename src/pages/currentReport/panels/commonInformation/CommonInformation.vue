@@ -6,11 +6,11 @@
   />
   <q-input
     :model-value="store.currentReport.members"
-    @update:model-value="onMembersChange"
     class="item"
     outlined
     label="Реальное количество участников"
     type="number"
+    @update:model-value="onMembersChange"
   />
   <q-input
     :model-value="store.currentReport.inactiveMembers"
@@ -44,7 +44,7 @@ const updateHikeName = (name) => {
 
 const onMembersChange = (members) => {
   store.currentReport.members = Math.abs(members);
-}
+};
 
 const updateHikeInformation = (dates, hikeId) => {
   store.currentReport.dates = dates;

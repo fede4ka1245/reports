@@ -9,13 +9,19 @@ export const resultsColumns = [
     align: "left",
     name: "result",
     field: "result",
-    label: "Итого",
+    label: "Итог проведения",
     sortable: true,
   },
   {
     align: "left",
     name: "profit",
-    field: "profit",
-    label: "Итого на руках",
+    field: "resultWithIncomingPayments",
+    label: "Итого с учетом получений",
+  },
+  {
+    align: "left",
+    name: "profit",
+    field: "finalResult",
+    label: "Баланс на руках после передач",
   },
 ];

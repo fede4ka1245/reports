@@ -16,7 +16,7 @@
     :sum="expense.sum"
     :update-code="(code) => (expense.moneyCode = code)"
     :update-sum="(sum) => (expense.sum = sum)"
-    :sum-error="!expense.sum && state.isError || expense.sum < 0"
+    :sum-error="(!expense.sum && state.isError) || expense.sum < 0"
     :money-code-error="!expense.moneyCode && state.isError"
     class="item"
   />

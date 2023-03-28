@@ -11,37 +11,25 @@ export const countResultForMoneyCode = (currentReport, code) => {
     }
   }
 
-  for (let incomingPayment of currentReport.incomingPayments) {
-    if (incomingPayment.type === "members") {
-      continue;
-    }
-
-    for (let payment of incomingPayment.payments) {
-      if (payment.moneyCode === code) {
-        result += Number(payment.sum);
-      }
-    }
-  }
-
   for (let expense of currentReport.expenses) {
     if (expense.moneyCode === code) {
       result -= Number(expense.sum);
     }
   }
 
-  // for (let conversion of currentReport.conversions) {
-  //   if (
-  //     conversion.from.moneyCode !== code &&
-  //     conversion.to.moneyCode === code
-  //   ) {
-  //     result += Number(conversion.to.sum);
-  //   } else if (
-  //     conversion.from.moneyCode === code &&
-  //     conversion.to.moneyCode !== code
-  //   ) {
-  //     result -= Number(conversion.to.sum);
-  //   }
-  // }
+  for (let conversion of currentReport.conversions) {
+    if (
+      conversion.from.moneyCode !== code &&
+      conversion.to.moneyCode === code
+    ) {
+      result += Number(conversion.to.sum);
+    } else if (
+      conversion.from.moneyCode === code &&
+      conversion.to.moneyCode !== code
+    ) {
+      result -= Number(conversion.from.moneyCode);
+    }
+  }
 
   return result;
 };

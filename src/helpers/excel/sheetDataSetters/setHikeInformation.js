@@ -43,17 +43,21 @@ export function setHikeInformation(sheet, hikeInformation) {
   createHeaderCell(sheet.getCell(rowIndex, 1), "Итого");
   rowIndex += 1;
 
-  createHeaderCell(sheet.getCell(rowIndex, 2), "Итого");
-  createHeaderCell(sheet.getCell(rowIndex, 3), "Итого на руках");
-  createHeaderCell(sheet.getCell(rowIndex, 4), "Валюта");
+  createHeaderCell(sheet.getCell(rowIndex, 2), "Итог проведения");
+  createHeaderCell(sheet.getCell(rowIndex, 3), "Итого с учетом получений");
+  createHeaderCell(sheet.getCell(rowIndex, 4), "Итого на руках после передач");
+  createHeaderCell(sheet.getCell(rowIndex, 5), "Валюта");
   rowIndex += 1;
 
   if (!hikeInformation.balance?.length) return;
 
   for (let i = 0; i < hikeInformation.balance?.length; i++) {
     sheet.getCell(rowIndex, 2).value = hikeInformation.balance[i].result || 0;
-    sheet.getCell(rowIndex, 3).value = hikeInformation.balance[i].profit || 0;
-    sheet.getCell(rowIndex, 4).value = hikeInformation.balance[i].moneyCode;
+    sheet.getCell(rowIndex, 3).value =
+      hikeInformation.balance[i].resultWithIncomingPayments || 0;
+    sheet.getCell(rowIndex, 4).value =
+      hikeInformation.balance[i].finalResult || 0;
+    sheet.getCell(rowIndex, 5).value = hikeInformation.balance[i].moneyCode;
     rowIndex += 1;
   }
 }

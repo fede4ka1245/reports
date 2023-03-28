@@ -7,7 +7,7 @@
       <cell-filled :value="props.value" />
     </template>
     <template #header-cell="{ props }">
-      <q-th style="width: 33%">
+      <q-th style="width: 20%; white-space: break-spaces">
         {{ props.col.label }}
       </q-th>
     </template>
