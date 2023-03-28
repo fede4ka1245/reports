@@ -3,18 +3,23 @@ import { getAllReportsMoneyCodes } from "@/pages/allReports/helpers/getAllReport
 import { convertToRUB } from "@/helpers/conversion";
 
 export const modifyBalance = async () => {
-  const balances = [...store.allReports.reports.map((balance) => balance.balance), store.currentReport.balance];
+  const balances = [
+    ...store.allReports.reports.map((balance) => balance.balance),
+    store.currentReport.balance,
+  ];
 
-  const moneyCodes = Array.from(new Set([
-    ...getAllReportsMoneyCodes(
-      store.allReports.incomingPayments,
-      store.allReports.outgoingPayments,
-      store.allReports.expenses
-    ),
-    ...balances
-      .filter((balance) => balance?.moneyCode)
-      .map((balance) => balance.moneyCode)
-  ]));
+  const moneyCodes = Array.from(
+    new Set([
+      ...getAllReportsMoneyCodes(
+        store.allReports.incomingPayments,
+        store.allReports.outgoingPayments,
+        store.allReports.expenses
+      ),
+      ...balances
+        .filter((balance) => balance?.moneyCode)
+        .map((balance) => balance.moneyCode),
+    ])
+  );
 
   let balance = store.allReports.balance;
 
@@ -33,9 +38,13 @@ export const modifyBalance = async () => {
       }
 
       if (moneyCodeBalance.moneyCode && balance[moneyCodeBalance.moneyCode]) {
-        balance[moneyCodeBalance.moneyCode].sum += Number(moneyCodeBalance.finalResult);
+        balance[moneyCodeBalance.moneyCode].sum += Number(
+          moneyCodeBalance.finalResult
+        );
       } else {
-        balance[moneyCodeBalance.moneyCode] = {sum: Number(moneyCodeBalance.finalResult)};
+        balance[moneyCodeBalance.moneyCode] = {
+          sum: Number(moneyCodeBalance.finalResult),
+        };
       }
     }
   }

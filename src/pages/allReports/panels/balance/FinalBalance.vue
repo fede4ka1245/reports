@@ -1,7 +1,8 @@
 <template>
   <app-informer>
     <p>
-      <strong>Баланс =</strong> Сумма балансов на руках после передач + Получено вне - Потрачено вне
+      <strong>Баланс =</strong> Сумма балансов на руках после передач + Получено
+      вне - Потрачено вне
     </p>
   </app-informer>
   <balance-table :rows="resultRows" :edit="editTime" />
@@ -33,13 +34,11 @@ const editTime = (index) => {
   });
 };
 
-console.log(store.allReports.reports, 'here');
+console.log(store.allReports.reports, "here");
 
 const resultRows = computed(() => {
   const rows = [];
-  const entries = [
-    ...Object.entries(store.allReports.balance),
-  ];
+  const entries = [...Object.entries(store.allReports.balance)];
 
   for (const [moneyCode, balance] of entries) {
     let convertedSum;
