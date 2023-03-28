@@ -29,7 +29,7 @@ export const getHikeReport = (reportData) => {
   );
   styleSheet(sheet);
 
-  const incomingPaymentsSheet = workbook.addWorksheet("Доходы");
+  const incomingPaymentsSheet = workbook.addWorksheet("Получено");
 
   setCommonPayments(incomingPaymentsSheet, reportData.moneySums);
   setDivider(incomingPaymentsSheet);

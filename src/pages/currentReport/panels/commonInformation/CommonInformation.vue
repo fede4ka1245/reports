@@ -8,14 +8,14 @@
     v-model="store.currentReport.members"
     class="item"
     outlined
-    label="Реальное количество участников (ФИО)"
+    label="Реальное количество участников"
     type="number"
   />
   <q-input
     :model-value="store.currentReport.inactiveMembers"
     class="item"
     outlined
-    label="Не явившиеся участники"
+    label="Не явившиеся участники (ФИО)"
     @update:model-value="onInactiveMembersInputChange"
   />
   <p>Валюты для этого отчета:</p>
