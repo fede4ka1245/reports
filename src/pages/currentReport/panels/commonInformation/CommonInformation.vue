@@ -3,6 +3,8 @@
     :hike="store.currentReport"
     :update-hike-name="updateHikeName"
     :update-hike-information="updateHikeInformation"
+    :is-date-error="!store.currentReport?.dates"
+    :is-name-error="!store.currentReport?.name"
   />
   <q-input
     :model-value="store.currentReport.members"

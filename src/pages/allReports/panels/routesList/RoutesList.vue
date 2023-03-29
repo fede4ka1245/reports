@@ -38,7 +38,7 @@ const rows = computed(() => {
   const currentReport = store.currentReport;
   const reports = store.allReports.reports;
 
-  const targetRows = currentReport ? [currentReport, ...reports] : reports;
+  const targetRows = currentReport?.name && currentReport?.dates ? [currentReport, ...reports] : reports;
 
   return [...targetRows.sort((firstReport, secondReport) => {
     const firstReportStartDate = firstReport.dates.split("-")[0];
@@ -47,7 +47,7 @@ const rows = computed(() => {
     return compareFormattedDates(firstReportStartDate, secondReportStartDate);
   }).map((report) => ({
     ...report,
-    checked: report.balance.every(((balance) => +balance.finalResult === 0))
+    checked: report.balance && report.balance.every(((balance) => +balance.finalResult === 0))
   }))];
 });
 
@@ -68,7 +68,7 @@ const promoteToCurrent = (report) => {
 
   const index = getReportIndex(report);
 
-  if (store.currentReport) {
+  if (store.currentReport && store.currentReport?.name && store.currentReport?.dates) {
     store.allReports.reports.push(store.currentReport);
   }
 
