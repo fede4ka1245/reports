@@ -18,7 +18,10 @@
       </q-th>
     </template>
     <template #body-cell-balance-converted-sum="{ props }">
-      <cell-filled v-if="props.pageIndex === tableRows.length - 1" :value="props.value" />
+      <cell-filled
+        v-if="props.pageIndex === tableRows.length - 1"
+        :value="props.value"
+      />
       <q-td v-else-if="store.allReports?.isBalanceLoading">
         <div class="cell">
           <q-spinner color="orange" size="24px" />
@@ -38,7 +41,10 @@
       </q-td>
     </template>
     <template #body-cell-balance-sum="{ props }">
-      <q-td v-if="props.pageIndex === tableRows.length - 1" style="background: rgb(128, 128, 128); color: white">
+      <q-td
+        v-if="props.pageIndex === tableRows.length - 1"
+        style="background: rgb(128, 128, 128); color: white"
+      >
         <div class="cell">
           {{ props.value }}
         </div>
@@ -93,18 +99,22 @@ const tableRows = computed(() => {
     ...tableProps.rows,
     {
       moneyCode: "RUB",
-      sum: 'Итого:',
-      convertedSum: (tableProps.rows.reduce((previousValue, currentValue) => {
-        let convertedSum = 0;
+      sum: "Итого:",
+      convertedSum:
+        tableProps.rows.reduce(
+          (previousValue, currentValue) => {
+            let convertedSum = 0;
 
-        if (currentValue.convertedSum.includes(' ')) {
-          convertedSum = Number(currentValue.convertedSum.split(' ')[0]);
-        }
+            if (currentValue.convertedSum.includes(" ")) {
+              convertedSum = Number(currentValue.convertedSum.split(" ")[0]);
+            }
 
-        return {
-          convertedSum: previousValue.convertedSum + Number(convertedSum)
-        };
-      }, { convertedSum: 0 })).convertedSum || 0 + ' RUB'
+            return {
+              convertedSum: previousValue.convertedSum + Number(convertedSum),
+            };
+          },
+          { convertedSum: 0 }
+        ).convertedSum || 0 + " RUB",
     },
   ];
 });

@@ -43,7 +43,7 @@ const resultRows = computed(() => {
     } else {
       convertedSum = balance.convertedSum
         ? formatNumber(balance.convertedSum || 0) + " RUB"
-        : '';
+        : "";
     }
 
     rows.push({

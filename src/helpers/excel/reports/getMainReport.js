@@ -39,13 +39,18 @@ export const getMainReport = (reportData) => {
   rowIndex += 1;
 
   createHeaderCell(sheet.getCell(rowIndex, 2), "Итого");
-  sheet.getCell(rowIndex, 3).value = ([...Object.values(reportData.balance)].reduce((previousValue, currentValue) => {
-    let convertedSum = currentValue.convertedSum ?? 0;
+  sheet.getCell(rowIndex, 3).value = [
+    ...Object.values(reportData.balance),
+  ].reduce(
+    (previousValue, currentValue) => {
+      let convertedSum = currentValue.convertedSum ?? 0;
 
-    return {
-      convertedSum: previousValue.convertedSum + Number(convertedSum)
-    };
-  }, { convertedSum: 0 })).convertedSum;
+      return {
+        convertedSum: previousValue.convertedSum + Number(convertedSum),
+      };
+    },
+    { convertedSum: 0 }
+  ).convertedSum;
 
   setDivider(sheet);
   setPayments(sheet, reportData.outgoingPayments);

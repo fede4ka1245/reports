@@ -38,17 +38,29 @@ const rows = computed(() => {
   const currentReport = store.currentReport;
   const reports = store.allReports.reports;
 
-  const targetRows = currentReport?.name && currentReport?.dates ? [currentReport, ...reports] : reports;
+  const targetRows =
+    currentReport?.name && currentReport?.dates
+      ? [currentReport, ...reports]
+      : reports;
 
-  return [...targetRows.sort((firstReport, secondReport) => {
-    const firstReportStartDate = firstReport.dates.split("-")[0];
-    const secondReportStartDate = secondReport.dates.split("-")[0];
+  return [
+    ...targetRows
+      .sort((firstReport, secondReport) => {
+        const firstReportStartDate = firstReport.dates.split("-")[0];
+        const secondReportStartDate = secondReport.dates.split("-")[0];
 
-    return compareFormattedDates(firstReportStartDate, secondReportStartDate);
-  }).map((report) => ({
-    ...report,
-    checked: report.balance && report.balance.every(((balance) => +balance.finalResult === 0))
-  }))];
+        return compareFormattedDates(
+          firstReportStartDate,
+          secondReportStartDate
+        );
+      })
+      .map((report) => ({
+        ...report,
+        checked:
+          report.balance &&
+          report.balance.every((balance) => +balance.finalResult === 0),
+      })),
+  ];
 });
 
 const remove = (report) => {
@@ -68,7 +80,11 @@ const promoteToCurrent = (report) => {
 
   const index = getReportIndex(report);
 
-  if (store.currentReport && store.currentReport?.name && store.currentReport?.dates) {
+  if (
+    store.currentReport &&
+    store.currentReport?.name &&
+    store.currentReport?.dates
+  ) {
     store.allReports.reports.push(store.currentReport);
   }
 

@@ -13,8 +13,8 @@ export const modifyBalance = async () => {
       store.allReports.incomingPayments,
       store.allReports.outgoingPayments,
       store.allReports.expenses
-    )
-  ])
+    ),
+  ]);
 
   for (let reportBalance of balances) {
     for (let moneyCodeBalance of reportBalance) {
